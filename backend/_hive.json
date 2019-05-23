@@ -2,11 +2,44 @@
     "versions":{
         "1.0.0":"Initial Setup"
     },
-    "hive_of_a":"",
-    "app_name": "cool",
+    "hive_of_a":"maths",
+    "app_name": "mcp",
     "combs":{
-        //nyd
-        //add your entities here
+        
+        "operand_category":{
+            "name":["vcnn",30],
+            "description":["tn"]
+        },
+        "guess":{
+            "operand_id":["fk"],
+            "operation_id":["fk"],
+            "will_be_correct": ["inn",30,0],
+            "was_correct": ["inn",30,0],
+            "score": ["dnn"]
+        },
+        "operand":{
+            "operand_category_id":["vcnn",30],
+            "name":["vcnn",30],
+            "description":["tn"],
+            "symbol":["vcnn",5]
+        },
+        "operation":{
+            "num1":["dnn"],
+            "num2":["dnn"],
+            "operand_id":["fk"],
+            "expected": ["dnn"],
+            "response": ["dnn"],
+            "was_correct": ["inn",30,0],
+            "operation_id": ["inn",30,0],
+            "guess_id": ["fk"],
+            "_comments":[
+                "was_correct: indicates wether the operation was correct, try -> passed on ui",
+                "operation_id: the parent operaation, important for tree operations",
+                "guess_id: needs a guess_id"
+            ]
+        },
+        
+
         "config":{
             "name":["vcnn",30],
             "company_name":["vcnn",30],
@@ -85,134 +118,6 @@
             "role_id":["tn"],
             "description":["tn"]
         },
-
-        "account_category":{
-            "name":["vcnn",30],
-            "number":["vcnn",30],
-            "_comments":[]
-        },
-        "account":{
-            "name":["vcnn",30],
-            "account_number": ["vcnn",30,0],
-            "default_balance": ["vcnn",30,0],
-            "account_id": ["fk"],
-            "account_category_id": ["fk"],
-            "_comments":[]
-        },
-        "funding_line":{
-            "account_id": ["fk"],
-            "name":["vcnn",30],
-            "start_date": ["vcnn",30,0],
-            "start_time": ["inn",30,0],
-            "end_date": ["vcnn",30,0],
-            "end_time": ["inn",30,0],
-            "amount": ["inn",30,0],
-            "purpose": ["vcnn",30],
-            "_comments":[]
-        },
-        "fiscal_year":{
-            "name":["vcnn",30],
-            "open_time": ["inn",30,0],
-            "open_date": ["vcnn",30],
-            "end_time": ["inn",30,0],
-            "end_date": ["vcnn",30],
-            "_comments":[]
-        },
-        "accounting_event":{
-            "name":["vcnn",30],
-            "code":["vcnn",30],
-            "sort_order":["inn",30,0],
-            "system_event_name": ["vcnn",30],
-            "_comments":[
-                "name: is the descriptive noun of the event",
-                "code: short name of the event"
-            ]
-        },
-        "accounting_rule":{
-            "accounting_event_id": ["inn",30,0],
-            "account_id": ["fk"],
-            "direction":["vcnn",30],
-            "attached_amount":["vcnn",30],
-            "journal_id" : ["fk"],
-            "ledger_id" : ["fk"]
-        },
-        "accounting_closure":{
-            "occurancy_time": ["inn",30,0],
-            "occurancy_date": ["vcnn",30],
-            "remarks":["tn"],
-            "user_id" : ["fk"]
-        },
-        "accounting_transaction":{
-            "accounting_event_id":["fk"],
-            "journal_id" : ["fk"],
-            "occurancy_time": ["inn",30,0],
-            "occurancy_date": ["vcnn",30],
-            "amount":["dnn",30],
-            "direction":["vcnn",30],
-            "fiscal_year_id" : ["fk"],
-            "description":["tn"],
-            "user_id" : ["fk"],
-            "is_closed": ["inn",30,0],
-            "is_manuall_entry": ["inn",30,0],
-            "accounting_closure_id" : ["fk"],
-            "remarks":["tn"],
-            "_comments":[ 
-                "these are journal entries"
-            ]
-        },
-        "accounting_entry":{
-            "accounting_transaction_id":["fk"],
-            "account_id": ["fk"],
-            "accounting_rule_id": ["fk"],
-            "is_accounting_rule": ["inn",30,0],
-            "amount":["dnn",30],
-            "direction":["vcnn",30],
-            "is_manuall_entry": ["inn",30,0],
-            "remarks":["tn"],
-            "ledger_id" : ["fk"],
-            "_comments":[ 
-                "These are ledger entries",
-                "direction: is either debit or credit"
-            ]
-        },
-        "accounting_standard_booking":{
-            "accounting_event_id":["fk"],
-            "name":["vcnn",30],
-            "journal_id" : ["fk"],
-            "description":["tn"],
-            "_comments":[]
-        },
-        "accounting_standard_booking_entry":{
-            "accounting_standard_booking_id":["fk"],
-            "account_id": ["fk"],
-            "percentage_amount":["dnn",30],
-            "direction":["vcnn",30],
-            "ledger_id" : ["fk"],
-            "_comments":[ 
-                "direction: is either debit or credit",
-                "percentage_amount: is the portion of the transaction amount that this will receive"
-            ]
-        },
-        "accounting_export":{
-            "accounting_transaction_id":["fk"],
-            "receiver_id": ["vcnn",30],
-            "export_time": ["inn",30,0],
-            "export_date": ["vcnn",30],
-            "description":["tn"],
-            "user_id" : ["fk"],
-            "_comments":[ ]
-        },
-        "journal" :{
-            "name":["vcnn",30],
-            "description":["tn"],
-            "_comments":[]
-        },
-        "ledger" :{
-            "name":["vcnn",30],
-            "description":["tn"],
-            "_comments":[]
-        },
-
         "_hidden":[
             "users__password",
             "user__password"
@@ -246,12 +151,12 @@
     },
     "is_registration_public": true,
     "_f_register" : {
-        "app_name" : "cloudfin",
-        "name" : "The Chairman",
-        "email" : "nyolamike@gmail.com",
+        "app_name" : "cool app",
+        "name" : "the cool owner",
+        "email" : "iamnyola@gmail.com",
         "country" : "uganda",
         "phone_number" : "0703158861",
-        "password" : "qwerty2015"
+        "password" : "qwerty"
     },
     "is_registration_offline": false,
     "upload_files_with_post_data": false,
