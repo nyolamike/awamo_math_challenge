@@ -130,8 +130,21 @@ Explain the response
 Go to php my admin and see that the master db has been created  
 
 
+# And thats our back end  
+show slide  
+
+
+
+
 
 #demo _hidding data from response
 
 # future improments  
 - database migrations  
+- cross db queries (back officee)  
+- other data formats like xml, yaml, toml etc
+
+# hopes  
+- to build a cloud platform like firebase where app backends cand be easily  
+bootstrapped and store for people their data  
+- create the (Not Your Object Query Language), as a specification for requesting data from datasources  
