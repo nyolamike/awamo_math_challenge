@@ -1,0 +1,113 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_operations_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" style="background-color: #f3f3f3; padding-top: 0px; padding-left: 2px;">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        From:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="frontdesk_page_from_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        To:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="frontdesk_page_to_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        Type / Capacity:
+                        <div class="input-group input-group-sm" style="width: 100%;">
+                            <select class="form-control" multiple="multiple" id="frontdesk_page_capacity_select" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <input type="text" class="form-control timepicker" style="width:50%" disabled id="booking_page_find_from_time_input" />
+                    <div class="input-group-addon" style="line-height: 1.6;">
+                        <i class="fa fa-clock-o"></i>
+                    </div> -->
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        &nbsp;&nbsp;
+                        <div class="input-group input-group-sm">
+                            <button type="button" id="frontdesk_page_refresh_submit_btn" class="btn btn-sm btn-success pull-right app_action_item disabled_action app_action_booking_r1">
+                                <i class="fa fa-refresh"></i>
+                                refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content" style="padding-bottom: 0px; padding-top: 0px;">
+        <div class="row">
+            <div class="col-lg-12 no-padding" id="dp-copntainer">
+                <div class="box box-success " style="margin-bottom: 0px;">
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" id="db-body">
+                        <div id="dp"></div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="dp-item">
+                                    <div class="color pending"></div>
+                                    <div class="desc">pending</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color comfirmed"></div>
+                                    <div class="desc">comfirmed</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color cancelled"></div>
+                                    <div class="desc">cancelled</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color missed"></div>
+                                    <div class="desc">missed</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color checkedin"></div>
+                                    <div class="desc">checkedin</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color checkedout"></div>
+                                    <div class="desc">checkedout</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="dp_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.operations = {
+        id: "operations",
+        load: function () {
+            
+            
+        }
+    }
+</script>

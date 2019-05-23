@@ -1,0 +1,583 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_frontdesk_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" style="background-color: #f3f3f3; padding-top: 0px; padding-left: 2px;">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        From:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="frontdesk_page_from_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        To:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="frontdesk_page_to_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        Type / Capacity:
+                        <div class="input-group input-group-sm" style="width: 100%;">
+                            <select class="form-control" multiple="multiple" id="frontdesk_page_capacity_select" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <input type="text" class="form-control timepicker" style="width:50%" disabled id="booking_page_find_from_time_input" />
+                    <div class="input-group-addon" style="line-height: 1.6;">
+                        <i class="fa fa-clock-o"></i>
+                    </div> -->
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        &nbsp;&nbsp;
+                        <div class="input-group input-group-sm">
+                            <button type="button" id="frontdesk_page_refresh_submit_btn" class="btn btn-sm btn-success pull-right app_action_item disabled_action app_action_booking_r1">
+                                <i class="fa fa-refresh"></i>
+                                refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content" style="padding-bottom: 0px; padding-top: 0px;">
+        <div class="row">
+            <div class="col-lg-12 no-padding" id="dp-copntainer">
+                <div class="box box-success " style="margin-bottom: 0px;">
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" id="db-body">
+                        <div id="dp"></div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="dp-item">
+                                    <div class="color pending"></div>
+                                    <div class="desc">pending</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color comfirmed"></div>
+                                    <div class="desc">comfirmed</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color cancelled"></div>
+                                    <div class="desc">cancelled</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color missed"></div>
+                                    <div class="desc">missed</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color checkedin"></div>
+                                    <div class="desc">checkedin</div>
+                                </div>
+                                <div class="dp-item">
+                                    <div class="color checkedout"></div>
+                                    <div class="desc">checkedout</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="dp_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.frontdesk = {
+        id: "frontdesk",
+        dp: null,
+        showDpLoader: function () {
+            $("#dp_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideDpLoader: function () {
+            $("#dp_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        dpLoadTimeline(dp, date) {
+            dp.scale = "Manual";
+            dp.timeline = [];
+            var start = dp.startDate.getDatePart().addHours(12); //date.getDatePart().addHours(12);
+
+            for (var i = 0; i < dp.days; i++) {
+                dp.timeline.push({ start: start.addDays(i), end: start.addDays(i + 1) });
+            }
+            dp.update();
+            return dp;
+        },
+        dpLoadResources() { //rooms
+            app.pages.master_page.pages.frontdesk.showDpLoader();
+            app.pages.master_page.pages.rooms.getRoomsFromServer(function (rooms) {
+                app.pages.master_page.pages.rooms.renderRoomsList(rooms);
+                //preprocess to fit dp specifications
+                //{id,name,capacity,status}
+                var data = [];
+                for (var i = 0; i < rooms.length; i++) {
+                    var room = rooms[i];
+                    data.push({
+                        id: room.id,
+                        name: room.number,
+                        capacity: room.room_category.capacity,
+                        status: room.status
+                    });
+                }
+
+                app.pages.master_page.pages.frontdesk.dp.resources = data;
+                app.pages.master_page.pages.frontdesk.dp.update();
+                app.pages.master_page.pages.frontdesk.custoniseDp();
+                app.pages.master_page.pages.frontdesk.hideDpLoader();
+                //load events
+                app.pages.master_page.pages.frontdesk.dpLoadEvents();
+
+
+            });
+        },
+        custoniseDp: function () {
+            var d = $($("#dp .scheduler_default_corner").children()[3]);
+            d.css({ visibility: "hidden" });
+        },
+        dpLoadEvents: function () {
+            var checkinDate = $("#frontdesk_page_from_date_input").val();
+            var checkoutDate = $("#frontdesk_page_to_date_input").val();
+            if (checkinDate == null || checkinDate.length == 0) {
+                checkinDate = app.getTodayDateStr(new Date());
+                $("#frontdesk_page_from_date_input").val(checkinDate);
+            }
+            if (checkoutDate == null || checkoutDate.length == 0) {
+                var inDate = new Date(checkinDate);
+                var toDate = DayPilot.Date.fromYearMonthDay(inDate.getFullYear(), inDate.getMonth() + 1, inDate.getDate());
+                var toStr = app.getTodayDateStr(new Date(toDate.addMonths(1).toDate()));
+                $("#frontdesk_page_to_date_input").val(toStr);
+            }
+            var checkinTime = app.config.checkin_time;
+            var checkoutTime = app.config.checkout_time;
+            var checkin = checkinDate + " " + checkinTime;
+            var checkout = checkoutDate + " " + checkoutTime;
+            //console.log("period for ", checkin, checkout);
+            var checkinDate = new Date(checkin);
+            var fromTime = checkinDate.getTime() / 1000;
+            var checkoutDate = new Date(checkout);
+            var toTime = checkoutDate.getTime() / 1000;
+            var tw1 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lte", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw2 = bee
+                .where("checkin_time", "gte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw3 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "gte", toTime)._w;
+            var tw4 = bee
+                .where("checkin_time", "gte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "gte", toTime)._w;
+            var w = bee
+                .where(tw1[0], "OR", tw2[0])
+                .or(tw3[0],"OR",tw4[0])._w;
+            // var w = bee
+            //     .where(ow[0], "OR", tw3[0])._w;
+            var a = "id name source status phone_number email country number_of_minors number_of_adults number_of_nights checkin_time";
+            a = a + " checkout_time actual_checkin_time actual_checkout_time notes time_inserted";
+            var nec = {
+                bookings: {
+                    _a: a,
+                    booked_rooms: {
+                        room: {},
+                        booked_room_bills: {},
+                        booked_room_payments: {
+                            _a: "id guest_id booked_room_id booking_id room_id payment_type amount time_inserted"
+                        },
+                        guests: {
+                            client: {}
+                        }
+                    },
+                    _w: w
+                }
+            };
+            app.pages.master_page.pages.frontdesk.showDpLoader();
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    app.pages.master_page.pages.frontdesk.hideDpLoader();
+                } else {
+                    console.log("from desk", hny.bookings);
+                    /*$e = new Event();
+                    $e->id = $row['id'];
+                    $e->text = $row['name'];
+                    $e->start = $row['start'];
+                    $e->end = $row['end'];
+                    $e->resource = $row['room_id'];
+                    $e->bubbleHtml = "Reservation details: <br/>".$e->text;
+                    
+                    // additional properties
+                    $e->status = $row['status'];
+                    $e->paid = $row['paid'];
+                    $events[] = $e;*/
+                    var dpEvents = [];
+                    for (var i = 0; i < hny.bookings.length; i++) {
+                        var booking = hny.bookings[i];
+                        var startDate = new Date();
+                        startDate.setTime(booking.checkin_time * 1000);
+                        startDate.setDate(startDate.getDate()+1);//front desk fix
+                        var startDateStr = app.getTodayDateStr(startDate);
+                        var endDate = new Date();
+                        endDate.setTime(booking.checkout_time * 1000);
+                        var endDateStr = app.getTodayDateStr(endDate);
+                        var paid = 0;
+                        //get the booked rooms
+                        for (var j = 0; j < booking.booked_rooms.length; j++) {
+                            var bookedRoom = booking.booked_rooms[j];
+                            var bubbleHtml = "Reservation details: ....";
+                            dpEvents.push({
+                                id: booking.id,
+                                text: booking.name,
+                                start: startDateStr,
+                                end: endDateStr,
+                                resource: parseInt(bookedRoom.room_id),
+                                bubbleHtml: bubbleHtml,
+                                status: booking.status,
+                                paid: paid
+                            });
+                        }
+                    }
+                    console.log("dpEvents", dpEvents);
+                   
+                    app.pages.master_page.pages.frontdesk.dp.events.list = dpEvents;
+                    app.pages.master_page.pages.frontdesk.dp.update();
+                    app.pages.master_page.pages.frontdesk.custoniseDp();
+                    app.pages.master_page.pages.frontdesk.hideDpLoader();
+                }
+            });
+        },
+        initDp: function () {
+            var dp = new DayPilot.Scheduler("dp");
+            dp.allowEventOverlap = false;
+
+            //dp.scale = "Day";
+            var dtsrtDate = new Date();
+            dp.startDate = DayPilot.Date.fromYearMonthDay(
+                dtsrtDate.getFullYear(), dtsrtDate.getMonth()+1, dtsrtDate.getDate()
+            );
+            dp.days = dp.startDate.daysInMonth();
+            dp = app.pages.master_page.pages.frontdesk.dpLoadTimeline(
+                dp, DayPilot.Date.today().addDays(-1)
+            );
+
+            dp.eventDeleteHandling = "Update";
+            dp.eventResizingStartEndEnabled = false;
+            dp.eventMovingStartEndEnabled = false;
+
+            dp.timeHeaders = [
+                { groupBy: "Month", format: "yyyy MMMM" },
+                { groupBy: "Day", format: "d" }
+            ];
+
+            dp.eventHeight = 40;
+            dp.bubble = new DayPilot.Bubble({});
+
+            dp.rowHeaderColumns = [
+                { title: "Room", width: 80 },
+                { title: "Capacity", width: 80 },
+                { title: "Status", width: 80 }
+            ];
+
+            dp.separators = [
+                { location: new DayPilot.Date(), color: "red" }
+            ];
+
+            dp.onBeforeResHeaderRender = function (args) {
+                var beds = function (count) {
+                    return count + " bed" + (count > 1 ? "s" : "");
+                };
+
+                args.resource.columns[0].html = beds(args.resource.capacity);
+                args.resource.columns[1].html = args.resource.status;
+                switch (args.resource.status) {
+                    case "empty":
+                        args.resource.cssClass = "status_empty";
+                        break;
+                    case "booked":
+                        args.resource.cssClass = "status_booked";
+                        break;
+                    case "occupied":
+                        args.resource.cssClass = "status_occupied";
+                        break;
+                    case "cleaning":
+                        args.resource.cssClass = "status_cleaning";
+                        break;
+                    case "repair":
+                        args.resource.cssClass = "status_repair";
+                        break;
+                    case "Dirty":
+                        args.resource.cssClass = "status_dirty";
+                        break;
+                    case "Cleanup":
+                        args.resource.cssClass = "status_cleanup";
+                        break;
+                }
+
+                args.resource.areas = [{
+                    top: 3,
+                    right: 4,
+                    height: 14,
+                    width: 14,
+                    action: "JavaScript",
+                    js: function (r) {
+                        var modal = new DayPilot.Modal();
+                        modal.onClosed = function (args) {
+                            loadResources();
+                        };
+                        modal.showUrl("room_edit.php?id=" + r.id);
+                    },
+                    v: "Hover",
+                    css: "icon icon-edit",
+                }];
+            };
+
+            dp.onBeforeEventRender = function (args) {
+                var start = new DayPilot.Date(args.e.start);
+                var end = new DayPilot.Date(args.e.end);
+
+                var today = DayPilot.Date.today();
+                var now = new DayPilot.Date();
+
+                //args.e.html = args.e.text + " (" + start.toString("M/d/yyyy") + " - " + end.toString("M/d/yyyy") + ")";
+                args.e.html = args.e.text + " (" + start.toString("d") + " - " + end.toString("d") + ")";
+                //console.log("args.e.status",args.e.status);
+                switch (args.e.status) {
+                    case "pending":
+                        var in2days = today.addDays(1);
+
+                        if (start < in2days) {
+                            args.e.barColor = 'red';
+                            args.e.toolTip = 'Expired (not confirmed in time)';
+                        }
+                        else {
+                            args.e.barColor = '#f39c12';
+                            args.e.toolTip = 'Pending';
+                        }
+                        break;
+                    case "comfirmed":
+                        var arrivalDeadline = today.addHours(18);
+
+                        if (start < today || (start.getDatePart() === today.getDatePart() && now > arrivalDeadline)) { // must arrive before 6 pm
+                            args.e.barColor = "#f41616";  // red
+                            args.e.toolTip = 'Late arrival';
+                        }
+                        else {
+                            args.e.barColor = "yellow";
+                            args.e.toolTip = "comfirmed";
+                        }
+                        break;
+                    case 'missed':
+                        args.e.barColor = "red";
+                        args.e.toolTip = "missed";
+                        break;
+                    case 'cancelled':
+                        args.e.barColor = "gray";
+                        args.e.toolTip = "cancelled";
+                        break;
+                    case 'checkedin':
+                        var checkoutDeadline = today.addHours(10);
+
+                        if (end < today || (end.getDatePart() === today.getDatePart() && now > checkoutDeadline)) { // must checkout before 10 am
+                            args.e.barColor = "#f41616";  // red
+                            args.e.toolTip = "Late checkout";
+                        }
+                        else {
+                            args.e.barColor = "#398439";
+                            args.e.toolTip = "checkedin";
+                        }
+                        break;
+                    case 'checkedout':
+                        args.e.barColor = "blue";
+                        args.e.toolTip = "checkedout";
+                        break;
+                    case "New":
+                        var in2days = today.addDays(1);
+
+                        if (start < in2days) {
+                            args.e.barColor = 'red';
+                            args.e.toolTip = 'Expired (not confirmed in time)';
+                        }
+                        else {
+                            args.e.barColor = 'orange';
+                            args.e.toolTip = 'New';
+                        }
+                        break;
+                    case "Confirmed":
+                        var arrivalDeadline = today.addHours(18);
+
+                        if (start < today || (start.getDatePart() === today.getDatePart() && now > arrivalDeadline)) { // must arrive before 6 pm
+                            args.e.barColor = "#f41616";  // red
+                            args.e.toolTip = 'Late arrival';
+                        }
+                        else {
+                            args.e.barColor = "green";
+                            args.e.toolTip = "Confirmed";
+                        }
+                        break;
+                    case 'Arrived': // arrived
+                        var checkoutDeadline = today.addHours(10);
+
+                        if (end < today || (end.getDatePart() === today.getDatePart() && now > checkoutDeadline)) { // must checkout before 10 am
+                            args.e.barColor = "#f41616";  // red
+                            args.e.toolTip = "Late checkout";
+                        }
+                        else {
+                            args.e.barColor = "#1691f4";  // blue
+                            args.e.toolTip = "Arrived";
+                        }
+                        break;
+                    case 'CheckedOut': // checked out
+                        args.e.barColor = "gray";
+                        args.e.toolTip = "Checked out";
+                        break;
+                    default:
+                        args.e.toolTip = "Unexpected state";
+                        break;
+                }
+
+
+                args.e.html = args.e.html + "<br /><span style='color:gray'>#" + + args.e.id + " " + args.e.toolTip + "</span>";
+
+                var paid = args.e.paid;
+                var paidColor = "#aaaaaa";
+
+                args.e.areas = [
+                    { bottom: 10, right: 4, html: "<div style='color:" + paidColor + "; font-size: 8pt;'>Paid: " + paid + "%</div>", v: "Visible" },
+                    { left: 4, bottom: 8, right: 4, height: 2, html: "<div style='background-color:" + paidColor + "; height: 100%; width:" + paid + "%'></div>", v: "Visible" }
+                ];
+
+            };
+
+            app.pages.master_page.pages.frontdesk.dp = dp;
+            app.pages.master_page.pages.frontdesk.dp.init();
+            app.pages.master_page.pages.frontdesk.custoniseDp();
+            app.pages.master_page.pages.frontdesk.dpLoadResources();
+        },
+        redrawDpTimeLine: function(){
+            var checkinDate = $("#frontdesk_page_from_date_input").val();
+            var checkoutDate = $("#frontdesk_page_to_date_input").val();
+            if (checkinDate == null || checkinDate.length == 0) {
+                //console.log("checkinDate fix",checkinDate);
+                checkinDate = app.getTodayDateStr(new Date());
+                $("#frontdesk_page_from_date_input").val(checkinDate);
+            }
+            var dtsrtDate = new Date(checkinDate);
+            var startDate = DayPilot.Date.fromYearMonthDay(
+                dtsrtDate.getFullYear(), dtsrtDate.getMonth() + 1, dtsrtDate.getDate()
+            );
+            //console.log("inDate month",dtsrtDate.getFullYear(), dtsrtDate.getMonth() + 1, dtsrtDate.getDate());
+            var toDate = null;
+            if (checkoutDate == null || checkoutDate.length == 0) {
+                //console.log("checkoutDate fix",checkoutDate);
+                var inDate = new Date(checkinDate);
+                toDate = DayPilot.Date.fromYearMonthDay(inDate.getFullYear(), inDate.getMonth() + 1, inDate.getDate());
+                var toStr = app.getTodayDateStr(new Date(toDate.addMonths(1).toDate()));
+                $("#frontdesk_page_to_date_input").val(toStr);
+            }else{
+                var outDate = new Date(checkoutDate);
+                //console.log("outDate month",outDate.getFullYear(), outDate.getMonth() + 1, outDate.getDate());
+                toDate = DayPilot.Date.fromYearMonthDay(outDate.getFullYear(), outDate.getMonth() + 1, outDate.getDate());
+            }
+
+            app.pages.master_page.pages.frontdesk.dp.startDate = startDate;
+            var days = 0;
+            var temp = startDate;
+            var isPeriod = temp.getTime() < toDate.getTime();
+            for (var i = 0; isPeriod == true ; i++) {
+                temp = temp.addDays(1);
+                days = days + 1;
+                if(temp.getTime() > toDate.getTime()){
+                    break;
+                }
+            }
+            //console.log("days", days);
+            app.pages.master_page.pages.frontdesk.dp.days = days;
+            app.pages.master_page.pages.frontdesk.dp = 
+            app.pages.master_page.pages.frontdesk.dpLoadTimeline(
+                app.pages.master_page.pages.frontdesk.dp, 
+                startDate
+            );
+        },
+        load: function () {
+            var nowStr = app.getTodayDateStr(new Date());
+            $("#frontdesk_page_from_date_input").val(nowStr);
+            var toDate = DayPilot.Date.today().addMonths(1).addDays(-1);
+            var toStr = app.getTodayDateStr(new Date(toDate.toDate()));
+            $("#frontdesk_page_to_date_input").val(toStr);
+            app.pages.master_page.pages.frontdesk.initDp();
+            $("#frontdesk_page_refresh_submit_btn").on("click", function (event) {
+                //get selected from categpories
+                var values = $("#frontdesk_page_capacity_select").select2("val");
+                console.log("dp cat values",values);
+                //redraw time line
+                app.pages.master_page.pages.frontdesk.redrawDpTimeLine();
+                app.pages.master_page.pages.frontdesk.showDpLoader();
+                if(values.length == 0){
+                    app.pages.master_page.pages.frontdesk.dpLoadResources();
+
+                }else{
+                    //we have to load the resources first
+                    app.pages.master_page.pages.rooms.getRoomsFromServer(function (rooms) {
+                        app.pages.master_page.pages.rooms.renderRoomsList(rooms);
+                        var data = [];
+                        for (var i = 0; i < rooms.length; i++) {
+                            var room = rooms[i];
+                            //console.log('values.indexOf(""+room.room_category_id)',values.indexOf(""+room.room_category_id),room.room_category_id);
+                            if(values.indexOf(""+room.room_category_id) > -1){
+                                data.push({
+                                    id: room.id,
+                                    name: room.number,
+                                    capacity: room.room_category.capacity,
+                                    status: room.status
+                                });
+                            }
+                        }
+                        app.pages.master_page.pages.frontdesk.dp.resources = data;
+                        app.pages.master_page.pages.frontdesk.dp.update();
+                        app.pages.master_page.pages.frontdesk.custoniseDp();
+                        app.pages.master_page.pages.frontdesk.hideDpLoader();
+                        if(data.length > 0){
+                            //load events
+                            app.pages.master_page.pages.frontdesk.dpLoadEvents();
+                        }
+                    });
+                }
+            });
+            
+            if(app.pages.master_page.pages.config.renderedCategories.length == 0){
+                app.pages.master_page.pages.config.getCategoriesFromServer(
+                    app.pages.master_page.pages.config.renderCategoriesList
+                );
+            }
+            
+        }
+    }
+</script>

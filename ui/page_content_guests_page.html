@@ -1,0 +1,221 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_guests_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" style="background-color: #f3f3f3; padding-top: 0px; padding-left: 2px; padding-bottom: 3px;">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-3">
+                        From:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="guests_page_from_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        To:
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control input-sm datepicker" id="guests_page_to_date_input" />
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        Guests Name:
+                        <div class="input-group input-group-sm" style="width: 100%;">
+                            <input type="text" class="form-control input-sm" id="guests_page_q_input" />
+                        </div>
+                    </div>
+                </div>
+                <!-- <input type="text" class="form-control timepicker" style="width:50%" disabled id="booking_page_find_from_time_input" />
+                        <div class="input-group-addon" style="line-height: 1.6;">
+                            <i class="fa fa-clock-o"></i>
+                        </div> -->
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        &nbsp;&nbsp;
+                        <div class="input-group input-group-sm">
+                            <button type="button" id="guets_page_refresh_submit_btn" class="btn btn-sm btn-success pull-right app_action_item disabled_action app_action_booking_r1">
+                                <i class="fa fa-refresh"></i>
+                                refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box mb-0">
+            <!-- /.box-header -->
+            <div class="box-body" id="guests_page_table_box_body">
+                <table id="guests_page_table" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width:30px;">#</th>
+                            <th>Name</th>
+                            <th>Room</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Booking No.</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guests_page_table_body">
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="guests_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.guests = {
+        id: "guests",
+        showGuestsLoader: function () {
+            $("#guests_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideGuestsLoader: function () {
+            $("#guests_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        loadGuests: function (startTimeSecs, endTimeSecs, showLoaders, callback) {
+            if (startTimeSecs >= endTimeSecs) {
+                var temp = endTimeSecs;
+                endTimeSecs = startTimeSecs;
+                startTimeSecs = temp;
+            }
+            var nec = {
+                guests: {
+                    booked_room: {
+                        room: {
+                            room_category: {}
+                        }
+                    },
+                    client: {},
+                    _desc: ["checkin_time"],
+                    _w: bee.where("checkin_time", "gte", startTimeSecs).and("checkin_time", "lt", endTimeSecs)._w
+                }
+            };
+            var q = $("#guests_page_q_input").val();
+            if(q !=null){
+                q = q.trim();
+                if(q.length > 0){
+                    var w = bee
+                    .where("checkin_time", "gte", startTimeSecs)
+                    .and("checkin_time", "lt", endTimeSecs)._w;
+                    var w2 = bee
+                    .where("_ig_client.name","like",q)
+                    .or("_ig_client.email","like",q)
+                    .or("_ig_client.phone_number","like",q)
+                    .or("_ig_client.address","like",q)._w;
+                    var w2 = bee.where(w[0],"and",w2[0])._w;
+                    nec.guests._w = w2;
+                }
+            }
+            if (showLoaders == true) {
+                app.pages.master_page.pages.guests.showGuestsLoader();
+            }
+            bee.get(nec, function (hny) {
+                if (showLoaders == true) {
+                    app.pages.master_page.pages.guests.hideGuestsLoader();
+                }
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.guests);
+                }
+            });
+        },
+        renderGuests: function (guests) {
+            $('#guests_page_table').DataTable().clear().draw();
+            var dataSet = [];
+            for (let i = 0; i < guests.length; i++) {
+                var guest = guests[i];
+                var date = new Date(guest.checkin_time * 1000);
+                var dtStr = app.getTodayDateStr(date, true);
+                dataSet.push([
+                    i + 1,
+                    guest.client.name,
+                    guest.booked_room.room.number,
+                    guest.booked_room.room.room_category.name,
+                    dtStr,
+                    guest.booked_room.booking_id
+                ]);
+            }
+            $('#guests_page_table').DataTable().rows.add(dataSet).draw();
+        },
+        getDates:function(){
+            var fromDate = $("#guests_page_from_date_input").val();
+            var toDate = $("#guests_page_to_date_input").val();
+            if (toDate == null || toDate.length == 0) {
+                toDate = app.getTodayDateStr(new Date());
+                $("#guests_page_to_date_input").val(toDate);
+            }
+            if (fromDate == null || fromDate.length == 0) {
+                var inDate = new Date(toDate);
+                var toDate = DayPilot.Date.fromYearMonthDay(inDate.getFullYear(), inDate.getMonth() + 1, inDate.getDate());
+                var fromDate = app.getTodayDateStr(new Date(toDate.addMonths(-1).toDate()));
+                $("#guests_page_from_date_input").val(fromDate);
+            }
+            return {
+                from:(new Date(fromDate)).getTime(),
+                to:(new Date(toDate)).getTime()
+            }
+        },
+        load: function () {
+            $('#guests_page_table').DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+                data: [],
+                columns: [
+                    { title: "#" },
+                    { title: "Name" },
+                    { title: "Room" },
+                    { title: "Category" },
+                    { title: "Date" },
+                    { title: "Booking No." }
+                ]
+            });
+            var times = app.pages.master_page.pages.guests.getDates();
+            var startTimeSecs = times.from / 1000;
+            var endTimeSecs = times.to / 1000;
+            var showLoaders = true;
+            app.pages.master_page.pages.guests.loadGuests(
+                startTimeSecs,
+                endTimeSecs,
+                showLoaders,
+                app.pages.master_page.pages.guests.renderGuests
+            );
+
+            $("#guets_page_refresh_submit_btn").on("click",function(event){
+                var times = app.pages.master_page.pages.guests.getDates();
+                var startTimeSecs = times.from / 1000;
+                var endTimeSecs = times.to / 1000;
+                var showLoaders = true;
+                app.pages.master_page.pages.guests.loadGuests(
+                    startTimeSecs,
+                    endTimeSecs,
+                    showLoaders,
+                    app.pages.master_page.pages.guests.renderGuests
+                );
+            })
+        }
+    }
+</script

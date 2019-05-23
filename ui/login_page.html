@@ -1,0 +1,109 @@
+<!-- Start login page -->
+<div id="login_page" class="row app-page hidden-page">
+    <div class="col-lg-12">
+        <div class="box box-success login-box-successful login-box">
+            <div class="login-logo">
+                <a>
+                    <img src="images/logo.png" class="login-logo-img" />
+                    <b>Maths</b>cp
+                </a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Login in to start your session</p>
+                <form method="post">
+                    <div class="form-group has-feedback">
+                        <input id="login_page_email_input" type="email" class="form-control" placeholder="Email">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input id="login_page_password_input" type="password" class="form-control" placeholder="Password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <a href="#" id="login_page_recover_link">I forgot my password</a>
+                                    <br>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button type="button" id="login_page_btn" class="btn btn-success btn-block btn-flat">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <a href="#" id="login_page_register_link" class="text-center">Register a new membership</a>
+            </div>
+            <div id="login_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <!-- /.login-box -->
+    </div>
+</div>
+<!-- End login page -->
+<script>
+    app.pages.login_page = {
+        id: "login_page",
+        showLoader: function () {
+            $("#login_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoader: function () {
+            $("#login_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getLoginNectar:function(){
+            var email = $("#login_page_email_input").val();
+            var password = $("#login_page_password_input").val();
+            //pick data from the form
+            //#login_code
+            // return {
+            //     _f_login:{
+            //         email:email,
+            //         password:password
+            //     }
+            // };
+        },
+        clearLoginForm:function(){
+            $("#login_page_email_input").val("");
+            $("#login_page_password_input").val("");
+        },
+        load: function () {
+            
+            app.link("login_page_register_link","register_page"); //register link
+            app.link("login_page_recover_link","recover_page"); //recover link
+            
+            //login page
+            $("#login_page_btn").on("click", function (event) {
+                var loginNectar = app.pages.login_page.getLoginNectar();
+                //nyd
+                //validate
+                
+                //send nectar to bee
+                app.pages.login_page.showLoader();//show loader
+                bee.post(loginNectar,function(hny){
+                    app.pages.login_page.hideLoader();
+                    if(hny._errors.length > 0){
+                        app.showErrors(hny._errors);
+                    }else{
+                        app.pages.login_page.clearLoginForm();
+                        app.setToken(hny._f_login.token);
+                        app.setUser(hny._f_login.user);
+                        app.getUser();
+                        app.authoriseModuleAccess(hny._f_login.user);
+                        app.authoriseActionItems(hny._f_login.user);
+                        //log
+                        bee.log("login","User logged in on " + (new Date()).toString() );
+                        //go to master page
+                        app.loadPage("master_page");
+                    }
+                });
+            });
+        }
+    };
+    //BILLIONS SO3E01 53:37 - 57:04
+</script>

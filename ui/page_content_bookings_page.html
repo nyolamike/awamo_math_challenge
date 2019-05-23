@@ -1,0 +1,2730 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_bookings_page">
+    <!-- Main content -->
+    <section class="content">
+        <div class="nav-tabs-custom bookings-tabs">
+            <ul class="nav nav-tabs">
+                <li class="pull-left header">
+                    <i class="fa fa-clock-o"></i> Hotel Bookings
+                </li>
+                <li class="active">
+                    <a id="bookings_page_list_booking_tab_btn" href="#booking_list_tab" data-toggle="tab">Check Free Rooms</a>
+                </li>
+                <li>
+                    <a id="bookings_page_new_booking_tab_btn" href="#booing_new_tab" data-toggle="tab">New Booking</a>
+                </li>
+                <li>
+                    <a href="#booking_booking_details_tab" id="booking_booking_details_tab_link" data-toggle="tab">Booking Details</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="booking_list_tab">
+                    <div class="col-md-5">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Find Empty Rooms</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body padding booking-find-box-body ">
+                                <br/>
+                                <br/>
+                                <label>From:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="line-height: 1.6;">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control datepicker" style="width:50%" id="booking_page_find_from_date_input" />
+                                    <input type="text" class="form-control timepicker" style="width:50%" disabled id="booking_page_find_from_time_input" />
+                                    <div class="input-group-addon" style="line-height: 1.6;">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                </div>
+                                <label>To:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="line-height: 1.6;">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control datepicker" style="width:50%" id="booking_page_find_to_date_input" />
+                                    <input type="text" class="form-control timepicker" disabled style="width:50%" id="booking_page_find_to_time_input" />
+                                    <div class="input-group-addon" style="line-height: 1.6;">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group pull-left" style="width: 50%">
+                                    <label>Number of nights:</label>
+                                    <input type="text" class="form-control" id="booking_page_find_nights_input" value="1" />
+                                </div>
+                                <div class="form-group pull-right" style="width: 50%">
+                                    <label>Min Capacity:</label>
+                                    <input type="text" class="form-control" id="booking_page_find_capacity_input" value="2" />
+                                </div>
+                                <br/>
+                                <div class="form-group pull-left" style="width: 50%">
+                                    <label>Minimun Price:
+                                        <span id="booking_page_find_min_price_display"></span>
+                                    </label>
+                                    <input type="text" class="form-control" id="booking_page_find_min_price_input" value="" />
+                                </div>
+                                <div class="form-group pull-right" style="width: 50%">
+                                    <label>Maximum Price:
+                                        <span id="booking_page_find_max_price_display"></span>
+                                    </label>
+                                    <input type="text" class="form-control" id="booking_page_find_max_price_input" value="" />
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <label>Facilities:</label>
+                                    <select class="form-control" multiple="multiple" id="booking_page_find_facility_select" style="width: 100%;"></select>
+                                </div>
+                                <button type="button" id="booking_page_find_form_clear_btn" class="btn btn-default pull-left   ">
+                                    clear / reset
+                                </button>
+                                <button type="button" id="booking_page_find_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_booking_c1">
+                                    <i class="fa fa-search"></i>
+                                    Search Available Rooms
+                                </button>
+                            </div>
+                            <div id="booking_page_find_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="col-md-7">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Booking History</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  booking-find-box-body no-padding ">
+                                <div class="nav-tabs-custom" style="height: 100%;">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a id="bookings_page_history_pending_tab_btn" href="#booking_history_pending_tab" data-toggle="tab">Pending</a>
+                                        </li>
+                                        <li>
+                                            <a id="bookings_page_history_comfirmed_tab_btn" href="#booking_history_comfirmed_tab" data-toggle="tab">Comfirmed</a>
+                                        </li>
+                                        <li>
+                                            <a id="bookings_page_history_cancelled_tab_btn" href="#booking_history_cancelled_tab" data-toggle="tab">Cancelled</a>
+                                        </li>
+                                        <li>
+                                            <a id="bookings_page_history_missed_tab_btn" href="#booking_history_missed_tab" data-toggle="tab">Missed</a>
+                                        </li>
+                                        <li>
+                                            <a id="bookings_page_history_checkedin_tab_btn" href="#booking_history_checkedin_tab" data-toggle="tab">Checkedin</a>
+                                        </li>
+                                        <li>
+                                            <a id="bookings_page_history_checkedout_tab_btn" href="#booking_history_checkedout_tab" data-toggle="tab">Checkedout</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content no-padding">
+                                        <div class="tab-pane active  booking-hist-items-list-tab" id="booking_history_pending_tab">
+                                        </div>
+                                        <div class="tab-pane   booking-hist-items-list-tab" id="booking_history_comfirmed_tab">
+                                        </div>
+                                        <div class="tab-pane   booking-hist-items-list-tab" id="booking_history_cancelled_tab">
+                                        </div>
+                                        <div class="tab-pane   booking-hist-items-list-tab" id="booking_history_missed_tab">
+                                        </div>
+                                        <div class="tab-pane   booking-hist-items-list-tab" id="booking_history_checkedin_tab">
+                                        </div>
+                                        <div class="tab-pane   booking-hist-items-list-tab" id="booking_history_checkedout_tab">
+                                        </div>
+                                        <div id="booking-hist-item-template" class="ui-template">
+                                            <div class="booking-hist-list-item uit_booking_color">
+                                                <div>
+                                                    <span class="pull-left booking-hist-list-id">uit_booking_id</span>
+                                                    <span class="pull-left booking-hist-list-name">uit_booking_name</span>
+                                                    <span class="pull-right booking-hist-list-time-left">uit_booking_time_left</span>
+                                                    <div style="clear:both;"></div>
+                                                </div>
+                                                <div class="booking-hist-list-bottom">
+
+                                                    <span class="booking-hist-list-time">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        uit_booking_checkin_datetime
+                                                    </span>
+                                                    <span class="booking-hist-list-phone">
+                                                        <i class="fa fa-phone"></i>
+                                                        uit_booking_phone_number
+                                                    </span>
+                                                    <span class="booking-hist-list-country">
+                                                        <i class="fa fa-map"></i>
+                                                        uit_booking_map
+                                                    </span>
+                                                    <span class="booking-hist-list-email">
+                                                        <i class="fa fa-envelope"></i>
+                                                        uit_booking_email
+                                                    </span>
+                                                    <div class="btn-group btn-group-xs pull-right">
+                                                        <button type="button" class="btn btn-default btn-xs">Action</button>
+                                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                            <span class="caret"></span>
+                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li class="uit_xbooking_id_comfirm_link_displayed">
+                                                                <a href="#" class="booking_hist_list_link" data-role="comfirm" data-booking-id="uit_booking_id_comfirm_link">Confirm</a>
+                                                            </li>
+                                                            <li class="uit_xbooking_id_checkin_link_displayed">
+                                                                <a href="#" class="booking_hist_list_link" data-role="checkin" data-booking-id="uit_booking_id_checkin_link">Checkin</a>
+                                                            </li>
+                                                            <li class="uit_xbooking_id_cancel_link_displayed">
+                                                                <a href="#" class="booking_hist_list_link" data-role="cancel" data-booking-id="uit_booking_id_cancel_link">Cancel</a>
+                                                            </li>
+                                                            <li class="uit_xbooking_id_missed_link_displayed">
+                                                                <a href="#" class="booking_hist_list_link" data-role="missed" data-booking-id="uit_booking_id_missed_link">Missed</a>
+                                                            </li>
+                                                            <li class="divider"></li>
+                                                            <li class="uit_xbooking_id_detail_link_displayed">
+                                                                <a href="#" class="booking_hist_list_link" data-role="details" data-booking-id="uit_booking_id_detail_link">View Details</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="booking_page_booking_history_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <div class="tab-pane" id="booing_new_tab">
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Booking Details</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  booking-find-box-body ">
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Names</label>
+                                            <input type="text" class="form-control" id="booking_page_new_booking_name_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Source</label>
+                                            <select class="form-control" id="booking_page_new_booking_source_select">
+                                                <option value="call">Call</option>
+                                                <option value="walkin">Walkin</option>
+                                                <option value="email">Email</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control" id="booking_page_new_booking_phone_number_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Country</label>
+                                            <select class="form-control" id="booking_page_new_booking_country_select">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" id="booking_page_new_booking_email_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Status</label>
+                                            <select class="form-control" disabled>
+                                                <option value="call">pending</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Minors</label>
+                                            <input type="text" class="form-control" value="0" id="booking_page_new_booking_minors_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Adults</label>
+                                            <input type="text" class="form-control" value="0" id="booking_page_new_booking_adults_input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Checkin</label>
+                                            <input type="text" class="form-control" disabled id="booking_page_new_booking_checkin_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Checkout</label>
+                                            <input type="text" class="form-control" disabled id="booking_page_new_booking_checkout_input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <div class="form-group form-group-sm no-padding">
+                                            <label>Nights</label>
+                                            <input type="text" class="form-control" disabled id="booking_page_new_booking_nights_input">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 pl-0">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="booking_new_details_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="col-md-8">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Rooms To Be Reserved</h3>
+                                <span class="badge bg-green pull-right" id="new-booking-rooms-badge"></span>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  booking-split-box-body ">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div id="booking_page_new_rooms_box_list">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Cat</th>
+                                                        <th>Price</th>
+                                                        <th>Cost</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="booking_page_new_choosen_rooms_list">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" id="booking_page_new_form_cancel_btn" class="btn btn-default pull-left">
+                                            Cancel
+                                        </button>
+                                        <button type="button" id="booking_page_unit_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_unit_c1">
+                                            Save New Booking
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px;">
+                                        <div class="row" id="booking_page_new_free_rooms_div">
+
+                                        </div>
+                                        <div id="booking-page-new-free-room-template" class="ui-template">
+                                            <div class="col-lg-6 room-panel-tiny" id="booking_page_new_room_panel_uit_room_panel_id">
+                                                <div class="box box-uit_room_color box-solid">
+                                                    <div class="box-header with-border">
+                                                        <h3 class="box-title room-panel-tiny-title">uit_room_number</h3>
+                                                        <div class="box-tools pull-right">
+                                                            <button type="button" data-room-id="uit_room_data_room_id" id="booking_page_toggle_room_uit_room_id_plus_btn" class="btn btn-box-tool new-free-room-select-btn  app_action_item disabled_action app_action_booking_c1"
+                                                                data-toggle="tooltip" title="Select This Room" data-original-title="Select This Room">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <div>
+                                                            <b>cat:</b>
+                                                            <span class="pull-right">uit_room_category</span>
+                                                        </div>
+                                                        <div>
+                                                            <b>pri:</b>
+                                                            <span class="pull-right">uit_room_price</span>
+                                                        </div>
+                                                        <div>
+                                                            <b>cap:</b>
+                                                            <span class="pull-right">uit_room_capacity</span>
+                                                        </div>
+                                                        <div>
+                                                            <b>cod:</b>
+                                                            <span class="pull-right">uit_room_code</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="booking_new_rooms_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="booking_booking_details_tab">
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header with-border">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" placeholder="id, name, phone number, email ..." id="booking_page_serach_booking_input">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-success" id="booking_page_serach_booking_submit_btn">
+                                            <i class="fa fa-search"></i>
+                                            search
+                                        </button>
+                                    </div>
+                                    <!-- /btn-group -->
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding booking-find-box-body ">
+                                <div id="booking_page_search_booking_results">
+
+                                </div>
+                                <div id="booking-search-item-template" class="ui-template">
+                                    <div class="booking-hist-list-item uit_booking_color booking-search-result-list-item" data-booking-id="uit_booking_div_link_id">
+                                        <div>
+                                            <span class="pull-left booking-hist-list-id">
+                                                uit_booking_id, uit_booking_map
+                                            </span>
+                                            <span class="pull-right booking-hist-list-name">uit_booking_name</span>
+                                            <div style="clear:both;"></div>
+                                        </div>
+                                        <div class="booking-hist-list-bottom">
+                                            <span class="booking-hist-list-time">
+                                                <i class="fa fa-clock-o"></i>
+                                                uit_booking_checkin_datetime
+                                            </span>
+                                            <span class="pull-right booking-hist-list-time-left">
+                                                uit_booking_time_left
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="booking-hist-list-phone2">
+                                                <i class="fa fa-phone"></i>
+                                                uit_booking_phone_number
+                                            </span>
+                                            <span class="booking-hist-list-email">
+                                                <i class="fa fa-envelope"></i>
+                                                uit_booking_email
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="booking_page_search_booking_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 hidden" id="booking_page_selected_booking_details_pane">
+                        <div class="box full-border">
+                            <div class="box-body no-padding booking-details-box-body hidden" id="booking_page_selected_booking_details_template">
+                                <div class="nav-tabs-custom" style="height: 100%;">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a id="booking-details-tab-details_btn" href="#booking-details-tab-details" data-toggle="tab">Details</a>
+                                        </li>
+                                        <li>
+                                            <a id="booking-details-tab-checkin_btn" href="#booking-details-tab-checkin" data-toggle="tab">Check In</a>
+                                        </li>
+                                        <li>
+                                            <a id="booking-details-tab-payments_btn" href="#booking-details-tab-payments" data-toggle="tab">Payments</a>
+                                        </li>
+                                        <li>
+                                            <a id="booking-details-tab-checkout_btn" href="#booking-details-tab-checkout" data-toggle="tab">Check Out</a>
+                                        </li>
+                                        <li>
+                                            <a id="booking-details-tab-invoice_btn" href="#booking-details-tab-invoice" data-toggle="tab">Invoice</a>
+                                        </li>
+                                        <li style="display:none;">
+                                            <a id="booking-details-tab-statement_btn" href="#booking-details-tab-statement" data-toggle="tab">Statement</a>
+                                        </li>
+                                        <li class="pull-right">
+                                            <button type="button" class="btn btn-success btn-xs pull-right" 
+                                                id="booking_details_receipt_print_btn"
+                                                style="margin-right: 10px; margin-top: 8px;">
+                                                <i class="fa fa-print" style="color:white"></i> print invoice 
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="tab-content no-padding">
+                                        <div class="tab-pane active booking-details-tab" id="booking-details-tab-details">
+                                            <div>
+                                                <span class="pull-left">Booking Number:&nbsp;&nbsp;&nbsp;
+                                                    <b class="dotted" id="bdd_id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                    <i class="text-red hidden" id="bdd_balo_summary_red"></i>
+                                                    <i class="text-green hidden" id="bdd_balo_summary_green">&nbsp;is fully paid</i>
+                                                </span>
+                                                <span class="pull-right">Booked On:
+                                                    <b class="dotted" id="bdd_date_time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <br/>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <i class="fa fa-user"></i>
+                                                    Booked By: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <b class="dotted" id="bdd_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                    <i class="text-green" id="bdd_source_summary_green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                                                </span>
+                                                <span class="pull-right">
+                                                    Status:
+                                                    <b class="dotted" id="bdd_status">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <i class="fa fa-phone"></i>
+                                                    Phone Number: &nbsp;
+                                                    <b class="dotted" id="bdd_phone_number">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    Adults:
+                                                    <b class="dotted" id="bdd_adults">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <i class="fa fa-envelope"></i>
+                                                    Email Address: &nbsp;
+                                                    <b class="dotted no-tt" id="bdd_email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    Minors:
+                                                    <b class="dotted" id="bdd_minors">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <hr/>
+                                            <div>
+                                                <span class="pull-left">
+                                                    Checkin Date:
+                                                    <b id="bdd_checkin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    Checkout Date:
+                                                    <b id="bdd_checkout">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div class="row" style="font-size: 12px;">
+                                                <div class="col-lg-2">
+                                                    Nights:
+                                                    <b id="bdd_nights">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </div>
+                                                <div class="col-lg-4" style="text-align: center;">
+                                                    Capacity:
+                                                    <b id="bdd_capacity">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <span class="pull-right">
+                                                        Bill:
+                                                        <b id="bdd_bill">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                    </span>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <span class="pull-right">
+                                                        Paid:
+                                                        <b id="bdd_paid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                            <hr style="margin-bottom: 0px;" />
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 10px">#</th>
+                                                        <th>Room</th>
+                                                        <th>Category</th>
+                                                        <th>Cap</th>
+                                                        <th>Rate</th>
+                                                        <th>Price</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="booking_details_booked_rooms_list">
+                                                </tbody>
+                                                <tfoot id="booking_details_booked_rooms_footer">
+                                                    <tr>
+                                                        <th colspan="3">Total</th>
+                                                        <th>20</th>
+                                                        <th></th>
+                                                        <th>3,000</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <hr style="margin-bottom: 0px;" />
+                                            <i id="bdd_notees"></i>
+                                        </div>
+                                        <div class="tab-pane   booking-details-tab" id="booking-details-tab-checkin">
+                                            <div class="row">
+                                                <div class="col-lg-3 no-padding" style="padding-left:5px !important; ">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <input type="text" placeholder="name" class="form-control" id="booking_page_checkin_name_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 no-padding">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <input type="text" placeholder="phone number" class="form-control" id="booking_page_checkin_phone_number_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 no-padding">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <input type="text" placeholder="address" class="form-control" id="booking_page_checkin_address_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 ">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <select class="form-control" id="booking_page_checkin_room_input">
+                                                            <option value="0">Select Room</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 no-padding" style="padding-left:5px !important;">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <input type="email" placeholder="email" class="form-control" id="booking_page_checkin_email_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 no-padding">
+                                                    <div class="form-group form-group-sm no-padding">
+                                                        <input type="text" placeholder="any notes" class="form-control" id="booking_page_checkin_notes_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 ">
+                                                    <div class="form-group form-group-sm no-padding">
+                                                        <button type="button" id="booking_page_checkin_submit_btn" style="margin-top: 7px;" class="btn btn-success btn-block btn-xs app_action_item disabled_action app_action_client_c1">
+                                                            submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 no-padding">
+                                                    <div class="box no-borders noshadow">
+                                                        <div class="box-body">
+                                                            <div id="booking_page_checkin_list">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Room</th>
+                                                                            <th>Name</th>
+                                                                            <!-- <th>Contact</th> -->
+                                                                            <th>Date</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="booking_page_checkin_guests_list">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.box-body -->
+                                                        <div id="booking_checkin_form_overlay" class="overlay overlay-hidden">
+                                                            <i class="fa fa-refresh fa-spin"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane   booking-details-tab" id="booking-details-tab-payments">
+                                            <div class="row">
+                                                <div class="col-lg-3 no-padding" style="padding-left:5px !important; ">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <label>Amount to pay</label>
+                                                        <input type="text" class="form-control" id="booking_page_payment_amount_input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 no-padding">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <label>Payment method</label>
+                                                        <select class="form-control" id="booking_page_payment_method_input">
+                                                            <option value="cash">cash</option>
+                                                            <option value="credit">credit</option>
+                                                            <option value="visa card">visa card</option>
+                                                            <option value="mobile money">mobile money</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 no-padding">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <label>Paid by</label>
+                                                        <select class="form-control" id="booking_page_payment_by_input">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 ">
+                                                    <div class="form-group form-group-sm no-padding mb-0">
+                                                        <button type="button" id="booking_page_payment_submit_btn" style="margin-top: 24px;" class="btn btn-success btn-block btn-sm app_action_item disabled_action app_action_booked_room_payment_c1">
+                                                            submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-12 no-padding">
+                                                    <div class="box no-borders noshadow">
+                                                        <div class="box-body">
+                                                            <div id="booking_page_payments_list">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Date</th>
+                                                                            <th>Name</th>
+                                                                            <th>Method</th>
+                                                                            <th>Amount</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="booking_page_payments_item_list">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.box-body -->
+                                                        <div id="booking_payments_form_overlay" class="overlay overlay-hidden">
+                                                            <i class="fa fa-refresh fa-spin"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane   booking-details-tab" id="booking-details-tab-checkout">
+                                            <div class="row">
+                                                <div class="col-lg-12 no-padding">
+                                                    <div class="box no-borders noshadow">
+                                                        <div class="box-body">
+                                                            <div id="booking_page_checkout_list">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Room</th>
+                                                                            <th>Name</th>
+                                                                            <th>Contact</th>
+                                                                            <th style="width:50px;">
+                                                                                <button type="button" id="check_out_all_guests_btn" class="btn btn-success btn-block btn-xs app_action_item disabled_action app_action_booking_c1 hidden">
+                                                                                    checkout all guests
+                                                                                </button>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="booking_page_checkout_guests_list">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.box-body -->
+                                                        <div id="booking_details_checkout_form_overlay" class="overlay overlay-hidden">
+                                                            <i class="fa fa-refresh fa-spin"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane   booking-details-tab" id="booking-details-tab-invoice">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="booking_invoice_logo">
+                                                        <img class="company_log" src="" id="booking_details_receipt_logo" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7" style="text-align: center;">
+                                                    <div class="booking_invoice_header" >
+                                                        <h3 id="booking_details_receipt_company_name">..............</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left" id="booking_details_receipt_company_address" >
+                                                    .......................
+                                                </span>
+                                                <span class="pull-right" id="booking_details_receipt_booking_id">
+                                                    ..................
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left" style="text-transform: capitalize;" id="booking_details_receipt_city_country">
+                                                    ..................
+                                                </span>
+                                                <span class="pull-right"  id="booking_details_receipt_date">
+                                                    ..................
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left" id="booking_details_receipt_company_phone">
+                                                    ..................
+                                                </span>
+                                                <span class="pull-right" id="booking_details_receipt_customer_id">
+                                                    ..................
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left" id="booking_details_receipt_online">
+                                                    ....................................
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <br/>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">format: </span>
+                                                    <b class="dotted no-tt receipt_left_label_value">yyyy-mm-dd</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <b class="dotted receipt_left_label_value"></b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">Checkin Date: </span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_checkin_date">...............................</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <span class="receipt_right_label">Bill To:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_to">.........................</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">Checkout Date: </span>
+                                                    <b class="dotted receipt_left_label_value"  id="booking_details_receipt_checkout_date">.........................</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <span class="receipt_right_label" >Phone Number:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_to_phone">..............................</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">Total No. of nights:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_days">......</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <span class="receipt_right_label">Email Address: </span>
+                                                    <b class="dotted no-tt receipt_left_label_value" id="booking_details_receipt_to_email">............................</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">Adults:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_adults">.......</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <span class="receipt_right_label">Country:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_to_country">...................</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <div>
+                                                <span class="pull-left">
+                                                    <span class="receipt_left_label">Minors:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_minors">...........</b>
+                                                </span>
+                                                <span class="pull-right">
+                                                    <span class="receipt_right_label">Capacity:</span>
+                                                    <b class="dotted receipt_left_label_value" id="booking_details_receipt_capacity">................</b>
+                                                </span>
+                                                <div style="clear:both"></div>
+                                            </div>
+                                            <hr style="margin-bottom: 0px;" />
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 10px">#</th>
+                                                        <th>DATE</th>
+                                                        <th>SERVICE</th>
+                                                        <th>AMOUNT</th>
+                                                        <th>QUANTITY</th>
+                                                        <th>LINE TOTAL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="booking_details_receipt_bill_items">
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colspan="5">Total</th>
+                                                        <th id="booking_details_receipt_bill_items_footer">0</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane   booking-details-tab" id="booking-details-tab-statement">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding booking-details-box-body " id="booking_page_selected_booking_details_empty">
+                            </div>
+                            <div id="booking_page_booking_details_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.bookings = {
+        id: "bookings",
+        showFindFreeRoomsLoader: function () {
+            $("#booking_page_find_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideFindFreeRoomsLoader: function () {
+            $("#booking_page_find_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        find_room_lowest_price: 0,
+        find_room_highest_price: 100,
+        findPriceRanges: function (list) {
+            app.pages.master_page.pages.bookings.find_room_lowest_price = list[0].price;
+            for (var index = 0; index < list.length; index++) {
+                var cat = list[index];
+                if (cat.price > app.pages.master_page.pages.bookings.find_room_highest_price) {
+                    app.pages.master_page.pages.bookings.find_room_highest_price = cat.price;
+                }
+                if (cat.price < app.pages.master_page.pages.bookings.find_room_lowest_price) {
+                    app.pages.master_page.pages.bookings.find_room_lowest_price = cat.price;
+                }
+            }
+            $("#booking_page_find_min_price_display").html(app.pages.master_page.pages.bookings.find_room_lowest_price);
+            $("#booking_page_find_max_price_display").html(app.pages.master_page.pages.bookings.find_room_highest_price);
+            $("#booking_page_find_min_price_input").val(app.pages.master_page.pages.bookings.find_room_lowest_price);
+            $("#booking_page_find_max_price_input").val(app.pages.master_page.pages.bookings.find_room_highest_price);
+        },
+        calculateFromDateInputValue() {
+            var fromDateStr = $("#booking_page_find_from_date_input").val();
+            var thatDate = new Date(fromDateStr);
+            var nights = parseInt($("#booking_page_find_nights_input").val());
+            var daySeconds = 24 * 60 * 60 * 1000;
+            var tommorowSeconds = thatDate.getTime() + (daySeconds * nights);
+            var startSeconds = thatDate.getTime() + (daySeconds * 1);
+            thatDate.setTime(tommorowSeconds);
+            var tomorrowStr = app.getTodayDateStr(thatDate);
+            $("#booking_page_find_to_date_input").datepicker("setDate", tomorrowStr);
+            thatDate.setTime(startSeconds);
+            var startStr = app.getTodayDateStr(thatDate);
+            $("#booking_page_find_to_date_input").datepicker("setStartDate", startStr);
+        },
+        findFacilitiesSelectInput: function (facilities) {
+            $("#booking_page_find_facility_select").html("");
+            var soSelect = "";
+            for (var ind = 0; ind < facilities.length; ind++) {
+                var facility = facilities[ind];
+                soSelect = soSelect + "<option value='" + facility.id + "' >" + facility.name + "</option>";
+            }
+            $("#booking_page_find_facility_select").html(soSelect);
+            $("#booking_page_find_facility_select").select2();
+            $("#booking_page_find_facility_select").on("select2:select", function (e) {
+                var data = e.params.data;
+                var facilityId = data.element.value;
+            });
+        },
+        getFindFreeRoomsNector: function () {
+            var checkinDate = $("#booking_page_find_from_date_input").val();
+            var checkoutDate = $("#booking_page_find_to_date_input").val();
+            var checkinTime = $("#booking_page_find_from_time_input").val();
+            var checkoutTime = $("#booking_page_find_to_time_input").val();
+            var checkin = checkinDate + " " + checkinTime;
+            var checkout = checkoutDate + " " + checkoutTime;
+            var checkinDate = new Date(checkin);
+            var fromTime = checkinDate.getTime() / 1000;
+            var checkoutDate = new Date(checkout);
+            var toTime = checkoutDate.getTime() / 1000;
+            var tw1 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lte", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw2 = bee
+                .where("checkin_time", "gte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw3 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "gte", toTime)._w;
+            var ow = bee
+                .where(tw1[0], "OR", tw2[0])._w;
+            var w = bee
+                .where("status", "ne", "cancelled")
+                .and("status", "ne", "missed")
+                .and("status", "ne", "checkedout")
+                .and(ow[0], "OR", tw3[0])
+                ._w;
+            //console.log(w);
+            var nec = {
+                bookings: {
+                    booked_rooms: {
+                        room: {}
+                    },
+                    _w: w
+                }
+            };
+            return nec;
+        },
+        findResultsFilterFreeRooms: function (bookings, rooms) {
+            var freeRooms = [];
+            var capacity = parseInt($("#booking_page_find_capacity_input").val());
+            if (isNaN(capacity)) {
+                $.alert("The capacity value " + capacity + " is not a valid entry");
+                $("#booking_page_find_capacity_input").val(2);
+            }
+            var minPrice = parseInt($("#booking_page_find_min_price_input").val());
+            var maxPrice = parseInt($("#booking_page_find_max_price_input").val());
+            if (isNaN(minPrice)) {
+                $.alert("The minimum price value " + minPrice + " is not a valid entry");
+                var x = app.pages.master_page.pages.bookings.find_room_lowest_price;
+                $("#booking_page_find_min_price_input").val(x);
+            }
+            if (isNaN(maxPrice)) {
+                $.alert("The maximun price value " + maxPrice + " is not a valid entry");
+                var x = app.pages.master_page.pages.bookings.find_room_highest_price;
+                $("#booking_page_find_max_price_input").val(x);
+            }
+            var bookedRoomIds = [];
+            for (var index = 0; index < bookings.length; index++) {
+                var booking = bookings[index];
+                for (var index2 = 0; index2 < booking.booked_rooms.length; index2++) {
+                    var bookedRoom = booking.booked_rooms[index2];
+                    if (bookedRoomIds.indexOf(bookedRoom.room_id) < 0) {
+                        bookedRoomIds.push(bookedRoom.room_id);
+                    }
+                }
+            }
+            //console.log("bookedRoomIds",bookedRoomIds);
+            //features
+            var features = $("#booking_page_find_facility_select").select2("val");
+            var cats = app.pages.master_page.pages.config.renderedCategories;
+            var indexedCats = {};
+            for (var i = 0; i < cats.length; i++) {
+                var tempCat = cats[i];
+                indexedCats[tempCat.id] = tempCat;
+            }
+            for (var index = 0; index < rooms.length; index++) {
+                var room = rooms[index];
+                var hasAllFacilities = true;
+                var RC = indexedCats[room.room_category_id];
+                var catFeautureIds = [];
+                for (var i = 0; i < RC.room_category_facilities.length; i++) {
+                    var RCF = RC.room_category_facilities[i];
+                    if (catFeautureIds.indexOf("" + RCF.facility_id) < 0) {
+                        catFeautureIds.push("" + RCF.facility_id);
+                    }
+                }
+                for (var i = 0; i < features.length; i++) {
+                    if (catFeautureIds.indexOf(features[i]) < 0) {
+                        hasAllFacilities = false;
+                        break;
+                    }
+                }
+                if (catFeautureIds.length == 0 && features.length > 0) {
+                    hasAllFacilities = false;
+                }
+                // console.log("#"+room.number);
+                // console.log("bookedRoomIds.indexOf(room.id) < 0",bookedRoomIds.indexOf(room.id) < 0);
+                // console.log('(room.status != "repair")',(room.status != "repair")); //as long as the room is not under repair
+                // console.log('(room.room_category.capacity >= capacity)',(room.room_category.capacity >= capacity));
+                // console.log('(room.room_category.price >= minPrice && room.room_category.price <= maxPrice)',(room.room_category.price >= minPrice && room.room_category.price <= maxPrice));
+                // console.log('hasAllFacilities',hasAllFacilities);
+                if (bookedRoomIds.indexOf(room.id + "") < 0
+                    && (room.status != "repair")
+                    && (room.room_category.capacity >= capacity)
+                    && (room.room_category.price >= minPrice && room.room_category.price <= maxPrice)
+                    && hasAllFacilities == true) {
+                    freeRooms.push(room);
+                }
+            }
+            return freeRooms;
+        },
+        findFreeRooms: function (callback) {
+            var nec = app.pages.master_page.pages.bookings.getFindFreeRoomsNector();
+            app.pages.master_page.pages.bookings.showFindFreeRoomsLoader();
+            //first get the current state of rooms
+            app.pages.master_page.pages.rooms.getRoomsFromServer(function (rooms) {
+                app.pages.master_page.pages.rooms.renderRoomsList(rooms);
+                bee.get(nec, function (hny) {
+                    if (hny._errors.length > 0) {
+                        app.pages.master_page.pages.bookings.hideFindFreeRoomsLoader();
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        app.pages.master_page.pages.bookings.hideFindFreeRoomsLoader();
+                        var rooms = app.pages.master_page.pages.rooms.renderedRooms;
+                        console.log("hny.bookings", hny.bookings);
+                        var freeRooms = app.pages.master_page.pages.bookings.findResultsFilterFreeRooms(hny.bookings, rooms);
+                        callback(freeRooms);
+                    }
+                });
+            });
+        },
+        currentFreeNewBookingsRooms: [],
+        currentNewBookingsSelectedRooms: [],
+        renderSelectedNewBookingsRooms: function () {
+            $("#booking_page_new_choosen_rooms_list").html("");
+            var rooms = app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms;
+            var html = "";
+            var total = 0;
+            var nights = parseInt($("#booking_page_new_booking_nights_input").val());
+            var num = 0;
+            var cap = 0;
+            for (var index = 0; index < rooms.length; index++) {
+                var room = rooms[index];
+                num = num + 1;
+                html = html + "<tr id=\"new-free-room-row-" + room.id + "\">";
+                html = html + "     <td>" + room.number + "</td>";
+                html = html + "     <td class=\"new-free-room-row-cat-display\">" + room.room_category.name + "(" + room.room_category.capacity + " p)" + "</td>";
+                html = html + "     <td>" + room.room_category.price + "</td>";
+                var subTotal = parseFloat(room.room_category.price) * nights;
+                total = total + subTotal;
+                html = html + "     <td>" + subTotal + "</td>";
+                html = html + "     <td><button data-room-id=\"" + room.id + "\" class=\"new-free-room-unselect-btn btn bg-purple btn-xs \"><i class=\"fa fa-times\"></i></button></td>";
+                html = html + "</tr>";
+                cap = cap + parseInt(room.room_category.capacity);
+            }
+            html = html + "<tr>";
+            html = html + "     <td> Sub Total </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td>" + total + "</td>";
+            html = html + "     <td></td>";
+            html = html + "</tr>";
+            //tourism and and vat
+            var taxValue =  (app.config.tax/100.0) * total;
+            taxValue = app.roundTo(taxValue,2);
+            var tourismValue =  (app.config.tourism_levi/100.0) * total;
+            tourismValue = app.roundTo(tourismValue,2);
+            var finalTotal  = total + parseFloat(taxValue) + parseFloat(tourismValue);
+            html = html + "<tr>";
+            html = html + "     <td> Tax </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td> " + app.config.tax + "% </td>";
+            html = html + "     <td>" + taxValue + "</td>";
+            html = html + "     <td></td>";
+            html = html + "</tr>";
+            html = html + "<tr>";
+            html = html + "     <td> Tourism </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td> " + app.config.tourism_levi + "% </td>";
+            html = html + "     <td>" + tourismValue + "</td>";
+            html = html + "     <td></td>";
+            html = html + "</tr>";
+            html = html + "<tr>";
+            html = html + "     <td> Total </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td> </td>";
+            html = html + "     <td>" + finalTotal + "</td>";
+            html = html + "     <td></td>";
+            html = html + "</tr>";
+            $("#booking_page_new_choosen_rooms_list").html(html);
+            $(".new-free-room-unselect-btn").on("click", function (event) {
+                var roomId = $(this).attr("data-room-id");
+                var sRooms = app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms;
+                for (var j = 0; j < sRooms.length; j++) {
+                    var sRoom = sRooms[j];
+                    if (parseInt(sRoom.id) == parseInt(roomId)) {
+                        app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms.splice(j, 1);
+                        break;
+                    }
+                }
+                $("#booking_page_new_room_panel_" + roomId).removeClass("hidden");
+                $("#new-free-room-row-" + roomId).remove();
+                app.pages.master_page.pages.bookings.renderSelectedNewBookingsRooms();
+            });
+            var bg = num + " room" + ((num > 1) ? "s" : "") + " for " + nights + " nights  @" + finalTotal + " | total capacity " + cap + " " + ((cap > 1) ? "people" : "person");
+            $("#new-booking-rooms-badge").html(bg);
+        },
+        clearNewBookingsDetails: function () {
+            app.pages.master_page.pages.bookings.currentFreeNewBookingsRooms = [];
+            app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms = [];
+            app.pages.master_page.pages.bookings.renderSelectedNewBookingsRooms();
+            $("#booking_page_new_free_rooms_div").html("");
+            $("#booking_page_new_booking_checkin_input").val("");
+            $("#booking_page_new_booking_checkout_input").val("");
+            $("#booking_page_new_booking_nights_input").val("");
+            $("#booking_page_new_booking_minors_input").val(0);
+            $("#booking_page_new_booking_adults_input").val(0);
+            $("#booking_page_new_booking_email_input").val("");
+            $("#booking_page_new_booking_name_input").val("");
+            $("#booking_page_new_booking_phone_number_input").val("");
+            $("#new-booking-rooms-badge").html("");
+        },
+        getNewBookingSaveNector: function () {
+            var checkin = $("#booking_page_new_booking_checkin_input").val();
+            var checkout = $("#booking_page_new_booking_checkout_input").val();
+            var checkinDate = new Date(checkin);
+            var checkinTime = checkinDate.getTime() / 1000;
+            var checkoutDate = new Date(checkout);
+            var checkoutTime = checkoutDate.getTime() / 1000;
+            var bookedRooms = [];
+            var rooms = app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms;
+            for (var i = 0; i < rooms.length; i++) {
+                var room = rooms[i];
+                bookedRooms.push({
+                    _fk_booking_id: "booking",
+                    room_id: room.id
+                });
+            }
+            var nec = {
+                booking: {
+                    name: $("#booking_page_new_booking_name_input").val(),
+                    source: $("#booking_page_new_booking_source_select").val(),
+                    status: "pending",
+                    phone_number: $("#booking_page_new_booking_phone_number_input").val(),
+                    email: $("#booking_page_new_booking_email_input").val(),
+                    country: $("#booking_page_new_booking_country_select").val(),
+                    number_of_minors: $("#booking_page_new_booking_minors_input").val(),
+                    number_of_adults: $("#booking_page_new_booking_adults_input").val(),
+                    number_of_nights: $("#booking_page_new_booking_nights_input").val(),
+                    checkin_time: checkinTime,
+                    checkout_time: checkoutTime,
+                    actual_checkin_time: 0,
+                    actual_checkout_time: 0,
+                    notes: $("#new-booking-rooms-badge").html(),
+                    tax: app.config.tax,
+                    tourism_levi: app.config.tourism_levi
+                },
+                booked_rooms: bookedRooms
+            };
+            return nec;
+        },
+        showNewBookingLoaders: function () {
+            $("#booking_page_find_form_overlay").removeClass("overlay-hidden");//show loader
+            $("#booking_new_details_form_overlay").removeClass("overlay-hidden");
+            $("#booking_new_rooms_form_overlay").removeClass("overlay-hidden");
+        },
+        hideNewBookingLoaders: function () {
+            $("#booking_page_find_form_overlay").addClass("overlay-hidden");//hide loader
+            $("#booking_new_details_form_overlay").addClass("overlay-hidden");
+            $("#booking_new_rooms_form_overlay").addClass("overlay-hidden");
+        },
+        showBookingHistoryLoader: function () {
+            $("#booking_page_booking_history_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideBookingHistoryLoader: function () {
+            $("#booking_page_booking_history_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getBookingHistoryGroups: function (callback) {
+            var nec = {
+                bookings: {
+                    _npending: {
+                        _asc: ["checkin_time"],
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "pending"]]
+                    },
+                    _ncomfirmed: {
+                        _asc: ["checkin_time"],
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "comfirmed"]]
+                    },
+                    _ncheckedin: {
+                        _asc: ["checkin_time"],
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "checkedin"]]
+                    },
+                    _ncheckedout: {
+                        _asc: ["checkin_time"],
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "checkedout"]]
+                    },
+                    _ncancelled: {
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "cancelled"]]
+                    },
+                    _nmissed: {
+                        _asc: ["checkin_time"],
+                        booked_rooms: {
+                            room: {}
+                        },
+                        _w: [["status", "e", "missed"]]
+                    }
+                }
+            };
+            app.pages.master_page.pages.bookings.showBookingHistoryLoader();
+            bee.get(nec, function (hny) {
+                app.pages.master_page.pages.bookings.hideBookingHistoryLoader();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback(null);
+                } else {
+                    callback(hny.bookings);
+                }
+            });
+        },
+        getBookingHistoryListItemHtml: function (booking, bookingTimeOutSeconds, link1, link2, link3, link4, link5) {
+            app.pages.master_page.pages.bookings.renderedIndexedBookings[booking.id] = booking;
+            var template = $("#booking-hist-item-template").html();
+            template = template.replace("uit_booking_id", "#" + booking.id);
+            var checkinDate = booking.checkin_time;
+            var cDate = new Date(checkinDate * 1000);
+            var cDateStr = app.getTodayDateStr(cDate, true);
+            template = template.replace("uit_booking_checkin_datetime", cDateStr);
+            var m = moment(new Date());
+            var timeLeft = m.to(cDate);
+            template = template.replace("uit_booking_time_left", timeLeft);
+            //if its pending and its past check time it should be in red
+            var secsLimit = cDate.getTime() - bookingTimeOutSeconds;
+            var limitDate = new Date();
+            limitDate.setTime(secsLimit);
+            var diff = m.diff(limitDate);
+            var diff2 = diff - bookingTimeOutSeconds;
+            //var XT = ((new Date()).getTime() + (bookingTimeOutSeconds/2)) / 1000;
+            if (diff > 0 && (booking.status == "pending" || booking.status == "comfirmed")) {
+                if (diff > bookingTimeOutSeconds) {
+                    //the booking date passed, this needs to be moved to a missed booking
+                    template = template.replace("uit_booking_color", "booking-hist-red-item");
+                } else {
+                    template = template.replace("uit_booking_color", "booking-hist-warn-item");
+                }
+            }
+            var name = (booking.name == null || booking.name.length == 0) ? "......" : booking.name;
+            template = template.replace("uit_booking_name", name);
+            var phone_number = (booking.phone_number == null || booking.phone_number.length == 0) ? "........................." : booking.phone_number;
+            template = template.replace("uit_booking_phone_number", phone_number);
+            var country = (booking.country == null || booking.country.length == 0) ? "........................." : booking.country;
+            template = template.replace("uit_booking_map", country);
+            var email = (booking.email == null || booking.email.length == 0) ? "........................." : booking.email;
+            template = template.replace("uit_booking_email", email);
+            template = template.replace("uit_booking_id_comfirm_link", booking.id);
+            template = template.replace("uit_booking_id_checkin_link", booking.id);
+            template = template.replace("uit_booking_id_cancel_link", booking.id);
+            template = template.replace("uit_booking_id_missed_link", booking.id);
+            template = template.replace("uit_booking_id_detail_link", booking.id);
+            template = template.replace("uit_xbooking_id_comfirm_link_displayed", link1);
+            template = template.replace("uit_xbooking_id_checkin_link_displayed", link2);
+            template = template.replace("uit_xbooking_id_cancel_link_displayed", link3);
+            template = template.replace("uit_xbooking_id_missed_link_displayed", link4);
+            template = template.replace("uit_xbooking_id_detail_link_displayed", link5);
+            return template;
+        },
+        renderedIndexedBookings: {},
+        renderBookingHistoryList: function (bookingsGroup) {
+            app.pages.master_page.pages.bookings.renderedIndexedBookings = {};
+            $("#booking_history_pending_tab").html("");
+            $("#booking_history_comfirmed_tab").html("");
+            $("#booking_history_cancelled_tab").html("");
+            $("#booking_history_missed_tab").html("");
+            $("#booking_history_checkedin_tab").html("");
+            $("#booking_history_checkedout_tab").html("");
+            if (bookingsGroup != null) {
+                var bookingTimeOutSeconds = app.config.booking_timeout * 60 * 60 * 1000;
+                var pendingHtml = "";
+                for (var i = 0; i < bookingsGroup.npending.length; i++) {
+                    var booking = bookingsGroup.npending[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, "", "", "", "", "");
+                    pendingHtml = pendingHtml + template;
+                }
+                $("#booking_history_pending_tab").html(pendingHtml);
+
+                var comfirmHtml = "";
+                for (var i = 0; i < bookingsGroup.ncomfirmed.length; i++) {
+                    var booking = bookingsGroup.ncomfirmed[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, " hidden ", "", "", "", ""); //hide comfirm, checkin, cancel, missed, detail
+                    comfirmHtml = comfirmHtml + template;
+                }
+                $("#booking_history_comfirmed_tab").html(comfirmHtml);
+
+                var cancelHtml = "";
+                for (var i = 0; i < bookingsGroup.ncancelled.length; i++) {
+                    var booking = bookingsGroup.ncancelled[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, " hidden ", " hidden ", " hidden ", "", ""); //hide comfirm, hide checkin, hide cancel, missed, detail
+                    cancelHtml = cancelHtml + template;
+                }
+                $("#booking_history_cancelled_tab").html(cancelHtml);
+
+                var missedHtml = "";
+                for (var i = 0; i < bookingsGroup.nmissed.length; i++) {
+                    var booking = bookingsGroup.nmissed[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, " hidden ", " hidden ", " hidden ", " hidden ", ""); //hide comfirm, hide checkin, hide cancel, hide missed, detail
+                    missedHtml = missedHtml + template;
+                }
+                $("#booking_history_missed_tab").html(missedHtml);
+
+                var checkedinHtml = "";
+                for (var i = 0; i < bookingsGroup.ncheckedin.length; i++) {
+                    var booking = bookingsGroup.ncheckedin[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, " hidden ", " hidden ", " hidden ", " hidden ", ""); //hide comfirm, hide checkin, hide cancel, hide missed, detail
+                    checkedinHtml = checkedinHtml + template;
+                }
+                $("#booking_history_checkedin_tab").html(checkedinHtml);
+
+                var checkedoutHtml = "";
+                for (var i = 0; i < bookingsGroup.ncheckedout.length; i++) {
+                    var booking = bookingsGroup.ncheckedout[i];
+                    var template = app.pages.master_page.pages.bookings.getBookingHistoryListItemHtml(
+                        booking, bookingTimeOutSeconds, " hidden ", " hidden ", " hidden ", " hidden ", ""); //hide comfirm, hide checkin, hide cancel, hide missed, detail
+                    checkedoutHtml = checkedoutHtml + template;
+                }
+                $("#booking_history_checkedout_tab").html(checkedoutHtml);
+
+
+                //remove all things not good
+                //$(".uit_booking_id_comfirm_link_displayed").remove();
+
+
+                //events for links
+                $(".booking_hist_list_link").on("click", function (event) {
+                    var bookingId = $(this).attr("data-booking-id");
+                    var role = $(this).attr("data-role");
+                    if (role == "comfirm") {
+
+                        var nec = {
+                            booking: {
+                                status: "comfirmed",
+                                _w: [["id", "e", bookingId]]
+                            }
+                        };
+                        app.pages.master_page.pages.bookings.showBookingHistoryLoader();
+                        bee.update(nec, function (hny) {
+                            if (hny._errors.length > 0) {
+                                app.pages.master_page.pages.bookings.hideBookingHistoryLoader();
+                                app.showErrors(hny._errors);
+                            } else {
+                                $.alert("Booking #" + bookingId + " was comfirmed successfully");
+                                //refresh bookings history
+                                app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                //log
+                                bee.log("Update Booking", "Comfirmed booking of id " + bookingId);
+                            }
+                        });
+                    } else if (role == "cancel") {
+                        //console.log(parseInt(bookingId));
+                        //get booking
+                        var booking = app.pages.master_page.pages.bookings.renderedIndexedBookings[bookingId];
+                        //console.log("the booking:", booking);
+                        var notes = (booking.notes != null && booking.notes.length > 0) ? booking.notes : "";
+                        app.promtForValue("Privide a reason for cancelling booking #" + booking.id, function (val) {
+                            if (val == null) {
+                                return false;
+                            }
+                            notes = notes + " " + val;
+                            var nec = {
+                                booking: {
+                                    status: "cancelled",
+                                    notes: notes,
+                                    _w: [["id", "e", bookingId]]
+                                }
+                            };
+                            app.pages.master_page.pages.bookings.showBookingHistoryLoader();
+                            bee.update(nec, function (hny) {
+                                if (hny._errors.length > 0) {
+                                    app.pages.master_page.pages.bookings.hideBookingHistoryLoader();
+                                    app.showErrors(hny._errors);
+                                } else {
+                                    $.alert("Booking #" + bookingId + " was cancelled successfully");
+                                    //refresh bookings history
+                                    app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                    //log
+                                    bee.log("Update Booking", "Cancelled booking of id " + bookingId);
+                                }
+                            });
+                        });
+                    } else if (role == "missed") {
+                        var booking = app.pages.master_page.pages.bookings.renderedIndexedBookings[bookingId];
+                        var notes = (booking.notes != null && booking.notes.length > 0) ? booking.notes : "";
+                        app.promtForValue("Privide a reason for missed booking #" + booking.id, function (val) {
+                            if (val == null) {
+                                return false;
+                            }
+                            notes = notes + " " + val;
+                            var nec = {
+                                booking: {
+                                    status: "missed",
+                                    notes: notes,
+                                    _w: [["id", "e", bookingId]]
+                                }
+                            };
+                            app.pages.master_page.pages.bookings.showBookingHistoryLoader();
+                            bee.update(nec, function (hny) {
+                                if (hny._errors.length > 0) {
+                                    app.pages.master_page.pages.bookings.hideBookingHistoryLoader();
+                                    app.showErrors(hny._errors);
+                                } else {
+                                    $.alert("Booking #" + bookingId + " was marked as missed successfully");
+                                    //refresh bookings history
+                                    app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                    //log
+                                    bee.log("Update Booking", "Marked booking of id " + bookingId + " as missed");
+                                }
+                            });
+                        });
+                    } else if (role == "details") {
+                        $("#booking_page_selected_booking_details_pane").addClass("hidden");
+                        app.pages.master_page.pages.bookings.getBookingDetailsFromServer(bookingId, function(booking){
+                            app.pages.master_page.pages.bookings.renderBookingDetails(booking);
+                            //click the details tab
+                            $("#booking_booking_details_tab_link").click();
+                        });
+                    }else if (role == "checkin") {
+                        $("#booking_page_selected_booking_details_pane").addClass("hidden");
+                        app.pages.master_page.pages.bookings.getBookingDetailsFromServer(bookingId, function(booking){
+                            app.pages.master_page.pages.bookings.renderBookingDetails(booking);
+                            //click the details tab
+                            $("#booking_booking_details_tab_link").click();
+                            //click the checkin tab
+                            $("#booking-details-tab-checkin_btn").click();
+                        });
+                    }
+                });
+            }
+        },
+        loadBookingsHistList: function () {
+            app.pages.master_page.pages.bookings.getBookingHistoryGroups(function (bookings) {
+                console.log("bookings history", bookings);
+                app.pages.master_page.pages.bookings.renderBookingHistoryList(bookings);
+            });
+        },
+        getSearchBookingResultListItemHtml: function (booking, bookingTimeOutSeconds) {
+            app.pages.master_page.pages.bookings.renderedIndexedBookings[booking.id] = booking;
+            var template = $("#booking-search-item-template").html();
+            template = template.replace("uit_booking_id", "#" + booking.id);
+            var checkinDate = booking.checkin_time;
+            var cDate = new Date(checkinDate * 1000);
+            var cDateStr = app.getTodayDateStr(cDate, true);
+            template = template.replace("uit_booking_checkin_datetime", cDateStr);
+            var m = moment(new Date());
+            var timeLeft = m.to(cDate);
+            template = template.replace("uit_booking_time_left", timeLeft);
+            //if its pending and its past check time it should be in red
+            var secsLimit = cDate.getTime() - bookingTimeOutSeconds;
+            var limitDate = new Date();
+            limitDate.setTime(secsLimit);
+            var diff = m.diff(limitDate);
+            var diff2 = diff - bookingTimeOutSeconds;
+            //var XT = ((new Date()).getTime() + (bookingTimeOutSeconds/2)) / 1000;
+            if (diff > 0 && (booking.status == "pending" || booking.status == "comfirmed")) {
+                if (diff > bookingTimeOutSeconds) {
+                    //the booking date passed, this needs to be moved to a missed booking
+                    template = template.replace("uit_booking_color", "booking-hist-red-item");
+                } else {
+                    template = template.replace("uit_booking_color", "booking-hist-warn-item");
+                }
+            }
+            var name = (booking.name == null || booking.name.length == 0) ? "......" : booking.name;
+            template = template.replace("uit_booking_name", name);
+            var phone_number = (booking.phone_number == null || booking.phone_number.length == 0) ? "........................." : booking.phone_number;
+            template = template.replace("uit_booking_phone_number", phone_number);
+            var country = (booking.country == null || booking.country.length == 0) ? "........................." : booking.country;
+            template = template.replace("uit_booking_map", country);
+            var email = (booking.email == null || booking.email.length == 0) ? "........................." : booking.email;
+            template = template.replace("uit_booking_email", email);
+            template = template.replace("uit_booking_div_link_id", booking.id);
+            return template;
+        },
+        showSearchBookingLoader: function () {
+            $("#booking_page_search_booking_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideSearchBookingLoader: function () {
+            $("#booking_page_search_booking_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getSearchBookingNector: function () {
+            var q = $("#booking_page_serach_booking_input").val();
+            q = (q == null) ? "" : q.trim();
+            q = q.toLowerCase();
+            var nec = null;
+            if (q.length > 0) {
+                var w = bee.where("name", "like", q)
+                    .or("phone_number", "like", q)
+                    .or("email", "like", q)
+                    .or("country", "like", q)._w;
+                nec = {
+                    bookings: {
+                        _asc: ["checkin_time"],
+                        _pg: 200,
+                        _w: w
+                    }
+                };
+            } else {
+                nec = {
+                    bookings: {
+                        _asc: ["checkin_time"],
+                        _pg: 200
+                    }
+                };
+            }
+            return nec;
+        },
+        clearBookingDetailsTab: function (clearSearchInput) {
+            if (typeof clearSearchInput == 'undefined' || clearSearchInput == null) {
+                clearSearchInput = true;
+            }
+            if (clearSearchInput == true) {
+                $("#booking_page_serach_booking_input").val("");
+            }
+            $("#booking_page_find_booking_results").html("");
+            $("#booking_page_selected_booking_details_empty").removeClass("hidden");
+            $("#booking_page_selected_booking_details_template").addClass("hidden");
+            $("#booking_page_selected_booking_details_pane").addClass("hidden");
+        },
+        getBookingsSearchedFromServer: function (callback) {
+            var nec = app.pages.master_page.pages.bookings.getSearchBookingNector();
+            app.pages.master_page.pages.bookings.showSearchBookingLoader();
+            bee.get(nec, function (hny) {
+                app.pages.master_page.pages.bookings.hideSearchBookingLoader();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.bookings);
+                }
+            });
+        },
+        renderSearchBookingResults: function (bookings) {
+            console.log("search results", bookings);
+            if (bookings.length == 0) {
+                var html = "<div class=\"text-red\" style=\"text-align:center;\">No results found</div>";
+                $("#booking_page_search_booking_results").html(html);
+            } else {
+                var bookingTimeOutSeconds = app.config.booking_timeout * 60 * 60 * 1000;
+                var html = "";
+                for (var i = 0; i < bookings.length; i++) {
+                    var booking = bookings[i];
+                    var template = app.pages.master_page.pages.bookings.getSearchBookingResultListItemHtml(
+                        booking, bookingTimeOutSeconds);
+                    html = html + template;
+                }
+                $("#booking_page_search_booking_results").html(html);
+                //events 
+                $(".booking-search-result-list-item").on("click", function (event) {
+                    var bookingId = $(this).attr("data-booking-id");
+                    $("#booking_page_selected_booking_details_pane").addClass("hidden");
+                    app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                        bookingId, app.pages.master_page.pages.bookings.renderBookingDetails
+                    );
+                });
+            }
+        },
+        showBookingDetailsLoader: function () {
+            $("#booking_page_selected_booking_details_pane").removeClass("hidden");
+            $("#booking_page_selected_booking_details_empty").addClass("hidden");
+            $("#booking_page_selected_booking_details_template").removeClass("hidden");
+            console.log("in this club");
+            $("#booking_page_booking_details_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideBookingDetailsLoader: function () {
+            $("#booking_page_selected_booking_details_empty").addClass("hidden");
+            $("#booking_page_selected_booking_details_template").removeClass("hidden");
+            $("#booking_page_booking_details_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getBookingDetailsFromServer: function (id, callback, showLoaders) {
+            if (typeof showLoaders == "undefined" || showLoaders == null) {
+                showLoaders = true;
+            }
+            var a = "id name source status phone_number email country number_of_minors number_of_adults number_of_nights checkin_time";
+            a = a + " checkout_time actual_checkin_time actual_checkout_time notes time_inserted";
+            var nec = {
+                booking: {
+                    _a: a,
+                    booked_rooms: {
+                        room: {},
+                        booked_room_bills: {},
+                        booked_room_payments: {
+                            _a: "id guest_id booked_room_id booking_id room_id payment_type amount time_inserted"
+                        },
+                        guests: {
+                            client: {}
+                        }
+                    },
+                    _w: [["id", "e", id]]
+                }
+            };
+            if (showLoaders == true) {
+                app.pages.master_page.pages.bookings.showBookingDetailsLoader();
+            }
+            bee.get(nec, function (hny) {
+                if (showLoaders == true) {
+                    app.pages.master_page.pages.bookings.hideBookingDetailsLoader();
+                }
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    console.log("my booking details ", hny.booking);
+                    callback(hny.booking);
+                }
+            });
+        },
+        checkoutGuest: function(guestId){
+            
+                var ids = guestId.split("-");
+                var nec = {
+                    guest: {
+                        _now_checkout_time: 1,
+                        _w: bee.where("id", "e", ids[0])._w
+                    }
+                };
+                app.pages.master_page.pages.bookings.showCheckoutLoader();
+                bee.update(nec, function (hny) {
+                    app.pages.master_page.pages.bookings.hideCheckoutLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        
+                        //log
+                        bee.log("Checked Out", "checked out guest of id " + ids[0]);
+                        //check if all the bookings guests checked out
+                        //apart from this one
+                        var booking = app.pages.master_page.pages.bookings.renderedBookingDetails;
+                        var num = 1; //the guy that just checked out
+                        var expected = 0;
+                        if (typeof booking.booked_rooms != "undefined") {
+                            for (var i = 0; i < booking.booked_rooms.length; i++) {
+                                var br = booking.booked_rooms[i];
+                                if (br.guests != null) {
+                                    expected = expected + br.guests.length;
+                                    for (var gi = 0; gi < br.guests.length; gi++) {
+                                        var guest = br.guests[gi];
+                                        if(guest.id != ids[0] && guest.checkout_time > 0){
+                                            num = num + 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if(expected == num){
+                            //all have checked out, update booking status to checked out
+                            var necx = {
+                                booking:{
+                                    status: "checkedout",
+                                    _now_actual_checkout_time: 1,
+                                    _w:bee.where("id","e",ids[3])._w
+                                }
+                            };
+                            app.pages.master_page.pages.bookings.showCheckoutLoader();
+                            bee.update(necx, function (hny) {
+                                app.pages.master_page.pages.bookings.hideCheckoutLoader();
+                                if (hny._errors.length > 0) {
+                                    app.showErrors(hny._errors);
+                                } else {
+                                    bee.log("Booking Checked Out", "checked out booking of id " + ids[3]);
+                                    $.alert("This booking has been fully checked out.");
+                                    app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                                        ids[3], app.pages.master_page.pages.bookings.renderBookingDetails
+                                    );
+                                    //bookings
+                                    app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                    //nyd
+                                    //evaluate room statuses and reload rooms
+                                }
+                            });
+                        }else{
+                            $.alert("Guest checked out successfully");
+                            app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                                ids[3], app.pages.master_page.pages.bookings.renderBookingDetails
+                            );
+                        }
+                    }
+                });
+            
+        },
+        renderedBookingDetails: null,
+        renderBookingDetails: function (booking) {
+            if (typeof booking == "undefined" || booking == null) {
+                app.pages.master_page.pages.bookings.renderedBookingDetails = null;
+                $("#booking_page_selected_booking_details_empty").addClass("hidden");
+                $("#booking_page_selected_booking_details_template").addClass("hidden");
+                $("#booking_page_selected_booking_details_pane").addClass("hidden");
+                $.alert("!!! Booking details not loaded");
+                return false;
+            }
+            app.pages.master_page.pages.bookings.renderedBookingDetails = booking;
+            $("#bdd_id").html("#" + booking.id);
+            var dtDate = new Date();
+            dtDate.setTime(booking.time_inserted * 1000);
+            var dtStr = app.getTodayDateStr(dtDate, true);
+            $("#bdd_date_time").html(dtStr);
+
+            var name = (booking.name == null) ? ".........." : booking.name.trim();
+            name = (booking.name.length == 0) ? ".........." : booking.name;
+            $("#bdd_name").html(name);
+
+            $("#bdd_source_summary_green").html(" via " + booking.source);
+            $("#bdd_status").html(booking.status);
+            var phone_number = (booking.phone_number == null) ? ".........." : booking.phone_number;
+            $("#bdd_phone_number").html(phone_number + ", " + booking.country);
+            var adults = parseInt(booking.number_of_adults);
+            var adultsStr = (adults == 0) ? "none" : ((adults == 1) ? "1 person" : (adults + " people"));
+            $("#bdd_adults").html(adultsStr);
+            var minors = parseInt(booking.number_of_minors);
+            var minorsStr = (minors == 0) ? "none" : ((minors == 1) ? "1 person" : (minors + " people"));
+            $("#bdd_minors").html(minorsStr);
+            var email = (booking.email == null) ? ".........." : booking.email;
+            $("#bdd_email").html(email);
+
+            var ciDate = new Date();
+            ciDate.setTime(booking.checkin_time * 1000);
+            var ciDtStr = app.getTodayDateStr(ciDate, true);
+            $("#bdd_checkin").html(ciDtStr);
+
+            var coDate = new Date();
+            coDate.setTime(booking.checkout_time * 1000);
+            var coDtStr = app.getTodayDateStr(coDate, true);
+            $("#bdd_checkout").html(coDtStr);
+
+            var nights = parseInt(booking.number_of_nights);
+            var nightsStr = (nights == 0) ? "none" : nights;
+            $("#bdd_nights").html(nightsStr);
+
+
+            var cats = app.pages.master_page.pages.config.renderedCategories;
+            var indexedCats = {};
+            for (var i = 0; i < cats.length; i++) {
+                var tempCat = cats[i];
+                indexedCats[parseInt(tempCat.id)] = tempCat;
+            }
+            //console.log("indexedCats",indexedCats);
+            var capacity = 0;
+            var bookedRoomsHtml = "";
+            var bookedRoomsFooterHtml = "";
+            var checkinSelectHtml = "<option value=\"0\">Select a Room</option>";
+            var guestsHtml = "";
+            var roomCost = 0;
+            var totalPayments = 0;
+            var guestSelectHtml = "<option value=\"0\">Select a Guest</option>";
+            var paymentsHtml = "";
+            var totalBill = 0;
+            var checkoutHtml = "";
+            var lastGuestWhoPaid =  null;
+            var billHtml = "";
+            var totalBillBll = 0;
+            $("#booking_details_booked_rooms_list").html("");
+            $("#booking_details_booked_rooms_footer").html("");
+            $("#booking_page_checkin_room_input").html("");
+            $("#booking_page_checkin_guests_list").html("");
+            $("#booking_page_payment_by_input").html("");
+            $("#booking_page_payments_item_list").html("");
+            $("#booking_page_checkout_guests_list").html("");
+            $("#booking_details_receipt_bill_items").html("");
+            if (typeof booking.booked_rooms != "undefined") {
+                for (var i = 0; i < booking.booked_rooms.length; i++) {
+                    var br = booking.booked_rooms[i];
+                    //console.log("The cat bro", br.room.room_category_id);
+                    var cat = indexedCats[parseInt(br.room.room_category_id)];
+                    //console.log("The cat", cat);
+                    capacity = capacity + cat.capacity;
+                    var nem = br.room.number + " (" + cat.name + "--" + cat.capacity + ")";
+                    checkinSelectHtml = checkinSelectHtml + "<option value=\"" + br.id + "\">" + nem + "</option>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<tr>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + (i + 1) + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + br.room.number + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + cat.name + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + cat.capacity + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + cat.price + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "<td>" + (cat.price * booking.number_of_nights) + "</td>";
+                    roomCost = roomCost + (cat.price * booking.number_of_nights);
+                    var facHtml = "";
+                    for (var j = 0; j < cat.room_category_facilities.length; j++) {
+                        var rf = cat.room_category_facilities[j];
+                        facHtml = facHtml + " " + rf.name + ((j + 1 < cat.room_category_facilities.length) ? ", " : "");
+                    }
+                    bookedRoomsHtml = bookedRoomsHtml + "<td style=\"font-size: 10px;\">" + facHtml + "</td>";
+                    bookedRoomsHtml = bookedRoomsHtml + "</tr>";
+
+                    var indexedGuests = {};
+                    if (br.guests != null) {
+                        for (let gi = 0; gi < br.guests.length; gi++) {
+                            var guest = br.guests[gi];
+                            indexedGuests[guest.id] = guest; //indexing guests
+                            var gDate = new Date();
+                            gDate.setTime(guest.checkin_time * 1000);
+                            var gDateStr = app.getTodayDateStr(gDate, true);
+                            var guestPayId = guest.id + "-" + br.id + "-" + br.room.id + "-" + booking.id;
+                            guestSelectHtml = guestSelectHtml + "<option value=\"" + guestPayId + "\">" + guest.client.name + "</option>";
+                            guestsHtml = guestsHtml + "<tr>";
+                            guestsHtml = guestsHtml + "<td>" + br.room.number + " (" + cat.name + ")</td>";
+                            guestsHtml = guestsHtml + "<td>" + guest.client.name + "</td>";
+                            guestsHtml = guestsHtml + "<td>" + gDateStr + "</td>";
+                            guestsHtml = guestsHtml + "<td style=\"width:200px;\">" + guest.client.notes + "</td>";
+                            guestsHtml = guestsHtml + "</tr>";
+
+
+                            checkoutHtml = checkoutHtml + "<tr>";
+                            checkoutHtml = checkoutHtml + "<td>" + br.room.number + " " + cat.name + "</td>";
+                            checkoutHtml = checkoutHtml + "<td>" + guest.client.name + "</td>";
+                            var contacts = "";
+                            if (guest.client.phone_number != null && guest.client.phone_number.length > 0) {
+                                contacts = contacts + guest.client.phone_number;
+                            }
+                            if (guest.client.email != null && guest.client.email.length > 0) {
+                                contacts = contacts + "<br />" + guest.client.email;
+                            }
+                            if (guest.client.address != null && guest.client.address.length > 0) {
+                                contacts = contacts + "<br />" + guest.client.address;
+                            }
+                            checkoutHtml = checkoutHtml + "<td style=\"font-size: 10px;\">" + contacts + "</td>";
+                            var btn = "<button type=\"button\" data-guest-id=\"" + guestPayId + "\" class=\"line-checkout-btn btn btn-success btn-block btn-xs app_action_item disabled_action app_action_booking_c1\">";
+                            btn = btn + " checkout </button>";
+                            if (guest.checkout_time > 0) {
+                                btn = ""; //already checked out
+                            }
+                            checkoutHtml = checkoutHtml + "<td>" + btn + "</td>";
+                            checkoutHtml = checkoutHtml + "</tr>";
+                        }
+                    }
+
+                    if (br.booked_room_payments != null) {
+                        for (let gi = 0; gi < br.booked_room_payments.length; gi++) {
+                            var payment = br.booked_room_payments[gi];
+                            var guest = indexedGuests[payment.guest_id];
+                            lastGuestWhoPaid = guest;
+                            var pDate = new Date();
+                            pDate.setTime(payment.time_inserted * 1000);
+                            var pDateStr = app.getTodayDateStr(pDate, true);
+                            paymentsHtml = paymentsHtml + "<tr>";
+                            paymentsHtml = paymentsHtml + "<td>" + pDateStr + "</td>";
+                            paymentsHtml = paymentsHtml + "<td>" + guest.client.name + "</td>";
+                            paymentsHtml = paymentsHtml + "<td>" + payment.payment_type + "</td>";
+                            paymentsHtml = paymentsHtml + "<td>" + payment.amount + "</td>";
+                            paymentsHtml = paymentsHtml + "<td></td>";
+                            paymentsHtml = paymentsHtml + "</tr>";
+                            totalPayments = totalPayments + payment.amount;
+                        }
+
+                    }
+
+                    if (br.booked_room_bills != null) {
+                        for (let gi = 0; gi < br.booked_room_bills.length; gi++) {
+                            var bill = br.booked_room_bills[gi];
+                            totalBill = totalBill + bill.sub_total;
+                            
+                            var pDate = new Date();
+                            pDate.setTime(bill.date_time * 1000);
+                            var pDateStr = app.getTodayDateStr(pDate, true);
+                            var notes = (bill.notes == null)?"":bill.notes;
+                            billHtml = billHtml + "<tr>";
+                            billHtml = billHtml + "<td>" + (gi + 1) + "</td>";
+                            billHtml = billHtml + "<td>" + pDateStr + "</td>";
+                            billHtml = billHtml + "<td>" + notes + "</td>";
+                            billHtml = billHtml + "<td>" + bill.price + "</td>";
+                            billHtml = billHtml + "<td>" + bill.quantity+ "</td>";
+                            billHtml = billHtml + "<td>" + bill.sub_total+ "</td>";
+                            billHtml = billHtml + "</tr>";
+                        }
+                    }
+
+
+                }
+                
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<tr>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<th colspan=\"3\">Total</th>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<th>" + capacity + "</th>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<th></th>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<th>" + roomCost + "</th>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "<th></th>";
+                bookedRoomsFooterHtml = bookedRoomsFooterHtml + "</tr>";
+
+                
+                //tax and tourism levi
+                var taxValue =  (app.config.tax/100.0) * totalBill;
+                taxValue = app.roundTo(taxValue,2);
+                var tourismValue =  (app.config.tourism_levi/100.0) * totalBill;
+                tourismValue = app.roundTo(tourismValue,2);
+                var finalTotal  = totalBill + parseFloat(taxValue) + parseFloat(tourismValue);
+                billHtml = billHtml + "<tr>";
+                billHtml = billHtml + "<td>Tax</td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td>" + app.config.tax + "% </td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td>" + taxValue + "</td>";
+                billHtml = billHtml + "</tr>";
+                billHtml = billHtml + "<tr>";
+                billHtml = billHtml + "<td>Tourism Levi</td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td>" + app.config.tourism_levi + "% </td>";
+                billHtml = billHtml + "<td></td>";
+                billHtml = billHtml + "<td>" + tourismValue + "</td>";
+                billHtml = billHtml + "</tr>";
+                totalBill = finalTotal;
+
+                paymentsHtml = paymentsHtml + "<tr>";
+                paymentsHtml = paymentsHtml + "<th calspan=\"3\">Total</th>";
+                paymentsHtml = paymentsHtml + "<th>" + totalPayments + "</th>";
+                paymentsHtml = paymentsHtml + "<th></th>";
+                paymentsHtml = paymentsHtml + "</tr>";
+            }
+            var capStr = capacity + " people in " + booking.booked_rooms.length + " rooms";
+            $("#bdd_capacity").html(capStr);
+
+            $("#bdd_bill").html("&nbsp;" + totalBill + " " + app.config.currency_name);
+            $("#bdd_paid").html("&nbsp;" + totalPayments + " " + app.config.currency_name);
+            $("#bdd_balo_summary_red").addClass("hidden");
+            $("#bdd_balo_summary_green").addClass("hidden");
+            $("#bdd_balo_summary_red").html("");
+            $("#bdd_balo_summary_green").html("");
+            var summary = "";
+            if (totalBill > totalPayments) {
+                var diff = totalBill - totalPayments;
+                summary = "&nbsp;has a balance of " + diff + " " + app.config.currency_name;
+                $("#bdd_balo_summary_red").html(summary);
+                $("#bdd_balo_summary_red").removeClass("hidden");
+            } else {
+                summary = "&nbsp;is fully paid";
+                if (booking.status == "pending") {
+                    summary = summary + " but pending";
+                }
+                if (booking.status == "comfirmed") {
+                    summary = summary + " but is awaiting checkin";
+                }
+                if (booking.status == "cancelled") {
+                    summary = summary + " but is cancelled";
+                }
+                $("#bdd_balo_summary_green").html(summary);
+                $("#bdd_balo_summary_green").removeClass("hidden");
+            }
+            app.pages.master_page.pages.bookings.renderedBookingDetails._temp_totalBill = totalBill;
+            app.pages.master_page.pages.bookings.renderedBookingDetails._temp_totalPayments = totalPayments;
+            app.pages.master_page.pages.bookings.renderedBookingDetails._temp_balance = parseFloat(totalBill) - parseFloat(totalPayments);
+
+
+
+            if(booking.status == "checkedin"){
+                //show the checkout all btn
+                $("#check_out_all_guests_btn").removeClass("hidden");
+            }else{
+                $("#check_out_all_guests_btn").addClass("hidden");
+            }
+
+
+            $("#booking_details_booked_rooms_list").html(bookedRoomsHtml);
+            $("#booking_details_booked_rooms_footer").html(bookedRoomsFooterHtml);
+            $("#booking_page_checkin_room_input").html(checkinSelectHtml);
+            $("#booking_page_checkin_guests_list").html(guestsHtml);
+            $("#bdd_notees").html("* " + ((booking.notes == null) ? "" : booking.notes));
+            $("#booking_page_payment_by_input").html(guestSelectHtml);
+            $("#booking_page_payments_item_list").html(paymentsHtml);
+            $("#booking_page_checkout_guests_list").html(checkoutHtml);
+            $("#booking_details_receipt_bill_items").html(billHtml);
+            $("#booking_details_receipt_bill_items_footer").html(totalBill);
+            //authorise
+            app.authoriseActionItems(app.user, "#booking_page_checkout_guests_list ");
+            //checkout list btn event
+            $(".line-checkout-btn").on("click", function (event) {
+                //var guestPayId = guest.id + "-" + br.id + "-" + br.room.id +"-" + booking.id;
+                var guestId = $(this).attr("data-guest-id");
+                //comfirm if payment is not full
+                if(app.pages.master_page.pages.bookings.renderedBookingDetails._temp_balance > 0){
+                    $.alert("Booking is not fully paid");
+                    //we still have money not yet paid
+                    // $.confirm("Booking is not yet fully paid",
+                    // function(){
+                    //     app.pages.master_page.pages.bookings.checkoutGuest(guestId);
+                    // },
+                    // function(){
+                    //     //alertify.error('Cancel');
+                    // });
+                }else{
+                    app.pages.master_page.pages.bookings.checkoutGuest(guestId);
+                }
+
+                
+            });
+
+            var receiptName = app.pages.master_page.pages.bookings.findNameForBookingDetailsReceipt(booking);
+
+            //receipt
+            var company_logo = bee.baseUrl + "bee/images/default_company.png";
+            if(app.config.logo != null  && app.config.logo.length > 0){
+                company_logo = bee.baseUrl + app.config.logo;
+            }
+            $("#booking_details_receipt_logo").attr("src",company_logo);
+            var cName = (app.config.name == null )? "[company name]" : app.config.name;
+            $("#booking_details_receipt_company_name").html(cName);
+            var cAddress = (app.config.address == null )? "[company address]" : app.config.address;
+            $("#booking_details_receipt_company_address").html(cAddress);
+            $("#booking_details_receipt_booking_id").html("Invoice No. #" + booking.id);
+            var city = (app.config.city == null)?"":app.config.city;
+            var country = (app.config.country == null)?"":app.config.country;
+            var cac = city + ((city.length>0  && city.length > 0)?", ":"") + country;
+            $("#booking_details_receipt_city_country").html(cac);
+            var cDateStr = app.getTodayDateStr(new Date());
+            $("#booking_details_receipt_date").html("Date " + cDateStr);
+            var cPhone =  (app.config.phone == null)?"[company phone]":app.config.phone;
+            $("#booking_details_receipt_company_phone").html("Phone: " + cPhone);
+            //the receipt is given to the last guest who paid
+            //if none the its given to the booker
+            var customerId = "#"+booking.id; //the booker
+            var recToName = (booking.name == null)?"":booking.name;
+            var recToPhone = (booking.phone_number == null)?"":booking.phone_number;
+            var recToEmail = (booking.email == null)?"":booking.email;
+            var recToCountry = (booking.country == null)?"":booking.country;
+            if(lastGuestWhoPaid != null){
+                customerId = lastGuestWhoPaid.id;
+                recToName = lastGuestWhoPaid.client.name;
+                recToPhone = (lastGuestWhoPaid.client.phone_number == null)?"":lastGuestWhoPaid.client.phone_number;
+                recToEmail = (lastGuestWhoPaid.client.email == null)?"":lastGuestWhoPaid.client.email;
+                recToCountry = ""; //guest so far has know country field
+            }
+            $("#booking_details_receipt_customer_id").html("Customer ID: "+ customerId);
+            $("#booking_details_receipt_to").html(recToName);
+            $("#booking_details_receipt_to_phone").html(recToPhone);
+            $("#booking_details_receipt_to_email").html(recToEmail);
+            $("#booking_details_receipt_to_country").html(recToCountry);
+            var online = "";
+            var cEmail = (app.config.email == null)?"":app.config.email;
+            var cWebsite = (app.config.website == null)?"":app.config.website;
+            online = cEmail + ((cWebsite.length>0 && cEmail.length > 0)?", ":"") + cWebsite;
+            $("#booking_details_receipt_online").html(online);
+            var recDate = new Date();
+            if(booking.actual_checkin_time > 0){
+                recDate.setTime(booking.actual_checkin_time * 1000);
+            }else{
+                recDate.setTime(booking.checkin_time * 1000);
+            }
+            var recDateStr = app.getTodayDateStr(recDate,true);
+            $("#booking_details_receipt_checkin_date").html(recDateStr);
+            var reoDate = new Date();
+            if(booking.actual_checkout_time > 0){
+                reoDate.setTime(booking.actual_checkout_time * 1000);
+            }else{
+                reoDate.setTime(booking.checkout_time * 1000);
+            }
+            var reoDateStr = app.getTodayDateStr(reoDate,true);
+            $("#booking_details_receipt_checkout_date").html(reoDateStr);
+            $("#booking_details_receipt_days").html(booking.number_of_nights);
+            $("#booking_details_receipt_adults").html(booking.number_of_adults);
+            $("#booking_details_receipt_minors").html(booking.number_of_minors);
+            $("#booking_details_receipt_capacity").html(capStr);
+            $("#booking_page_selected_booking_details_pane").removeClass("hidden");
+            $("#booking_page_selected_booking_details_empty").addClass("hidden");
+            $("#booking_page_selected_booking_details_template").removeClass("hidden");
+            
+        },
+        findNameForBookingDetailsReceipt: function (booking) {
+            //if booking has not made any payments
+            //then we use the bookers name
+            var name = booking.name;
+            if (booking.booked_rooms != null) {
+                for (var i = 0; i < booking.booked_rooms.length; i++) {
+                    var bookedRoom = booking.booked_rooms[i];
+                    if (bookedRoom.booked_room_payments != null) {
+                        for (var j = 0; j < bookedRoom.booked_room_payments.length; j++) {
+                            var brp = bookedRoom.booked_room_payments[j];
+                            var guest_id = brp.guest_id;
+                            if (guest_id == 0) {//probaby its the person who booked that made the payment
+                                name = booking.name;
+                                break;
+                            } else {
+                                var found = false;
+                                if (bookedRoom.guests != null) {
+                                    //get the guests
+                                    for (var k = 0; k < bookedRoom.guests.length; k++) {
+                                        var guest = bookedRoom.guests[k];
+                                        if (guest.id == guest_id) {
+                                            name = booking.name;
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (found == true) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        },
+        showCheckinLoader: function () {
+            $("#booking_checkin_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideCheckinLoader: function () {
+            $("#booking_checkin_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        clearCheckInForm: function () {
+            $("#booking_page_checkin_notes_input").val("");
+            $("#booking_page_checkin_name_input").val("");
+            $("#booking_page_checkin_phone_number_input").val("");
+            $("#booking_page_checkin_email_input").val("");
+            $("#booking_page_checkin_address_input").val("");
+        },
+        getCheckInNector: function (callback) {
+            var bookedRoomId = $("#booking_page_checkin_room_input").val();
+            if (bookedRoomId == "0" || bookedRoomId == 0) {
+                $.alert("!!! Please select a room");
+                return false;
+            }
+            var notes = $("#booking_page_checkin_notes_input").val();
+            var booking = app.pages.master_page.pages.bookings.renderedBookingDetails;
+            var nights = booking.number_of_nights;
+            var price = null;
+            var roomNumber = "";
+            var roomId = 0;
+            var cats = app.pages.master_page.pages.config.renderedCategories;
+            var indexedCats = {};
+            for (var i = 0; i < cats.length; i++) {
+                var tempCat = cats[i];
+                indexedCats[parseInt(tempCat.id)] = tempCat;
+            }
+            if (booking.booked_rooms != null) {
+                for (var i = 0; i < booking.booked_rooms.length; i++) {
+                    var bookedRoom = booking.booked_rooms[i];
+                    if (parseInt(bookedRoom.id) == parseInt(bookedRoomId)) {
+                        var x = bookedRoom.room.room_category_id;
+                        //console.log("the x", x);
+                        var cat = indexedCats[parseInt(x)];
+                        price = cat.price;
+                        roomNumber = bookedRoom.room.number;
+                        roomId = bookedRoom.room.id;
+                        break;
+                    }
+                }
+            }
+            if (booking != null && price != null && nights != null) {
+                var nec = {
+                    client: {
+                        name: $("#booking_page_checkin_name_input").val(),
+                        phone_number: $("#booking_page_checkin_phone_number_input").val(),
+                        email: $("#booking_page_checkin_email_input").val(),
+                        address: $("#booking_page_checkin_address_input").val(),
+                        notes: notes
+                    },
+                    guest: {
+                        _fk_client_id: "client",
+                        booked_room_id: bookedRoomId,
+                        _now_checkin_time: 1,
+                        checkout_time: 0
+                    }
+                };
+                //first get if this room is alreday billed for accomodation
+                var necf = {
+                    booked_room_bills: {
+                        _w: bee.where("booked_room_id", "e", bookedRoomId).and("item_id", "e", 1)._w
+                    }
+                };
+                app.pages.master_page.pages.bookings.showCheckinLoader();
+                bee.get(necf, function (hny) {
+                    app.pages.master_page.pages.bookings.hideCheckinLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        if (hny.booked_room_bills.length == 0) {
+                            nec["booked_room_bill"] = {
+                                _fk_guest_id: "guest",
+                                booked_room_id: bookedRoomId,
+                                item_id: 1,
+                                booking_id: booking.id,
+                                room_id: roomId,
+                                quantity: nights,
+                                price: price,
+                                sub_total: (nights * price),
+                                _now_date_time: 1,
+                                notes: "accomodation for room #" + roomNumber + " for " + nights + " nights"
+                            };
+                        }
+                        callback(nec);
+                    }
+                });
+            } else {
+                $.alert("Failed to get required data for checkin");
+            }
+        },
+        showPaymentsLoader: function () {
+            $("#booking_payments_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hidePaymentsLoader: function () {
+            $("#booking_payments_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        clearPaymentsForm: function () {
+            $("#booking_page_payment_amount_input").val("");
+        },
+        getPaymentNector: function (callback) {
+            // guest.id + "-" + br.id + "-" + br.room.id +"-" + booking.id;
+            var paidById = $("#booking_page_payment_by_input").val();
+            if (paidById == "0" || paidById == 0) {
+                $.alert("!!! Please select a guest");
+                return null;
+            }
+            var ids = paidById.split("-");
+            var nec = {
+                booked_room_payment: {
+                    guest_id: ids[0],
+                    booked_room_id: ids[1],
+                    room_id: ids[2],
+                    booking_id: ids[3],
+                    payment_type: $("#booking_page_payment_method_input").val(),
+                    amount: $("#booking_page_payment_amount_input").val(),
+                    amount_given: $("#booking_page_payment_amount_input").val(),
+                    change_given: 0,
+                    payment_status: "success"
+                }
+            };
+            return nec;
+        },
+        showCheckoutLoader: function () {
+            $("#booking_details_checkout_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideCheckoutLoader: function () {
+            $("#booking_details_checkout_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        load: function () {
+
+            //tourism and and vat
+            if(typeof app.config.tax == 'undefined' || app.config.tax == null || app.config.tax.toString().trim().length == 0 ){
+                app.config.tax = 0;
+            }
+            if(typeof app.config.tourism_levi == 'undefined' || app.config.tourism_levi == null || app.config.tourism_levi.toString().trim().length == 0 ){
+                app.config.tourism_levi = 0;
+            }
+            app.config.tax = parseFloat(app.config.tax);
+            app.config.tourism_levi = parseFloat(app.config.tourism_levi);
+
+
+            $("#booking_page_find_from_date_input").on("change", function (e) {
+                app.pages.master_page.pages.bookings.calculateFromDateInputValue();
+            });
+            $("#booking_page_find_to_date_input").on("change", function (e) {
+                var toDateStr = e.target.value;
+                var fromDateStr = $("#booking_page_find_from_date_input").val();
+                var toDate = new Date(toDateStr);
+                var fromDate = new Date(fromDateStr);
+                var diffTime = toDate.getTime() - fromDate.getTime();
+                var daySeconds = 24 * 60 * 60 * 1000;
+                var nights = diffTime / daySeconds;
+                if (isNaN(nights)) {
+                    $("#booking_page_find_nights_input").val(1);
+                } else {
+                    $("#booking_page_find_nights_input").val(nights);
+                }
+            });
+            $("#booking_page_find_nights_input").on("blur", function (e) {
+                var num = e.target.value;
+                if (isNaN(num)) {
+                    $.alert("The value " + num + " is not a valid number of nights");
+                    num = 1;
+                }
+                num = parseInt(num);
+                if (num <= 0) {
+                    $.alert("Minimum number of nights is 1");
+                    num = 1;
+                }
+                $("#booking_page_find_nights_input").val(num);
+                app.pages.master_page.pages.bookings.calculateFromDateInputValue();
+            });
+            $("#booking_page_find_form_clear_btn").on("click", function (e) {
+                $("#booking_page_find_nights_input").val(1);
+                var todayStr = app.getTodayDateStr();
+                $("#booking_page_find_from_date_input").datepicker("setStartDate", todayStr);
+                $("#booking_page_find_from_date_input").datepicker("setDate", todayStr);
+                app.pages.master_page.pages.bookings.calculateFromDateInputValue();
+                //var nowStr = (new Date()).toLocaleTimeString();
+                //$("#booking_page_find_from_time_input").timepicker("setTime", nowStr);
+                $("#booking_page_find_capacity_input").val(2);
+
+                //nyd
+                //get the code to clear select2
+                //$("#booking_page_find_facility_select").unselect();
+
+                app.pages.master_page.pages.bookings.clearNewBookingsDetails();
+
+                app.pages.master_page.pages.config.getCategoriesFromServer(
+                    app.pages.master_page.pages.config.renderCategoriesList
+                );
+            });
+            $("#booking_page_find_form_submit_btn").on("click", function (event) {
+                app.pages.master_page.pages.bookings.findFreeRooms(function (rooms) {
+                    console.log("free room", rooms);
+                    app.pages.master_page.pages.bookings.clearNewBookingsDetails();
+                    if (rooms.length == 0) {
+                        $.confirm({
+                            title: 'No results found',
+                            content: 'Your search did not find any empty rooms. Please adjust your inputs',
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                close: function () {
+                                }
+                            }
+                        });
+                    } else {
+                        $("#bookings_page_new_booking_tab_btn").click();
+                        //transfer checkin and checkout info
+                        var checkinDate = $("#booking_page_find_from_date_input").val();
+                        var checkoutDate = $("#booking_page_find_to_date_input").val();
+                        var checkinTime = $("#booking_page_find_from_time_input").val();
+                        var checkoutTime = $("#booking_page_find_to_time_input").val();
+                        var checkIn = checkinDate + " " + checkinTime;
+                        var checkout = checkoutDate + " " + checkoutTime;
+                        $("#booking_page_new_booking_checkin_input").val(checkIn);
+                        $("#booking_page_new_booking_checkout_input").val(checkout);
+                        var nights = $("#booking_page_find_nights_input").val();
+                        $("#booking_page_new_booking_nights_input").val(nights);
+                        //render empty rooms results
+                        $("#rbooking_page_new_free_rooms_div").html("");
+                        var html = "";
+                        //This can be empty, booked, occupied, cleaning, repair
+                        var colors = {
+                            empty: "info",
+                            booked: "warning",
+                            occupied: "success",
+                            cleaning: "danger",
+                            repair: "default",
+                        };
+                        for (var ind = 0; ind < rooms.length; ind++) {
+                            var room = rooms[ind];
+                            var template = $("#booking-page-new-free-room-template").html();
+                            template = template.replace("uit_room_number", room.number);
+                            template = template.replace("uit_room_color", colors[room.status]);
+                            template = template.replace("uit_room_id", room.id);
+                            template = template.replace("uit_room_panel_id", room.id);
+                            template = template.replace("uit_room_category", room.room_category.name);
+                            template = template.replace("uit_room_price", room.room_category.price);
+                            template = template.replace("uit_room_capacity", room.room_category.capacity);
+                            template = template.replace("uit_room_code", room.code);
+                            template = template.replace("uit_room_data_room_id", room.id);
+                            html = html + template;
+                        }
+                        $("#booking_page_new_free_rooms_div").html(html);
+                        $(".new-free-room-select-btn").on("click", function (event) {
+                            var roomId = $(this).attr("data-room-id");
+                            $("#booking_page_new_room_panel_" + roomId).addClass("hidden");
+                            //get the room
+                            var sRooms = app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms;
+                            var rooms = app.pages.master_page.pages.rooms.renderedRooms;
+                            for (var i = 0; i < rooms.length; i++) {
+                                var room = rooms[i];
+                                if (parseInt(room.id) == parseInt(roomId)) {
+                                    var found = false;
+                                    for (var j = 0; j < sRooms.length; j++) {
+                                        var sRoom = sRooms[j];
+                                        if (parseInt(sRoom.id) == parseInt(roomId)) {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if (found == false) {
+                                        app.pages.master_page.pages.bookings.currentNewBookingsSelectedRooms.push(room);
+                                    }
+                                }
+                            }
+                            app.pages.master_page.pages.bookings.renderSelectedNewBookingsRooms();
+                        });
+                    }
+                });
+            });
+            //countries
+            $("#booking_page_new_booking_country_select").html("");
+            var countriesSelect = "";
+            for (let index = 0; index < app.countries.length; index++) {
+                var country = app.countries[index];
+                countriesSelect = countriesSelect + "<option id=\"" + country.name + "\">" + country.name + "</option>";
+            }
+            $("#booking_page_new_booking_country_select").html(countriesSelect);
+            $("#booking_page_new_form_cancel_btn").on("click", function (event) {
+                app.pages.master_page.pages.bookings.clearNewBookingsDetails();
+                $("#bookings_page_list_booking_tab_btn").click();
+            });
+            $("#booking_page_unit_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.bookings.getNewBookingSaveNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.bookings.showNewBookingLoaders();
+                bee.post(nec, function (hny) {
+                    if (hny._errors.length > 0) {
+                        app.pages.master_page.pages.bookings.hideNewBookingLoaders();
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //update room statuses of the booked rooms
+                        var roomsToUpdate = [];
+                        for (var index = 0; index < nec.booked_rooms.length; index++) {
+                            var br = nec.booked_rooms[index];
+                            roomsToUpdate.push({
+                                id: br.room_id,
+                                status: "booked",
+                                _w: [["id", "e", br.room_id]]
+                            });
+                        }
+                        //console.log("rooms to update", roomsToUpdate);
+                        var nec2 = {
+                            rooms: roomsToUpdate
+                        }
+                        bee.update(nec2, function (hny2) {
+                            app.pages.master_page.pages.bookings.hideNewBookingLoaders();
+                            if (hny2._errors.length > 0) {
+                                app.showErrors(hny2._errors);
+                            } else {
+                                $.alert("Your booing was saved succefully #" + hny.booking);
+                                //log
+                                bee.log("Add Booking", "Created a new bookin of id " + hny.booking);
+                                //clear form
+                                $("#booking_page_find_form_clear_btn").click();
+                                $("#bookings_page_list_booking_tab_btn").click(); //go to list tab
+                                //bookings
+                                app.pages.master_page.pages.rooms.getRoomsFromServer(
+                                    app.pages.master_page.pages.rooms.renderRoomsList
+                                );
+                                //bookings
+                                app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                //nyd
+                                //reload other things like front desk and guests
+
+                            }
+                        });
+                    }
+                });
+            });
+            this.onOpen();
+            //search booking for displaying its details
+            $("#booking_page_serach_booking_submit_btn").on("click", function (event) {
+                app.pages.master_page.pages.bookings.clearBookingDetailsTab(false);
+                app.pages.master_page.pages.bookings.getBookingsSearchedFromServer(
+                    app.pages.master_page.pages.bookings.renderSearchBookingResults
+                );
+            });
+            //checkin btn
+            $("#booking_page_checkin_submit_btn").on("click", function (event) {
+                app.pages.master_page.pages.bookings.getCheckInNector(function (nec) {
+                    //nyd
+                    //validation
+                    if (nec != null) {
+                        //console.log(nec);
+                        app.pages.master_page.pages.bookings.showCheckinLoader();
+                        bee.post(nec, function (hny) {
+                            if (hny._errors.length > 0) {
+                                app.pages.master_page.pages.bookings.hideCheckinLoader();
+                                app.showErrors(hny._errors);
+                            } else {
+                                //log
+                                bee.log("Checked In", "added guest of id " + hny.guest);
+                                //update booking status to checkin
+                                //update room status to occupied
+                                var room_id = 0;
+                                var bookedRoomId = nec.guest.booked_room_id;
+                                var booking = app.pages.master_page.pages.bookings.renderedBookingDetails;
+                                if (booking.booked_rooms != null) {
+                                    for (var i = 0; i < booking.booked_rooms.length; i++) {
+                                        var bookedRoom = booking.booked_rooms[i];
+                                        if (parseInt(bookedRoom.id) == parseInt(bookedRoomId)) {
+                                            room_id = bookedRoom.room.id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                var unec = {
+                                    booking: {
+                                        status: "checkedin",
+                                        _now_actual_checkin_time: 1,
+                                        _w: bee.where("id", "e", booking.id).and("actual_checkin_time", "e", 0)._w
+                                    },
+                                    room: {
+                                        status: "occupied",
+                                        _w: bee.where("id", "e", room_id)._w
+                                    }
+                                };
+                                bee.update(unec, function (hny) {
+                                    if (hny._errors.length > 0) {
+                                        app.pages.master_page.pages.bookings.hideCheckinLoader();
+                                        app.showErrors(hny._errors);
+                                    } else {
+                                        app.pages.master_page.pages.bookings.hideCheckinLoader();
+                                        $.alert("Guest added successfully");
+                                        app.pages.master_page.pages.bookings.clearCheckInForm();
+                                        var bookingId = booking.id;
+                                        app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                                            bookingId, app.pages.master_page.pages.bookings.renderBookingDetails
+                                        );
+                                        //nyd
+                                        //reload booking history
+                                        //reload all checkins
+                                        //reload all checkouts
+                                        //reload all payments
+                                        //reload rooms
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+            //payments button
+            $("#booking_page_payment_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.bookings.getPaymentNector();
+                //nyd
+                //validate
+                app.pages.master_page.pages.bookings.showPaymentsLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.bookings.hidePaymentsLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        app.pages.master_page.pages.bookings.clearPaymentsForm();
+                        $.alert("Your payment was saved succefully");
+                        //log
+                        bee.log("Add Room Payment", "Made a room payment of id " + hny.booked_room_payment);
+                        //reload booking details
+                        var booking = app.pages.master_page.pages.bookings.renderedBookingDetails;
+                        app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                            booking.id, app.pages.master_page.pages.bookings.renderBookingDetails
+                        );
+                    }
+                });
+            });
+            //checkout all guests btn
+            $("#check_out_all_guests_btn").on("click",function(event){
+                var booking = app.pages.master_page.pages.bookings.renderedBookingDetails;
+                var nec = {
+                    guests:[],
+                    booking:{
+                        status: "checkedout",
+                        _now_actual_checkout_time: 1,
+                        _w:bee.where("id","e",booking.id)._w
+                    }
+                };
+                if(booking != null && typeof booking.booked_rooms != "undefined") {
+                    for (var i = 0; i < booking.booked_rooms.length; i++) {
+                        var br = booking.booked_rooms[i];
+                        if (br.guests != null) {
+                            for (let gi = 0; gi < br.guests.length; gi++) {
+                                var guest = br.guests[gi];
+                                if(guest.checkout_time == 0){
+                                    nec.guests.push({
+                                        _now_checkout_time: 1,
+                                        _w: bee.where("id", "e", guest.id)._w
+                                    });
+                                }
+                            }
+                        }
+                    }
+                } 
+                if(nec.guests.length > 0){
+                    bee.update(nec,function(hny){
+                        app.pages.master_page.pages.bookings.showCheckoutLoader();
+                        bee.update(nec, function (hny) {
+                            app.pages.master_page.pages.bookings.hideCheckoutLoader();
+                            if (hny._errors.length > 0) {
+                                app.showErrors(hny._errors);
+                            } else {
+                                bee.log("Booking Checked Out", "checked out booking of id " + booking.id);
+                                $.alert("This booking has been fully checked out.");
+                                app.pages.master_page.pages.bookings.getBookingDetailsFromServer(
+                                    ids[3], app.pages.master_page.pages.bookings.renderBookingDetails
+                                );
+                                //bookings
+                                app.pages.master_page.pages.bookings.loadBookingsHistList();
+                                //nyd
+                                //evaluate room statuses and reload rooms
+                            }
+                        });
+                    });
+                }
+            });
+            //the print button for booking receipt
+            $("#booking_details_receipt_print_btn").on("click",function(event){
+                app.print("booking-details-tab-invoice",700,700);
+            });
+        },
+        onOpen: function () {
+            //configurations
+            //tourism and and vat
+            if(typeof app.config.tax == 'undefined' || app.config.tax == null || app.config.tax.toString().trim().length == 0 ){
+                app.config.tax = 0;
+            }
+            if(typeof app.config.tourism_levi == 'undefined' || app.config.tourism_levi == null || app.config.tourism_levi.toString().trim().length == 0 ){
+                app.config.tourism_levi = 0;
+            }
+            app.config.tax = parseFloat(app.config.tax);
+            app.config.tourism_levi = parseFloat(app.config.tourism_levi);
+
+            var todayStr = app.getTodayDateStr();
+            $("#booking_page_find_from_date_input").datepicker("setStartDate", todayStr);
+            $("#booking_page_find_from_date_input").datepicker("setDate", todayStr);
+            app.pages.master_page.pages.bookings.calculateFromDateInputValue();
+            //var nowStr = (new Date()).toLocaleTimeString();
+            //$("#booking_page_find_from_time_input").timepicker("setTime", nowStr);
+            app.pages.master_page.getSystemConfig(function (config) {
+                $("#booking_page_find_to_time_input").timepicker("setTime", config.checkout_time);
+                $("#booking_page_find_from_time_input").timepicker("setTime", config.checkin_time);
+            });
+            //rooms
+            if (app.pages.master_page.pages.rooms.renderedRooms.length == 0) {
+                app.pages.master_page.pages.rooms.getRoomsFromServer(
+                    app.pages.master_page.pages.rooms.renderRoomsList
+                );
+            }
+            //categories
+            if (app.pages.master_page.pages.config.renderedCategories.length == 0) {
+                app.pages.master_page.pages.config.getCategoriesFromServer(
+                    app.pages.master_page.pages.config.renderCategoriesList
+                );
+            }
+            //facilities
+            if (app.pages.master_page.pages.config.renderedFacilities.length == 0) {
+                app.pages.master_page.pages.config.getFacilitiesFromServer(
+                    app.pages.master_page.pages.config.renderFacilitiesList
+                );
+            }
+            //bookings
+            app.pages.master_page.pages.bookings.loadBookingsHistList();
+            
+        }
+    }
+</script>

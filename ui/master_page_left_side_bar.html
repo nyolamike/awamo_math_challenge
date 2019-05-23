@@ -1,0 +1,79 @@
+<aside class="main-sidebar cool_bg">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <div class="sidebar-date">
+            <div class="clock"></div>
+        </div>
+        <br/><br/>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+       
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="app_menu_item disabled_module for_role_module_dashboard">
+                <a href="#">
+                    <i class="fa  fa-dashboard"></i>
+                    <span>Dashboard</span>
+                    <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+                </a>
+            </li>
+            <li class="app_menu_item disabled_module for_role_module_operations">
+                <a href="#">
+                    <i class="fa fa-calendar yellow"></i>
+                    <span>Operations</span>
+                    <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+                </a>
+            </li>
+            <li class="app_menu_item disabled_module for_role_module_report">
+                <a href="#">
+                    <i class="fa fa-bar-chart orange"></i>
+                    <span>Reports</span>
+                    <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+                </a>
+            </li>
+            <li class="app_menu_item disabled_module for_role_module_security">
+                <a href="#">
+                    <i class="fa fa-key red"></i>
+                    <span>Security</span>
+                    <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+                </a>
+            </li>
+            <li class="app_menu_item disabled_module for_role_module_config">
+                <a href="#">
+                    <i class="fa fa-cogs"></i>
+                    <span>Configurations</span>
+                    <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<script>
+    app.pages.master_page.master_page_side_bar = {
+        id: "master_page_side_bar",
+        display: function (user) {
+            var appName = user.tenant_of.substr("nnetego_".length);
+            $("#master_page_header_business_name_display").html(appName);
+            $("#master_page_header_user_name_display").html(user.name);
+            var avatar = (user.avatar == null) ? bee.baseUrl + "bee/images/default_avatar_250.png" : user.avatar;
+            $("#master_page_header_user_avatar_display").attr("src", avatar);
+        },
+        load: function () {
+            //clock
+            // var clock = $('.clock').FlipClock({
+            //     clockFace: 'TwelveHourClock'
+            // });
+
+            //menu items
+            app.pages.master_page.menuLink("dashboard");
+            app.pages.master_page.menuLink("operations");
+            app.pages.master_page.menuLink("report");
+            app.pages.master_page.menuLink("security");
+            app.pages.master_page.menuLink("config");
+
+            
+            //load user
+            this.display(app.getUser());
+        }
+    };
+</script>

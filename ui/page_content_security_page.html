@@ -1,0 +1,734 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_security_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Security Managment</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- DIRECT CHAT SUCCESS -->
+                <div class="box box-success direct-chat direct-chat-success tall-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Roles</h3>
+
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="" class="badge bg-green" data-original-title="" id="security_page_roles_count_dispaly">0</span>
+                            <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button> -->
+                            <button type="button" id="security_page_toggle_roles_form" class="btn btn-box-tool app_action_item disabled_action app_action_role_c1"
+                                data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <!-- <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button> -->
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" style="">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages">
+                            <div id="security_page_roles_list">
+
+                            </div>
+                        </div>
+                        <!--/.direct-chat-messages-->
+
+                        <!-- Contacts are loaded here -->
+                        <div class="direct-chat-contacts">
+                            <form role="form">
+                                <h4 class="center-text">Add a new system role</h4>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="security_page_role_form_name_input" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="security_page_role_form_description_input" placeholder="Description">
+                                    </div>
+                                    <div class="nav-tabs-custom roles-form-tabs">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#roles_form_menu_items_tab" data-toggle="tab">Menu Items</a>
+                                            </li>
+                                            <li>
+                                                <a href="#roles_form_menu_actions_tab" data-toggle="tab">Actions</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content roles-form-tabs-content">
+                                            <div class="tab-pane active" id="roles_form_menu_items_tab">
+                                                <div id="roles_form_menu_items_list"></div>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                            <div class="tab-pane" id="roles_form_menu_actions_tab">
+                                                <div id="roles_form_action_groups_list"></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_role_c1">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="roles_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!--/.direct-chat -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4">
+                <!-- DIRECT CHAT SUCCESS -->
+                <div class="box box-success direct-chat direct-chat-success tall-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">System Users</h3>
+
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="" class="badge bg-green" data-original-title="" id="security_page_users_count_dispaly">0</span>
+                            <button type="button" id="security_page_toggle_users_form" class="btn btn-box-tool app_action_item disabled_action app_action_user_c1"
+                                data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" style="">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages">
+                            <div id="security_page_users_list">
+
+                            </div>
+                        </div>
+                        <!--/.direct-chat-messages-->
+
+                        <!-- Contacts are loaded here -->
+                        <div class="direct-chat-contacts">
+                            <form role="form">
+                                <div class="box-body">
+                                    <input type='file' id="user-form-avatar-file-input" style="height: 0px;width: 0px;visibility: hidden;position: absolute;"
+                                    />
+                                    <div class="user-form-avatar-preview-div">
+                                        <img id="user-form-avatar-preview" class="avatar-display" src="#" alt="users avatar" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="security_page_user_form_name_input" placeholder="names">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="security_page_user_form_email_input" placeholder="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="security_page_user_form_password_input" placeholder="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="security_page_user_form_password2_input" placeholder="password confirmation">
+                                    </div>
+                                    <div id="users_form_roles_list"></div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="button" id="security_page_user_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_role_c1">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="users_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!--/.direct-chat -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4">
+                <!-- DIRECT CHAT SUCCESS -->
+                <div class="box box-success direct-chat direct-chat-success tall-box-log">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Logs/ Audit trails</h3>
+
+                        <div class="box-tools pull-right"></div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" id="security_page_logs_list">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer" id="security_page_logs_footer">
+                        <button class="btn btn-sm btn-warning pull-left" id="security-page-logs-filter-btn">
+                            <i class="fa fa-filter"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger pull-left ml-20" id="security-page-logs-clear-filters-btn">
+                                <i class="fa fa-eraser"></i> Clear filters
+                        </button>
+                        <button class="btn btn-sm btn-success pull-right" id="security-page-logs-refresh-btn">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                        <div class="clear-fix"></div><br/><br/>
+                        <div class="form-group ">
+                            <label>Users</label>
+                            <select class="form-control select2" multiple="multiple" data-placeholder="Select a user" style="width: 100%;" id="security-page-logs-users-select">
+                                <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Roles</label>
+                            <select class="form-control select2" multiple="multiple" data-placeholder="Select a user" style="width: 100%;" id="security-page-logs-roles-select">
+                                <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                            </select>
+                        </div>
+                        <!-- Date and time range -->
+                        <div class="form-group">
+                            <label>Date and time range:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon" style="padding-bottom: 14px;">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right range-picker" id="logtime">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="search ...">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="logs_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!--/.direct-chat -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.security = {
+        id: "security",
+        showRolesLoader: function () {
+            $("#roles_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideRolesLoader: function () {
+            $("#roles_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        rolesFormSelectedMenuItems: [],
+        addRolesFormSelectedMenuItems: function (module_code) {
+            if (this.rolesFormSelectedMenuItems.indexOf(module_code) < 0) {
+                this.rolesFormSelectedMenuItems.push(module_code);
+            }
+        },
+        removeRolesFormSelectedMenuItems: function (module_code) {
+            var index = this.rolesFormSelectedMenuItems.indexOf(module_code);
+            if (index > -1) {
+                this.rolesFormSelectedMenuItems.splice(index, 1);
+            }
+        },
+        rolesFormSelectedActionItems: [],
+        addRolesFormSelectedActionItems: function (actionGroupKey) {
+            if (this.rolesFormSelectedActionItems.indexOf(actionGroupKey) < 0) {
+                this.rolesFormSelectedActionItems.push(actionGroupKey);
+            }
+        },
+        removeRolesFormSelectedActionItems: function (actionGroupKey) {
+            var index = this.rolesFormSelectedActionItems.indexOf(actionGroupKey);
+            if (index > -1) {
+                this.rolesFormSelectedActionItems.splice(index, 1);
+            }
+        },
+        getRoleNector: function () {
+            var role_modules = [];
+            for (var index = 0; index < this.rolesFormSelectedMenuItems.length; index++) {
+                role_modules.push({
+                    _fk_role_id: "role",
+                    module_code: this.rolesFormSelectedMenuItems[index],
+                    status: "active"
+                });
+            }
+
+            var role_permisiions = [];
+            for (var index = 0; index < this.rolesFormSelectedActionItems.length; index++) {
+                var perm = this.rolesFormSelectedActionItems[index];
+                role_permisiions = action_groups.getPermission(perm, role_permisiions);
+            }
+
+            var rnec = {
+                role: {
+                    name: $("#security_page_role_form_name_input").val(),
+                    description: $("#security_page_role_form_description_input").val()
+                },
+                role_modules: role_modules,
+                role_permisiions: role_permisiions
+            };
+            return rnec;
+        },
+        menuItemsAndActionItemsCheckBoxes: function () {
+            //load the menu items form checkboxes
+            $("#roles_form_menu_items_list").html("");
+            var menuItemBoxes = "";
+            app.modules.forEach(module => {
+                menuItemBoxes = menuItemBoxes + "<label class=\"blocked-cb\">";
+                menuItemBoxes = menuItemBoxes + "   <input id=\"roles_form_menu_item_checkbox_" + module.code + "\" type=\"checkbox\" value=\"" + module.code + "\" class=\"an-icheck-minimal roles_form_menu_item_checkbox\"> " + module.name;
+                menuItemBoxes = menuItemBoxes + "</label>";
+            });
+            $("#roles_form_menu_items_list").html(menuItemBoxes);
+            //load the action groups list
+            $("#roles_form_action_groups_list").html("");
+            var actionItemBoxes = "";
+            for (var actionGroupKey in action_groups.acts) {
+                if (action_groups.acts.hasOwnProperty(actionGroupKey)) {
+                    var actionGroup = action_groups.acts[actionGroupKey];
+                    actionItemBoxes = actionItemBoxes + "<label class=\"blocked-cb\">";
+                    actionItemBoxes = actionItemBoxes + "   <input id=\"roles_form_action_item_checkbox_" + actionGroupKey + "\" type=\"checkbox\" value=\"" + actionGroupKey + "\" class=\"an-icheck-minimal roles_form_action_item_checkbox\"> " + actionGroup.name;
+                    actionItemBoxes = actionItemBoxes + "</label>";
+                }
+            }
+            $("#roles_form_action_groups_list").html(actionItemBoxes);
+            $('.an-icheck-minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-green',
+                radioClass: 'iradio_minimal-green'
+            });
+            $(".roles_form_menu_item_checkbox").on("ifChecked", function (event) {
+                var module_code = this.id.substr("roles_form_menu_item_checkbox_".length);
+                app.pages.master_page.pages.security.addRolesFormSelectedMenuItems(module_code);
+            });
+            $(".roles_form_menu_item_checkbox").on("ifUnchecked", function (event) {
+                var module_code = this.id.substr("roles_form_menu_item_checkbox_".length);
+                app.pages.master_page.pages.security.removeRolesFormSelectedMenuItems(module_code);
+            });
+            $(".roles_form_action_item_checkbox").on("ifChecked", function (event) {
+                var actionGroupKey = this.id.substr("roles_form_action_item_checkbox_".length);
+                app.pages.master_page.pages.security.addRolesFormSelectedActionItems(actionGroupKey);
+            });
+            $(".roles_form_action_item_checkbox").on("ifUnchecked", function (event) {
+                var actionGroupKey = this.id.substr("roles_form_action_item_checkbox_".length);
+                app.pages.master_page.pages.security.removeRolesFormSelectedActionItems(actionGroupKey);
+            });
+        },
+        clearRolesForm: function () {
+            $("#security_page_role_form_name_input").val("");
+            $("#security_page_role_form_description_input").val("");
+            $(".roles_form_menu_item_checkbox").iCheck("uncheck");
+            $(".roles_form_action_item_checkbox").iCheck("uncheck");
+            this.rolesFormSelectedMenuItems = [];
+            this.rolesFormSelectedActionItems = [];
+        },
+        getRolesFromServer: function (callback) {
+            var rnec = {
+                roles: {
+                    role_modules: {},
+                    role_permisiions: {},
+                    _desc: ["id"]
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.roles);
+                }
+            });
+        },
+        renderedRoles: [],
+        renderRolesList: function (roles) {
+            this.renderedRoles = roles; //for future purposes e.g when editing and deleting roles
+            $("#security_page_roles_count_dispaly").html(roles.length);
+            $("#security_page_roles_list").html("");
+            var html = "<ul class=\"todo-list ui-sortable\">";
+            for (var ind = 0; ind < roles.length; ind++) {
+                var role = roles[ind];
+                //console.log(role);
+                var rm = "";
+                for (let i = 0; i < role.role_modules.length; i++) {
+                    const role_module = role.role_modules[i];
+                    rm = rm + "<div><i class='fa fa-angle-right' ></i> " + role_module.module_code + "</div>";
+                }
+                var gnames = action_groups.getActionGroupNames(role.role_permisiions);
+                var xm = "";
+                for (let i = 0; i < gnames.length; i++) {
+                    xm = xm + "<div><i class='fa fa-angle-right' ></i> " + gnames[i] + "</div>";
+                }
+                console.log("gnames", gnames);
+                var pop = "<div class='role-detail-popover'>";
+                pop = pop + "   <div class='role-detail-popover-details'>" + role.description + "</div>";
+                pop = pop + "   <div class='role-detail-popover-menus'>" + rm + "</div>";
+                pop = pop + "   <div class='role-detail-popover-sep'></div>";
+                pop = pop + "   <div class='role-detail-popover-acts'>" + xm + "</div>";
+                pop = pop + "   <div class='role-detail-popover-clear'></div>";
+                pop = pop + "</div>";
+
+
+                html = html + "<li>";
+                html = html + "     <span class=\"handle ui-sortable-handle\">";
+                html = html + "         <i class=\"fa fa-ellipsis-v\"></i>";
+                html = html + "     </span>";
+                html = html + "     <span class=\"text\">" + role.name + "</span>";
+                html = html + "     <div class=\"tools\">";
+                html = html + "         <i data-toggle=\"popover\" data-placement=\"right\" data-html=\"true\" data-container=\"body\" data-content=\"" + pop + "\" title=\"Role Details\" class=\"fa fa-info-circle app_action_item disabled_action app_action_role_r1\"></i>";
+                //html = html + "         <i data-role-id=\""+role.id+"\" class=\"fa fa-edit security_page_edit_role_link app_action_item disabled_action app_action_role_u1\"></i>";
+                //html = html + "         <i class=\"fa fa-trash-o app_action_item disabled_action app_action_role_d1\"></i>";
+                html = html + "     </div>";
+                html = html + "</li>";
+            }
+            html = html + "</ul>";
+            $("#security_page_roles_list").html(html);
+            //authorise
+            app.authoriseActionItems(app.user, "#security_page_roles_list ");
+            //popovers 484895949 franklubega44@gmail.com
+            $("#security_page_roles_list [data-toggle=popover]").popover();
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+            //user form roles
+            app.pages.master_page.pages.security.usersFormRolesCheckBoxes(roles);
+        },
+        usersFormRolesCheckBoxes: function (roles) {
+            $("#users_form_roles_list").html("");
+            var rolesBoxes = "";
+            roles.forEach(role => {
+                rolesBoxes = rolesBoxes + "<label class=\"blocked-cb\">";
+                rolesBoxes = rolesBoxes + "   <input id=\"user_form_role_checkbox_" + role.id + "\" type=\"checkbox\" value=\"" + role.id + "\" class=\"an-icheck-minimal-role user_form_role_checkbox\"> " + role.name;
+                rolesBoxes = rolesBoxes + "</label>";
+            });
+            $("#users_form_roles_list").html(rolesBoxes);
+            $('.an-icheck-minimal-role').iCheck({
+                checkboxClass: 'icheckbox_minimal-green',
+                radioClass: 'iradio_minimal-green'
+            });
+            $(".user_form_role_checkbox").on("ifChecked", function (event) {
+                var role_id = this.id.substr("user_form_role_checkbox_".length);
+                app.pages.master_page.pages.security.addUsersFormSelectedRole(role_id);
+            });
+            $(".user_form_role_checkbox").on("ifUnchecked", function (event) {
+                var role_id = this.id.substr("user_form_role_checkbox_".length);
+                app.pages.master_page.pages.security.removeUsersFormSelectedRole(role_id);
+            });
+        },
+        showUsersLoader: function () {
+            $("#users_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideUsersLoader: function () {
+            $("#users_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        usersFormSelectedRoles: [],
+        addUsersFormSelectedRole: function (role_id) {
+            if (this.usersFormSelectedRoles.indexOf(role_id) < 0) {
+                this.usersFormSelectedRoles.push(role_id);
+            }
+        },
+        removeUsersFormSelectedRole: function (role_id) {
+            var index = this.usersFormSelectedRoles.indexOf(role_id);
+            if (index > -1) {
+                this.usersFormSelectedRoles.splice(role_id, 1);
+            }
+        },
+        usersUploadedAvtar: "",
+        getUserNector: function () {
+            var urs = [];
+            for (var index = 0; index < this.usersFormSelectedRoles.length; index++) {
+                urs.push({
+                    _fk_user_id: "user",
+                    role_id: this.usersFormSelectedRoles[index],
+                    status: "active"
+                });
+            }
+
+            var unec = {
+                user: {
+                    name: $("#security_page_user_form_name_input").val(),
+                    email: $("#security_page_user_form_email_input").val(),
+                    tenant_of: app.user.tenant_of,
+                    is_owner: 0,
+                    _encrypt_password: $("#security_page_user_form_password_input").val(),
+                    status: "active"
+                },
+                user_roles: urs
+            };
+            var avt = app.pages.master_page.pages.security.usersUploadedAvtar;
+            var def = bee.baseUrl + "bee/images/default_avatar_250.png";
+            if (avt.length > 0 && avt != def) {
+                unec.user["_file_avatar"] = avt;
+            }
+            return unec;
+        },
+        clearUserForm: function () {
+            $("#security_page_user_form_name_input").val("");
+            $("#security_page_user_form_email_input").val("");
+            $(".user_form_role_checkbox").iCheck("uncheck");
+            this.usersFormSelectedRoles = [];
+            this.usersUploadedAvtar = "";
+            var def = bee.baseUrl + "bee/images/default_avatar_250.png";
+            $("#user-form-avatar-preview").attr("src", def);
+            $("#user-form-avatar-file-input").val("");
+        },
+        getUsersFromServer: function (callback) {
+            var unec = {
+                users: {
+                    user_roles: {
+                        role: {}
+                    },
+                    _asc: ["name"]
+                }
+            };
+            bee.get(unec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.users);
+                }
+            });
+        },
+        renderedUsers: [],
+        renderUsersList: function (users) {
+            console.log(users);
+            this.renderedUsers = users; //for future purposes e.g when editing and deleting roles
+            $("#security_page_users_count_dispaly").html(users.length);
+            $("#security_page_users_list").html("");
+            var html = "<ul class=\"users-form users-list clearfix\">";
+            for (var ind = 0; ind < users.length; ind++) {
+                var user = users[ind];
+                var av = bee.baseUrl + "bee/images/default_avatar_250.png";
+                if (user.avatar != null && user.avatar.length > 0) {
+                    av = bee.baseUrl + user.avatar;
+                }
+                var ur = "";
+                for (let i = 0; i < user.user_roles.length; i++) {
+                    var user_role = user.user_roles[i];
+                    ur = ur + " " + user_role.role.name;
+                }
+
+                html = html + "<li>";
+                html = html + "     <span>#"+user.id+"</span>";
+                html = html + "     <img src=\"" + av + "\" alt=\"User Avatar\">";
+                html = html + "     <a class=\"users-list-name\" href=\"#\">" + user.name + "</a>";
+                html = html + "     <span class=\"users-list-date\">" + ur + "</span>";
+                html = html + "</li>";
+            }
+            html = html + "</ul>";
+            $("#security_page_users_list").html(html);
+            //authorise update and delete links
+            //app.authoriseActionItems(app.user, "#security_page_users_list ");
+
+            app.pages.master_page.pages.security.renderUsersSelect(users);
+        },
+        showLogsLoader: function () {
+            $("#logs_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLogsLoader: function () {
+            $("#logs_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getLogsFromServer: function (limit, page, callback) {
+            var nec = {
+                trails: {
+                    _a: "id who role activity description time_inserted user_id",
+                    _desc: ["id"],
+                    _pg: limit + "." + page
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.trails);
+                }
+            });
+        },
+        renderLogs: function (logs) {
+            console.log(logs);
+            //$("#security_page_users_count_dispaly").html(users.length);
+            $("#security_page_logs_list").html("");
+            var html = "";
+            for (var ind = 0; ind < logs.length; ind++) {
+                var log = logs[ind];
+                var d = new Date();
+                d.setTime(log.time_inserted * 1000);
+                var m = moment(d);
+                html = html + "<div class=\"app-log clearfix\">";
+                html = html + "     <div class=\"who\">" + log.who + " as " + log.role + "</div>";
+                html = html + "     <div class=\"activity\">::" + log.activity + "</div>";
+                html = html + "     <div class=\"time\">" + m.fromNow() + "</div>";
+                html = html + "     <div class=\"desc\">" + log.description + "</div>";
+                html = html + "</div>";
+            }
+            $("#security_page_logs_list").html(html);
+            //authorise update and delete links
+            //app.authoriseActionItems(app.user, "#security_page_users_list ");
+        },
+        renderUsersSelect: function (users) {
+
+            //$("security-page-logs-users-select")
+        },
+        getLogs: function(limit,page){
+            app.pages.master_page.pages.security.showLogsLoader();
+            app.pages.master_page.pages.security.getLogsFromServer(limit, page, function (trails) {
+                app.pages.master_page.pages.security.hideLogsLoader();
+                app.pages.master_page.pages.security.renderLogs(trails);
+            });
+        },
+        logPage: 1,
+        logLimit: 50,
+        load: function () {
+
+            //roles
+            app.pages.master_page.pages.security.menuItemsAndActionItemsCheckBoxes();
+            $("#security_page_role_form_submit_btn").on("click", function (event) {
+                var rnec = app.pages.master_page.pages.security.getRoleNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.security.showRolesLoader();
+                bee.post(rnec, function (hny) {
+                    app.pages.master_page.pages.security.hideRolesLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add Role", "Created a new system role of id " + hny.role);
+                        //clear form
+                        app.pages.master_page.pages.security.clearRolesForm();
+                        //get new roles list from server and render it
+                        app.pages.master_page.pages.security.getRolesFromServer(
+                            app.pages.master_page.pages.security.renderRolesList
+                        );
+                        //toggle roles form
+                        $("#security_page_toggle_roles_form").click();
+                    }
+                });
+            });
+            //get system roles
+            app.pages.master_page.pages.security.getRolesFromServer(
+                app.pages.master_page.pages.security.renderRolesList
+            );
+
+
+            //users
+            $("#user-form-avatar-preview").on("click", function (event) {
+                $("#user-form-avatar-file-input").click();
+            });
+            //file preview
+            $("#user-form-avatar-file-input").change(function () {
+                var fileThing = this;
+                if (fileThing.files && fileThing.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#user-form-avatar-preview').attr('src', e.target.result);
+                        //upload file to server
+                        var formData = new FormData();
+                        // HTML file input, chosen by user
+                        formData.append("avatar", fileThing.files[0]);
+                        app.pages.master_page.pages.security.showUsersLoader();
+                        bee.upload(formData, function (hny) {
+                            app.pages.master_page.pages.security.hideUsersLoader();
+                            if (hny._errors.length > 0) {
+                                var avatar = bee.baseUrl + "bee/images/default_avatar_250.png";
+                                $('#user-form-avatar-preview').attr('src', avatar);
+                                $.confirm({
+                                    title: 'Encountered an error!',
+                                    content: 'File upload failed: ' + hny._errors[0],
+                                    type: 'red',
+                                    typeAnimated: true,
+                                    buttons: {
+                                        close: function () {
+                                        }
+                                    }
+                                });
+                            } else {
+                                app.pages.master_page.pages.security.usersUploadedAvtar = hny.avatar;
+                                //every thing was ok
+                                $.alert('Your file was uploaded successfully', 'File Upload Successfull');
+                            }
+                        });
+                    }
+                    reader.readAsDataURL(fileThing.files[0]);
+                }
+            })
+            //users form 
+            $("#security_page_user_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.security.getUserNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.security.showUsersLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.security.hideUsersLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add User", "Created a new system user of id " + hny.user);
+                        //clear form
+                        app.pages.master_page.pages.security.clearUserForm();
+                        //get new users list from server and render it
+                        app.pages.master_page.pages.security.getUsersFromServer(
+                            app.pages.master_page.pages.security.renderUsersList
+                        );
+                        //toggle users form
+                        $("#security_page_toggle_users_form").click();
+                    }
+                });
+            });
+            //get system users
+            app.pages.master_page.pages.security.getUsersFromServer(
+                app.pages.master_page.pages.security.renderUsersList
+            );
+
+            //logs
+            var page = app.pages.master_page.pages.security.logPage; //page
+            var limit = app.pages.master_page.pages.security.logLimit; //limit
+            app.pages.master_page.pages.security.getLogs(limit,page);
+
+            //filter btn
+            $("#security-page-logs-filter-btn").on("click",function(event){
+                if($(this).hasClass("opened-log-filter") == false){
+                    $("#security_page_logs_list").addClass("shownFilterBody");
+                    $("#security_page_logs_footer").addClass("shownFilterFooter");
+                    $(this).addClass("opened-log-filter");
+                    console.log("opened");
+                }else{
+                    $("#security_page_logs_list").removeClass("shownFilterBody");
+                    $("#security_page_logs_footer").removeClass("shownFilterFooter");
+                    $("#security_page_logs_list").addClass("hiddenFilterBody");
+                    $("#security_page_logs_footer").addClass("hiddenFilterFooter");
+                    $(this).removeClass("opened-log-filter");
+                    console.log("closed");
+                }
+            });
+            //security-page-logs-refresh-btn
+            $("#security-page-logs-refresh-btn").on("click",function(event){
+                var page = app.pages.master_page.pages.security.logPage; //page
+                var limit = app.pages.master_page.pages.security.logLimit; //limit
+                app.pages.master_page.pages.security.getLogs(limit,page);
+            });
+
+        }
+    }
+</script>

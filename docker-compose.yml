@@ -42,6 +42,22 @@ services:
     depends_on:
       - mysql_srv
 
+  ui_srv:
+    container_name: ui_cnt
+    image: ui_img
+    build: 
+      context: ./
+      dockerfile: ./ui/Dockerfile
+    volumes:
+      - ./ui:/var/www/html/
+    ports:
+      - 80:80
+    depends_on: 
+      - bee_srv
+    env_file: ./ui/.env
+    environment:
+      api_base_url: http://localhost:8989/
+
   #you can add your front end application configuration here
   #run this to bootstrap backend master db: 
   #http://localhost:8989/?q=eyJfZl9iZWUiOnt9fQ==

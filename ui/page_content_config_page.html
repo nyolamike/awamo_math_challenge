@@ -1,0 +1,1624 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_config_page">
+    <!-- Main content -->
+    <section class="content">
+        <div class="nav-tabs-custom bookings-tabs">
+            <ul class="nav nav-tabs pull-right">
+                <li>
+                    <a href="#tab_company" data-toggle="tab">Company Info</a>
+                </li>
+                <li>
+                    <a href="#tab_1-1" data-toggle="tab">Brands</a>
+                </li>
+                <li>
+                    <a href="#tab_2-2" data-toggle="tab">Measurement Units</a>
+                </li>
+                <li class="active">
+                    <a href="#tab_3-2" data-toggle="tab">Room Categories & Facilities</a>
+                </li>
+                <li class="pull-left header">
+                    <i class="fa fa-cogs"></i> System Configuration
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="tab_company">
+                    <div class="col-md-8">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Preview</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body  system-config-box-body">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td class="configLabel">Name</td>
+                                            <td class="boldconfig" id="config_name_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Company Name"  data-for-comb="name"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Checkout Time</td>
+                                            <td class="boldconfig" id="config_checkout_time_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Checkout Time"  data-for-comb="checkout_time"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Checkin Time</td>
+                                            <td class="boldconfig" id="config_checkin_time_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Checkin Time" data-for-comb="checkin_time"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Booking Timeout</td>
+                                            <td class="boldconfig" id="config_booking_timeout_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Booking Time"  data-for-comb="booking_timeout"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">City</td>
+                                            <td class="boldconfig" id="config_city_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit City Name"  data-for-comb="city"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Country</td>
+                                            <td class="boldconfig" id="config_country_display"></td>
+                                            <td class="configEditTd"  data-for-title="Edit Country Name"  data-for-comb="country"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Phone</td>
+                                            <td class="boldconfig" id="config_phone_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Phone Number"  data-for-comb="phone"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Fax</td>
+                                            <td class="boldconfig" id="config_fax_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Fax"   data-for-comb="fax"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Email</td>
+                                            <td class="boldconfig" id="config_email_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Company Email"  data-for-comb="email"><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Address</td>
+                                            <td class="boldconfig" id="config_address_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Address Value"  data-for-comb="address" ><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Currency Name</td>
+                                            <td class="boldconfig" id="config_currency_name_display"></td>
+                                            <td class="configEditTd"  data-for-title="Edit Currency name"  data-for-comb="currency_name" ><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Website</td>
+                                            <td class="boldconfig" id="config_website_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Website"  data-for-comb="website" ><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Tax</td>
+                                            <td class="boldconfig" id="config_tax_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Tax"  data-for-comb="tax" ><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="configLabel">Tourism Levi</td>
+                                            <td class="boldconfig" id="config_tourism_levi_display"></td>
+                                            <td class="configEditTd" data-for-title="Edit Tourism Levi"  data-for-comb="tourism_levi" ><i class="fa fa-edit"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="config_info_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Image</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  config-split-box-body ">
+                                <input type='file' id="company-image-file-input" style="height: 0px;width: 0px;visibility: hidden;position: absolute;"
+                                />
+                                <div class="company-form-image-preview-div">
+                                    <img id="company-image-preview" class="image-display" src="#" alt="company image" />
+                                </div>
+                                <div class="text-blur">Click on the image to update it.</div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="config_image_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <div class="tab-pane active" id="tab_3-2">
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Facilities</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body ">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Name</th>
+                                            <th style="width: 40px"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="config-page-facility-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_facility_form_div">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="config_page_facility_form_name_input" placeholder="Name">
+                                    </div>
+                                    <button type="button" id="config_page_facility_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_c1">Submit</button>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_facility_form_div">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                    </div>
+                                    <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                </div> -->
+                            </div>
+                            <div id="facility_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="col-md-8">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Categories</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  config-split-box-body ">
+                                <div class="row">
+                                    <div class="col-lg-6" id="category_form_box_list">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10px">#</th>
+                                                    <th>Name</th>
+                                                    <th>Capacity</th>
+                                                    <th style="width: 40px"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="config-page-categories-list">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div id="config_page_add_category_form_div">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_category_form_name_input" placeholder="Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_category_form_capacity_input" placeholder="room capacity">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_category_form_price_input" placeholder="Price">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_category_form_description_input" placeholder="Description">
+                                            </div>
+                                            <div class="form-group" id="category_form_facilities_list">
+                                            </div>
+                                            <button type="button" id="config_page_category_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_room_category_c1">Submit</button>
+                                        </div>
+                                        <!-- nyd will aply in the version with editing-->
+                                        <!-- <div class="hidden" id="config_page_edit_facility_form_div">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                            </div>
+                                            <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="room_category_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <div class="tab-pane" id="tab_2-2">
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Units Of Measure</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body ">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="config-page-unit-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_unit_form_div">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_unit_form_name_input" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_unit_form_symbol_input" placeholder="Symbol">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="config_page_unit_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_unit_c1">Submit</button>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_facility_form_div">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                    </div>
+                                    <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                </div> -->
+                            </div>
+                            <div id="unit_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="col-md-8">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Unit Conversions</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body  config-split-box-body ">
+                                <div class="row">
+                                    <div class="col-lg-6" id="conversion_form_box_list">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>One</th>
+                                                    <th>Value</th>
+                                                    <th>To</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="config-page-conversion-list">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div id="config_page_add_conversion_form_div">
+                                            <div class="form-group">
+                                                This Unit
+                                                <select class="form-control" id="config_page_conversion_form_unit_select">
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                Is equal to
+                                                <input type="text" class="form-control" id="config_page_conversion_form_value_input" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control" id="config_page_conversion_form_other_unit_select">
+                                                </select>
+                                            </div>
+                                            <button type="button" id="config_page_conversion_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_unit_conversion_c1">Submit</button>
+                                        </div>
+                                        <!-- nyd will aply in the version with editing-->
+                                        <!-- <div class="hidden" id="config_page_edit_facility_form_div">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                            </div>
+                                            <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div id="conversion_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_1-1">
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Sections</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body ">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="config-page-sections-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_section_form_div">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_section_form_name_input" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_section_form_description_input" placeholder="Notes">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="config_page_section_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_section_c1">Submit</button>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_section_form_div">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                            </div>
+                                            <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                        </div> -->
+                            </div>
+                            <div id="section_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Brands</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body ">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="config-page-brands-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_brand_form_div">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_brand_form_name_input" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_brand_form_description_input" placeholder="Notes">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="config_page_brand_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_brand_c1">Submit</button>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_brand_form_div">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                    </div>
+                                    <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                </div> -->
+                            </div>
+                            <div id="brand_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Item Types</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body-half ">
+                                <table class="table table-striped">
+                                    <tbody id="config-page-item-type-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_item_type_form_div">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="config_page_item_type_form_name_input" placeholder="Name">
+                                        <div class="input-group-btn">
+                                            <button type="button" id="config_page_item_type_form_submit_btn" class="btn btn-success  app_action_item disabled_action app_action_item_type_c1">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_item_type_form_div">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                        </div>
+                                        <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                    </div> -->
+                            </div>
+                            <div id="item_type_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+
+                        <div class="box full-border">
+                            <div class="box-header">
+                                <h3 class="box-title">Item Categories</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding config-box-body-half ">
+                                <table class="table table-striped">
+                                    <tbody id="config-page-item-category-list">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div id="config_page_add_item_category_form_div">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="config_page_item_category_form_name_input" placeholder="Name">
+
+                                        <div class="input-group-btn">
+                                            <button type="button" id="config_page_item_category_form_submit_btn" class="btn btn-success app_action_item disabled_action app_action_item_category_c1">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- nyd will aply in the version with editing-->
+                                <!-- <div class="hidden" id="config_page_edit_item_category_form_div">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="config_page_edit_facility_form_submit_btn" placeholder="Name">
+                                            </div>
+                                            <button type="button" id="security_page_role_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_facility_u1">Submit</button>
+                                        </div> -->
+                            </div>
+                            <div id="item_category_form_overlay" class="overlay overlay-hidden">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.config = {
+        id: "config",
+        showFacilityLoader: function () {
+            $("#facility_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideFacilityLoader: function () {
+            $("#facility_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getFacilityNector: function () {
+            var nec = {
+                facility: {
+                    name: $("#config_page_facility_form_name_input").val(),
+                    description: ""
+                }
+            };
+            return nec;
+        },
+        getFacilitiesFromServer: function (callback) {
+            var nec = {
+                facilities: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.facilities);
+                }
+            });
+        },
+        renderedFacilities: [],
+        renderFacilitiesList: function (facilities) {
+            app.pages.master_page.pages.config.renderedFacilities = facilities; //for future purposes e.g when editing and deleting 
+            $("#config-page-facility-list").html("");
+            var html = "";
+            for (var ind = 0; ind < facilities.length; ind++) {
+                var facility = facilities[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + facility.name + "</td>";
+                html = html + "   <td>";
+                html = html + "       <!--  nyd edit and delete buttons -->";
+                html = html + "   </td>";
+                html = html + "</tr>";
+            }
+            $("#config-page-facility-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-facility-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+            //categories form facilities
+            app.pages.master_page.pages.config.categoriesFormFacilititesCheckBoxes(facilities);
+            app.pages.master_page.pages.bookings.findFacilitiesSelectInput(facilities);
+        },
+        clearFacilityForm: function () {
+            $("#config_page_facility_form_name_input").val("");
+        },
+        categoryFormSelectedFacility: [],
+        addCategoryFormSelectedFacility: function (facility_id) {
+            if (this.categoryFormSelectedFacility.indexOf(facility_id) < 0) {
+                this.categoryFormSelectedFacility.push(facility_id);
+            }
+        },
+        removeCategoryFormSelectedFacility: function (facility_id) {
+            var index = this.categoryFormSelectedFacility.indexOf(facility_id);
+            if (index > -1) {
+                this.categoryFormSelectedFacility.splice(facility_id, 1);
+            }
+        },
+        categoriesFormFacilititesCheckBoxes: function (facilities) {
+            $("#category_form_facilities_list").html("");
+            var boxes = "";
+            facilities.forEach(facility => {
+                boxes = boxes + "<label class=\"blocked-cb\">";
+                boxes = boxes + "   <input id=\"categery_form_facility_checkbox_" + facility.id + "\" type=\"checkbox\" value=\"" + facility.id + "\" class=\"an-icheck-minimal-category categery_form_facility_checkbox\"> " + facility.name;
+                boxes = boxes + "</label>";
+            });
+            $("#category_form_facilities_list").html(boxes);
+            $('.an-icheck-minimal-category').iCheck({
+                checkboxClass: 'icheckbox_minimal-green',
+                radioClass: 'iradio_minimal-green'
+            });
+            $(".categery_form_facility_checkbox").on("ifChecked", function (event) {
+                var facility_id = this.id.substr("categery_form_facility_checkbox_".length);
+                app.pages.master_page.pages.config.addCategoryFormSelectedFacility(facility_id);
+            });
+            $(".categery_form_facility_checkbox").on("ifUnchecked", function (event) {
+                var facility_id = this.id.substr("categery_form_facility_checkbox_".length);
+                app.pages.master_page.pages.config.removeCategoryFormSelectedFacility(facility_id);
+            });
+        },
+        getCategoriesNector: function () {
+
+            //index facilities
+            var ifs = {};
+            for (var i = 0; i < this.renderedFacilities.length; i++) {
+                var fx = this.renderedFacilities[i];
+                ifs["f" + fx.id] = fx;
+            }
+            console.log(ifs);
+            var facilities = [];
+            for (var index = 0; index < this.categoryFormSelectedFacility.length; index++) {
+                var id = this.categoryFormSelectedFacility[index];
+                var f = ifs["f" + id];
+                facilities.push({
+                    _fk_room_category_id: "room_category",
+                    facility_id: id,
+                    name: f.name,
+                    description: f.description
+                });
+            }
+
+            var nem = $("#config_page_category_form_name_input").val();
+            var desc = $("#config_page_category_form_description_input").val();
+            var price = $("#config_page_category_form_price_input").val();
+            var capacity = $("#config_page_category_form_capacity_input").val();
+            var catNec = {
+                room_category: {
+                    name: nem,
+                    price: price,
+                    capacity: capacity,
+                    description: desc,
+                },
+                room_category_facilities: facilities,
+                item: {
+                    item_type_id: 1,
+                    item_category_id: 1,
+                    brand_id: 1,
+                    unit_id: 1,
+                    section_id: 1,
+                    name: nem,
+                    code: "ROOM-" + nem,
+                    description: desc,
+                    cost_price: 0,
+                    selling_price: price,
+                    quantity: 0,
+                    is_tracked: 0,
+                    notification_level: 0,
+                    image: "default_product.png"
+                }
+            };
+
+            //nyd
+            //dont forget that  when this category cahnges any info this item has to also
+            //be updated
+            return catNec;
+        },
+        showCategoryLoader: function () {
+            $("#room_category_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideCategoryLoader: function () {
+            $("#room_category_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getCategoriesFromServer: function (callback) {
+            var nec = {
+                room_categories: {
+                    _asc: ["name"],
+                    room_category_facilities: {}
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.room_categories);
+                }
+            });
+        },
+        renderedCategories: [],
+        renderCategoriesList: function (categories) {
+            app.pages.master_page.pages.config.renderedCategories = categories; //for future purposes e.g when editing and deleting 
+            $("#config-page-categories-list").html("");
+            $("#room_page_room_form_category_select").html("");
+            $("#frontdesk_page_capacity_select").html("");
+
+            var html = "";
+            var select = "";
+            var dpSelect = "";
+            for (var ind = 0; ind < categories.length; ind++) {
+                var category = categories[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + category.name + "</td>";
+                html = html + "   <td>" + category.capacity + "</td>";
+                html = html + "   <td>";
+                html = html + "       " + category.price + "<!--  nyd edit and delete buttons -->";
+                html = html + "   </td>";
+                html = html + "</tr>";
+                html = html + "<tr>";
+                html = html + "   <td></td>";
+                html = html + "   <td></td>";
+                html = html + "   <td></td>";
+                html = html + "   <td>";
+                var facilities = category.room_category_facilities;
+                var fhtml = "";
+                for (var i = 0; i < facilities.length; i++) {
+                    fhtml = fhtml + facilities[i].name + "<br/>";
+                }
+                if (facilities.length == 0) {
+                    fhtml = "<i>no facilities</i>";
+                }
+                html = html + fhtml;
+                html = html + "   </td>";
+                html = html + "</tr>";
+                select = select + "<option value=\"" + category.id + "\">" + category.name + "&nbsp;&nbsp;&nbsp;&nbsp;(" + category.price + ")" + "</option>";
+                dpSelect = dpSelect + "<option value=\"" + category.id + "\">" + category.name + "</option>";
+            }
+            $("#config-page-categories-list").html(html);
+            $("#room_page_room_form_category_select").html(select);
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-categories-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+            //nyd
+            //rooms form categories
+            //app.pages.master_page.pages.config.categoriesFormFacilititesCheckBoxes(facilities);
+
+            //front desk
+            $("#frontdesk_page_capacity_select").html(dpSelect);
+            $("#frontdesk_page_capacity_select").select2();
+            //bookings
+            app.pages.master_page.pages.bookings.findPriceRanges(categories);
+        },
+        clearCategoriesForm: function () {
+            $("#config_page_category_form_name_input").val("");
+            $("#config_page_category_form_capacity_input").val("");
+            $("#config_page_category_form_price_input").val("");
+            $("#config_page_category_form_description_input").val("");
+            //checkboxes
+            $(".categery_form_facility_checkbox").iCheck("uncheck");
+            this.categoryFormSelectedFacility = [];
+        },
+        showUnitLoader: function () {
+            $("#unit_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideUnitLoader: function () {
+            $("#unit_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getUnitNector: function () {
+            var nec = {
+                unit: {
+                    name: $("#config_page_unit_form_name_input").val(),
+                    symbol: $("#config_page_unit_form_symbol_input").val(),
+                    description: ""
+                }
+            };
+            return nec;
+        },
+        getUnitsFromServer: function (callback) {
+            var nec = {
+                units: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.units);
+                }
+            });
+        },
+        renderedUnits: [],
+        renderUnits: function (units) {
+            app.pages.master_page.pages.config.renderedUnits = units; //for future purposes e.g when editing and deleting 
+            $("#config-page-unit-list").html("");
+            $("#config_page_conversion_form_unit_select").html("");
+            $("#config_page_conversion_form_other_unit_select").html("");
+            var html = "";
+            var conv1 = "";
+            var conv2 = "";
+            var dropDowns = "";
+            for (var ind = 0; ind < units.length; ind++) {
+                var unit = units[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + unit.name + "</td>";
+                html = html + "   <td> " + unit.symbol + "</td>";
+                html = html + "</tr>";
+                conv1 = conv1 + "<option value=\"" + unit.id + "\" >" + unit.name + "</option>";
+                conv2 = conv2 + "<option value=\"" + unit.id + "\" >" + unit.name + "</option>";
+                dropDowns = dropDowns + "<option value=\"" + unit.id + "\">" + unit.name + "</option>";
+            }
+            $("#config-page-unit-list").html(html);
+
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-unit-lis ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+            //conversions from drop downs
+            $("#config_page_conversion_form_unit_select").html(conv1);
+            $("#config_page_conversion_form_other_unit_select").html(conv2);
+            $("#inventory_page_item_form_unit_select").html(dropDowns);
+        },
+        clearUnitsForm: function () {
+            $("#config_page_unit_form_name_input").val("");
+            $("#config_page_unit_form_symbol_input").val("");
+        },
+        getConversionNector: function () {
+            var nec = {
+                unit_conversions: [{
+                    unit_id: $("#config_page_conversion_form_unit_select").val(),
+                    other_unit_id: $("#config_page_conversion_form_other_unit_select").val(),
+                    equals_value: $("#config_page_conversion_form_value_input").val(),
+                    notes: ""
+                }, {
+                    unit_id: $("#config_page_conversion_form_other_unit_select").val(),
+                    other_unit_id: $("#config_page_conversion_form_unit_select").val(),
+                    equals_value: 1 / $("#config_page_conversion_form_value_input").val(),
+                    notes: ""
+                }]
+            };
+            return nec;
+        },
+        getConversionsFromServer: app.getFromServerFactory({
+            unit_conversions: {
+                other_unit: {},
+                unit: {}
+            }
+        }, "unit_conversions"),
+        renderedConversions: [],
+        renderConversions: function (conversions) {
+            app.pages.master_page.pages.config.renderedConversions = conversions; //for future purposes e.g when editing and deleting 
+            $("#config-page-conversion-list").html("");
+            var html = "";
+            for (var ind = 0; ind < conversions.length; ind++) {
+                var conversion = conversions[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + conversion.unit.name + "</td>";
+                html = html + "   <td>" + conversion.equals_value + "</td>";
+                html = html + "   <td> " + conversion.other_unit.name + "</td>";
+                html = html + "</tr>";
+            }
+            $("#config-page-conversion-list").html(html);
+
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-conversion-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+        },
+        clearConversionsForm: function () {
+            $("#config_page_conversion_form_value_input").val("");
+        },
+        showConversionsLoader: app.slFactory("conversion_form_overlay"),
+        hideConversionsLoader: app.hlFactory("conversion_form_overlay"),
+        //brands
+        showBrandLoader: function () {
+            $("#brand_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideBrandLoader: function () {
+            $("#brand_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getBrandNector: function () {
+            var nec = {
+                brand: {
+                    name: $("#config_page_brand_form_name_input").val(),
+                    description: $("#config_page_brand_form_description_input").val()
+                }
+            };
+            return nec;
+        },
+        getBrandsFromServer: function (callback) {
+            var nec = {
+                brands: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.brands);
+                }
+            });
+        },
+        renderedBrands: [],
+        renderBrandsList: function (brands) {
+            app.pages.master_page.pages.config.renderedBrands = brands; //for future purposes e.g when editing and deleting 
+            $("#config-page-brands-list").html("");
+            var html = "";
+            var brandsDropDown = "";
+            for (var ind = 0; ind < brands.length; ind++) {
+                var brand = brands[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + brand.name + "</td>";
+                html = html + "   <td>";
+                html = html + "        " + brand.description;
+                html = html + "   </td>";
+                html = html + "</tr>";
+                brandsDropDown = brandsDropDown + "<option value=\"" + brand.id + "\">" + brand.name + "</option>";
+            }
+            $("#config-page-brands-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-brands-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+
+            //items form brands dropdown list
+            $("#inventory_page_item_form_brand_select").html(brandsDropDown);
+        },
+        clearBrandForm: function () {
+            $("#config_page_brand_form_name_input").val("");
+            $("#config_page_brand_form_description_input").val("");
+        },
+        //end brands
+        //sections
+        showSectionLoader: function () {
+            $("#section_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideSectionLoader: function () {
+            $("#section_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getSectionNector: function () {
+            var nec = {
+                section: {
+                    name: $("#config_page_section_form_name_input").val(),
+                    description: $("#config_page_section_form_description_input").val()
+                }
+            };
+            return nec;
+        },
+        getSectionsFromServer: function (callback) {
+            var nec = {
+                sections: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.sections);
+                }
+            });
+        },
+        renderedSections: [],
+        renderSectionsList: function (sections) {
+            app.pages.master_page.pages.config.renderedSections = sections; //for future purposes e.g when editing and deleting 
+            $("#config-page-sections-list").html("");
+            var html = "";
+            var dropDowns = "";
+            for (var ind = 0; ind < sections.length; ind++) {
+                var section = sections[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + section.name + "</td>";
+                html = html + "   <td>";
+                html = html + "        " + section.description;
+                html = html + "   </td>";
+                html = html + "</tr>";
+                dropDowns = dropDowns + "<option value=\"" + section.id + "\">" + section.name + "</option>";
+            }
+            $("#config-page-sections-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-sections-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+
+            //items form section dropdown list
+            $("#inventory_page_item_form_section_select").html(dropDowns);
+        },
+        clearSectionForm: function () {
+            $("#config_page_section_form_name_input").val("");
+            $("#config_page_section_form_description_input").val("");
+        },
+        //end sections
+        //item Types
+        showItemTypeLoader: function () {
+            $("#item_type_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideItemTypeLoader: function () {
+            $("#item_type_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getItemTypeNector: function () {
+            var nec = {
+                item_type: {
+                    name: $("#config_page_item_type_form_name_input").val(),
+                    description: ""
+                }
+            };
+            return nec;
+        },
+        getItemTypesFromServer: function (callback) {
+            var nec = {
+                item_types: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.item_types);
+                }
+            });
+        },
+        renderedItemTypes: [],
+        renderItemTypesList: function (types) {
+            app.pages.master_page.pages.config.renderedItemTypes = types; //for future purposes e.g when editing and deleting 
+            $("#config-page-item-type-list").html("");
+            var html = "";
+            var itemsDropDown = "";
+            for (var ind = 0; ind < types.length; ind++) {
+                var type = types[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + type.name + "</td>";
+                html = html + "   <td>";
+                html = html + "        <!-- nyd buttons for editiong etc-->";
+                html = html + "   </td>";
+                html = html + "</tr>";
+                itemsDropDown = itemsDropDown + "<option value=\"" + type.id + "\">" + type.name + "</option>";
+            }
+            $("#config-page-item-type-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#onfig-page-item-type-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+            //nyd
+            //items form item types dropdown list
+            $("#inventory_page_item_form_type_select").html(itemsDropDown);
+        },
+        clearItemTypesForm: function () {
+            $("#config_page_item_type_form_name_input").val("");
+        },
+        //end item types
+        //item categories
+        showItemCategoryLoader: function () {
+            $("#item_category_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideItemCategoryLoader: function () {
+            $("#item_category_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getItemCategoryNector: function () {
+            var nec = {
+                item_category: {
+                    name: $("#config_page_item_category_form_name_input").val(),
+                    description: ""
+                }
+            };
+            return nec;
+        },
+        getItemCategoriesFromServer: function (callback) {
+            var nec = {
+                item_categories: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.item_categories);
+                }
+            });
+        },
+        renderedItemCategories: [],
+        renderItemCategoriesList: function (categories) {
+            app.pages.master_page.pages.config.renderedItemCategories = categories; //for future purposes e.g when editing and deleting 
+            $("#config-page-item-category-list").html("");
+            var html = "";
+            var catsDropDown = "";
+            for (var ind = 0; ind < categories.length; ind++) {
+                var category = categories[ind];
+                html = html + "<tr>";
+                html = html + "   <td>" + (ind + 1) + "</td>";
+                html = html + "   <td>" + category.name + "</td>";
+                html = html + "   <td>";
+                html = html + "        <!-- nyd buttons for editiong etc-->";
+                html = html + "   </td>";
+                html = html + "</tr>";
+                catsDropDown = catsDropDown + "<option value=\"" + category.id + "\">" + category.name + "</option>";
+            }
+            $("#config-page-item-category-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#config-page-item-category-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+
+            // });
+
+
+            //items form item categories dropdown list
+            $("#inventory_page_item_form_category_select").html(catsDropDown);
+        },
+        clearItemCategoryForm: function () {
+            $("#config_page_item_category_form_name_input").val("");
+        },
+        //end item categories
+        checkRequiredDataForItemsForm: function () {
+            //item types
+            if (app.loadedPages.indexOf("config") == -1 &&
+                app.pages.master_page.pages.config.renderedItemTypes.length == 0
+            ) {
+                //try to get data
+                app.pages.master_page.pages.config.getItemTypesFromServer(
+                    app.pages.master_page.pages.config.renderItemTypesList
+                );
+            }
+            //item categories
+            if (app.loadedPages.indexOf("config") == -1 &&
+                app.pages.master_page.pages.config.renderedItemCategories.length == 0
+            ) {
+                //try to get data
+                app.pages.master_page.pages.config.getItemCategoriesFromServer(
+                    app.pages.master_page.pages.config.renderItemCategoriesList
+                );
+            }
+            //brands
+            if (app.loadedPages.indexOf("config") == -1 &&
+                app.pages.master_page.pages.config.renderedBrands.length == 0
+            ) {
+                //try to get data
+                app.pages.master_page.pages.config.getBrandsFromServer(
+                    app.pages.master_page.pages.config.renderBrandsList
+                );
+            }
+            //sections
+            if (app.loadedPages.indexOf("config") == -1 &&
+                app.pages.master_page.pages.config.renderedSections.length == 0
+            ) {
+                //try to get data
+                app.pages.master_page.pages.config.getSectionsFromServer(
+                    app.pages.master_page.pages.config.renderSectionsList
+                );
+            }
+            //units
+            if (app.loadedPages.indexOf("config") == -1 &&
+                app.pages.master_page.pages.config.renderedUnits.length == 0
+            ) {
+                //try to get data
+                app.pages.master_page.pages.config.getUnitsFromServer(
+                    app.pages.master_page.pages.config.renderUnits
+                );
+            }
+
+        },
+        showConfigLoader: function () {
+            $("#config_info_overlay").removeClass("overlay-hidden");//show loader
+            $("#config_image_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideConfigLoader: function () {
+            $("#config_info_overlay").addClass("overlay-hidden");//hide loader
+            $("#config_image_overlay").addClass("overlay-hidden");//hide loader
+        },
+        reloadCompanyConfig:function(){
+            var nec = {
+                configs: {}
+            };
+            app.pages.master_page.pages.config.showConfigLoader();
+            bee.get(nec, function (hny) {
+                app.pages.master_page.pages.config.hideConfigLoader();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                } else {
+                    if(hny.configs.length > 0){
+                        app.config = hny.configs[0];
+                    }
+                    //nyd
+                    //redisplay related data
+                    $("#config_name_display").html(app.config.name);
+                    $("#config_checkout_time_display").html(app.config.checkout_time);
+                    $("#config_checkin_time_display").html(app.config.checkin_time);
+                    $("#config_booking_timeout_display").html(app.config.booking_timeout);
+                    $("#config_city_display").html(app.config.city);
+                    $("#config_country_display").html(app.config.country);
+                    $("#config_phone_display").html(app.config.phone);
+                    $("#config_fax_display").html(app.config.fax);
+                    $("#config_email_display").html(app.config.email);
+                    $("#config_address_display").html(app.config.address);
+                    $("#config_currency_name_display").html(app.config.currency_name);
+                    $("#config_website_display").html(app.config.website);
+                    if(app.config.name != null &&  app.config.name.length > 0 ){
+                        $("#master_page_header_business_name_display").html(app.config.name);
+                    }
+                    $("#config_tax_display").html(app.config.tax);
+                    $("#config_tourism_levi_display").html(app.config.tourism_levi);
+                }
+            });
+        },
+        load: function () {
+            //facilities
+            $("#config_page_facility_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getFacilityNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showFacilityLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideFacilityLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Facility", "Created a new facility of id " + hny.facility);
+                        //reload facilities
+                        app.pages.master_page.pages.config.getFacilitiesFromServer(
+                            app.pages.master_page.pages.config.renderFacilitiesList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearFacilityForm();
+                    }
+                });
+            });
+
+            //load facilities
+            app.pages.master_page.pages.config.getFacilitiesFromServer(
+                app.pages.master_page.pages.config.renderFacilitiesList
+            );
+
+            //room categories
+            $("#config_page_category_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getCategoriesNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showCategoryLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideCategoryLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Room Category", "Created a new room category of id " + hny.room_category);
+                        //reload atewgories
+                        app.pages.master_page.pages.config.getCategoriesFromServer(
+                            app.pages.master_page.pages.config.renderCategoriesList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearCategoriesForm();
+
+                        //nyd
+                        //reload items  and render them
+                    }
+                });
+            });
+
+            //load categories
+            app.pages.master_page.pages.config.getCategoriesFromServer(
+                app.pages.master_page.pages.config.renderCategoriesList
+            );
+
+
+
+
+
+
+            //units
+            $("#config_page_unit_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getUnitNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showUnitLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideUnitLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Unit", "Created a new unit of id " + hny.unit);
+                        //reload units
+                        app.pages.master_page.pages.config.getUnitsFromServer(
+                            app.pages.master_page.pages.config.renderUnits
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearUnitsForm();
+                    }
+                });
+            });
+
+            //load units
+            app.pages.master_page.pages.config.getUnitsFromServer(
+                app.pages.master_page.pages.config.renderUnits
+            );
+
+            //conversion
+            $("#config_page_conversion_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.config.getConversionNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showConversionsLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideConversionsLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Added Unit Conversion", "Created a new unit conversion of id " + hny.unit_conversions[0]);
+                        //reload conversions
+                        app.pages.master_page.pages.config.getConversionsFromServer(
+                            app.pages.master_page.pages.config.renderConversions
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearConversionsForm();
+                    }
+                });
+            });
+
+            //load conversions
+            app.pages.master_page.pages.config.getConversionsFromServer(
+                app.pages.master_page.pages.config.renderConversions
+            );
+
+            //brands
+            $("#config_page_brand_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getBrandNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showBrandLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideBrandLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Brand", "Created a new brand of id " + hny.brand);
+                        //reload 
+                        app.pages.master_page.pages.config.getBrandsFromServer(
+                            app.pages.master_page.pages.config.renderBrandsList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearBrandForm();
+                    }
+                });
+            });
+
+            //load brands
+            app.pages.master_page.pages.config.getBrandsFromServer(
+                app.pages.master_page.pages.config.renderBrandsList
+            );
+
+
+            //sections
+            $("#config_page_section_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getSectionNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showSectionLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideSectionLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Section", "Created a new section of id " + hny.section);
+                        //reload 
+                        app.pages.master_page.pages.config.getSectionsFromServer(
+                            app.pages.master_page.pages.config.renderSectionsList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearSectionForm();
+                    }
+                });
+            });
+
+            //load sections
+            app.pages.master_page.pages.config.getSectionsFromServer(
+                app.pages.master_page.pages.config.renderSectionsList
+            );
+
+
+            //item types
+            $("#config_page_item_type_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getItemTypeNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showItemTypeLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideItemTypeLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Item Type", "Created a new item type of id " + hny.section);
+                        //reload 
+                        app.pages.master_page.pages.config.getItemTypesFromServer(
+                            app.pages.master_page.pages.config.renderItemTypesList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearItemTypesForm();
+                    }
+                });
+            });
+
+            //load item types
+            app.pages.master_page.pages.config.getItemTypesFromServer(
+                app.pages.master_page.pages.config.renderItemTypesList
+            );
+
+
+            //item categories
+            $("#config_page_item_category_form_submit_btn").on("click", function (evnt) {
+                var nec = app.pages.master_page.pages.config.getItemCategoryNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.config.showItemCategoryLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.config.hideItemCategoryLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Item Category", "Created a new item category of id " + hny.item_category);
+                        //reload 
+                        app.pages.master_page.pages.config.getItemCategoriesFromServer(
+                            app.pages.master_page.pages.config.renderItemCategoriesList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.config.clearItemCategoryForm();
+                    }
+                });
+            });
+
+            //load item categories
+            app.pages.master_page.pages.config.getItemCategoriesFromServer(
+                app.pages.master_page.pages.config.renderItemCategoriesList
+            );
+
+            //system configurations
+            app.pages.master_page.pages.config.reloadCompanyConfig();
+            $(".configEditTd").on("click",function(event){
+                var toEdit = $(this).attr("data-for-comb");
+                var toTitle = $(this).attr("data-for-title");
+                var currentValue = app.config[toEdit];
+                if(currentValue == null){
+                    currentValue = "";
+                }
+                $.confirm({
+                    title: 'Company Info Update Prompt',
+                    content: '' +
+                    '<form action="" class="formName">' +
+                        '<div class="form-group">' +
+                            '<label><i id="editloader" class="fa fa-refresh fa-spin hidden"></i> '+toTitle+'</label>' +
+                            '<input type="text" value="'+currentValue+'" data-for-comb="'+toEdit+'" placeholder="" class="name form-control"/>' +
+                        '</div>' +
+                    '</form>',
+                    buttons: {
+                        formSubmit: {
+                            text: 'Submit',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                var input = this.$content.find('.name');
+                                var value = input.val();
+                                var comb = input.attr("data-for-comb");
+                                this.$$formSubmit.attr('disabled','disabled');
+                                if(!value){
+                                    value = "";
+                                }
+                                var nec = {
+                                    config:{
+                                        _w:[["id","e",1]]
+                                    }
+                                };
+                                nec.config[comb] = value;
+                                var promt = this;
+                                $("#editloader").removeClass("hidden");
+                                bee.update(nec,function(hny){
+                                    if (hny._errors.length > 0) {
+                                        promt.close();
+                                        app.showErrors(hny._errors);
+                                    } else {
+                                        promt.close();
+                                        app.pages.master_page.pages.config.reloadCompanyConfig();
+                                    }
+                                });
+                                return false;
+                            }
+                        },
+                        cancel: function () {
+                            //close
+                        },
+                    },
+                    onContentReady: function () {
+                        // bind to events
+                        var jc = this;
+                        this.$content.find('form').on('submit', function (e) {
+                            // if the user submits the form by pressing enter in the field.
+                            e.preventDefault();
+                            jc.$$formSubmit.trigger('click'); // reference the button and click it
+                        });
+                    }
+                });
+            });
+            var company_logo = bee.baseUrl + "bee/images/default_company.png";
+            if(app.config.logo != null && app.config.logo.length > 0){
+                company_logo = bee.baseUrl + app.config.logo;
+            }
+            $("#company-image-preview").attr("src",company_logo);
+            $("#company-image-preview").on("click", function (event) {
+                $("#company-image-file-input").click();
+            });
+            //file preview
+            $("#company-image-file-input").change(function () {
+                var fileThing = this;
+                if (fileThing.files && fileThing.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#company-image-preview').attr('src', e.target.result);
+                        //upload file to server
+                        var formData = new FormData();
+                        // HTML file input, chosen by user
+                        formData.append("logo", fileThing.files[0]);
+                        app.pages.master_page.pages.config.showConfigLoader();
+                        bee.upload(formData, function (hny) {
+                            
+                            if (hny._errors.length > 0) {
+                                app.pages.master_page.pages.config.hideConfigLoader();
+                                var logo = bee.baseUrl + "bee/images/default_avatar_250.png";
+                                $('#company-image-preview').attr('src', logo);
+                                $.confirm({
+                                    title: 'Encountered an error!',
+                                    content: 'File upload failed: ' + hny._errors[0],
+                                    type: 'red',
+                                    typeAnimated: true,
+                                    buttons: {
+                                        close: function () {
+                                        }
+                                    }
+                                });
+                            } else {
+                                //hny.logo; //the uploaded logo
+                                //every thing was ok
+                                //$.alert('Your file was uploaded successfully', 'File Upload Successfull');
+                                var nec = {
+                                    config:{
+                                        _file_logo: hny.logo,
+                                        _w:[["id","e",1]]
+                                    }
+                                };
+                                bee.update(nec,function(hny){
+                                    if (hny._errors.length > 0) {
+                                        app.pages.master_page.pages.config.hideConfigLoader();
+                                        app.showErrors(hny._errors);
+                                    } else {
+                                        app.pages.master_page.pages.config.reloadCompanyConfig();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    reader.readAsDataURL(fileThing.files[0]);
+                }
+            })
+        }
+    }
+</script>

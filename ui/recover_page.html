@@ -1,0 +1,120 @@
+<!-- Start recover page -->
+<div id="recover_page" class="row app-page hidden-page">
+    <div class="col-lg-12">
+        <div class="box box-success login-box-successful login-box">
+            <div class="login-logo">
+                <a>
+                    <img src="images/logo.png" class="login-logo-img" />
+                    <b>Maths</b>cp
+                </a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Request password recovery</p>
+                <form method="post">
+                    <div class="form-group has-feedback">
+                        <input id="recover_page_email_input" type="email" class="form-control" placeholder="Email">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <a href="#" id="recover_page_login_link" >I remember my password, Login</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button type="button" id="recover_page_btn" class="btn btn-success btn-block btn-flat">Submit</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <a href="#" id="recover_page_register_link" class="text-center">Register a new membership</a>
+            </div>
+            <div id="recover_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- /.login-box-body -->
+
+            <div class="modal modal-success fade" id="recover_page_success_modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Recovery Message</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your request was successfully proccessed.</p>
+                            <p>An email with a reset link has been sent to our email</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        <!-- /.login-box -->
+    </div>
+</div>
+<!-- End recover page -->
+<script>
+    app.pages.recover_page = {
+        id: "recover_page",
+        showLoader: function () {
+            $("#recover_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoader: function () {
+            $("#recover_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getRecoverNectar: function () {
+            var email = $("#recover_page_email_input").val();
+            
+            //pick data from the form
+            //#recover_code
+            // return {
+            //     _f_recover: {
+            //         email: email
+            //     }
+            // };
+        },
+        clearLoginForm: function () {
+            $("#recover_page_email_input").val("");
+        },
+        showRecoverSuccessModal:function(){
+            $('#recover_page_success_modal').modal('show');     
+        },
+        load: function () {
+            app.link("recover_page_register_link","register_page"); //register link
+            app.link("recover_page_login_link","login_page"); //login link
+            
+            
+            //recover page btn
+            $("#recover_page_btn").on("click", function (event) {
+                var recoverNectar = app.pages.recover_page.getRecoverNectar();
+                //nyd
+                //validate
+
+                //send nectar to bee server
+                //show loader
+                app.pages.recover_page.showLoader();
+                bee.post(recoverNectar, function (hny) {
+                    app.pages.recover_page.hideLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        app.pages.recover_page.clearLoginForm();
+                        app.pages.recover_page.showRecoverSuccessModal();
+                    }
+                });
+            });
+        }
+    };
+</script>

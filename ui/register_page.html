@@ -1,0 +1,199 @@
+<!-- Start login page -->
+<div id="register_page" class="row app-page hidden-page">
+    <div class="col-lg-12">
+        <div class="box box-success login-box-successful register-box mb-0">
+            <div class="login-logo mb-0">
+                <a>
+                    <img src="images/logo.png" class="register-logo-img" />
+                    <b>Maths</b>cp
+                </a>
+            </div>
+            <div class="register-box-body pt-0">
+                <p class="login-box-msg">Register your organisation</p>
+
+                <form method="post">
+                    <div class="form-group has-feedback">
+                        <input type="text" id="register_page_name_input" class="form-control" placeholder="Your First and Last Name">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" id="register_page_app_name_input" class="form-control" placeholder="Business Name">
+                        <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="email" id="register_page_email_input" class="form-control" placeholder="Email">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" id="register_page_phone_number_input" class="form-control" placeholder="Your Phone Number">
+                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                    </div>
+                    <div class="input-group has-feedback mb-20">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn open-btn">Country</button>
+                        </div>
+                        <!-- /btn-group -->
+                        <select class="form-control" id="register_page_country_select">
+                        </select>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" id="register_page_password_input" class="form-control" placeholder="Password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" id="register_page_comfirm_password_input" class="form-control" placeholder="Retype password">
+                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input id="register_page_terms_check" class="an-icheck" type="checkbox"> I agree to the
+                                    <a href="#" id="register_page_terms_link">terms</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button id="register_page_submit_btn" type="button" class="btn btn-success btn-block btn-flat">Register</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <a href="#" id="register_page_login_link" class="text-center">I already have a membership, click to login</a>
+            </div>
+            <!-- /.form-box -->
+            <div id="register_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+        </div>
+        <!-- /.register-box -->
+
+        <div class="modal modal-success fade" id="register_page_success_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Registration Message</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><b id="register_page_name_display"></b></p>
+                        <p>Your business: <b id="register_page_app_name_display"></b> was successfully registered.</p>
+                        <!-- <p>An email with an activation link has been sent to <b id="register_page_email_display"></b></p> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+<!-- End Register page -->
+<script>
+    app.pages.register_page = {
+        id: "register_page",
+        getRegistrationNectar: function () {
+            //#register_tenant_code
+            // return {
+            //     _f_register: {
+            //         name: $("#register_page_name_input").val(),
+            //         app_name: $("#register_page_app_name_input").val(),
+            //         email: $("#register_page_email_input").val(),
+            //         phone_number: $("#register_page_phone_number_input").val(),
+            //         country: $("#register_page_country_select").val(),
+            //         password: $("#register_page_password_input").val()
+            //     }
+            // };
+        },
+        clearRegistrationForm: function () {
+            $("#register_page_name_input").val("");
+            $("#register_page_app_name_input").val("");
+            $("#register_page_email_input").val("");
+            $("#register_page_phone_number_input").val("");
+            $("#register_page_password_input").val("");
+            $("#register_page_comfirm_password_input").val("");
+            //nyd
+            //country set back to deafult
+            //clear checkbox
+        },
+        fillRegistrationSuccessModal:function(displayModal){
+            $("#register_page_name_display").html(displayModal.name);
+            //$("#register_page_email_display").html(displayModal.email);
+            $("#register_page_app_name_display").html(displayModal.app_name);
+        },
+        showRegistrationSuccessModal:function(){
+            $('#register_page_success_modal').modal('show');  
+            ///go to login screen on close 
+            $('#register_page_success_modal').on('hidden.bs.modal', function () {
+               $("#register_page_login_link").click();
+            });  
+        },
+        showTermsModal:function(){
+            $("#terms_modal").modal('show');     
+        },
+        fillCountries: function (countries) {
+            //clear
+            $("#register_page_country_select").html("");
+            var html = "";
+            countries.forEach(country => {
+                html = html + "<option value=" + country.name.toLowerCase() + ">" + country.name + "</option>";
+            });
+            $("#register_page_country_select").html(html);
+        },
+        showLoader: function () {
+            $("#register_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoader: function () {
+            $("#register_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        load: function () {
+            
+
+            app.link("register_page_login_link","login_page"); //login link
+            
+
+            //register form
+            $("#register_page_submit_btn").on("click", function (event) {
+                var register_nectar = app.pages.register_page.getRegistrationNectar();
+                //nyd
+                //validate model
+
+                //nyd
+                //check that terms have been agreed upon
+
+                //fill our success modal
+                app.pages.register_page.fillRegistrationSuccessModal({
+                    name: register_nectar._f_register.name,
+                    email: register_nectar._f_register.email,
+                    app_name: register_nectar._f_register.app_name
+                });
+                //post nectar
+                app.pages.register_page.showLoader();
+                bee.post(register_nectar, function (hny) {
+                    console.log(hny);//{_f_register: "OK", _errors: Array(0)}
+                    app.pages.register_page.hideLoader();
+                    if (hny._errors.length == 0 && hny._f_register == "OK") {
+                        app.pages.register_page.clearRegistrationForm();
+                        app.pages.register_page.showRegistrationSuccessModal();
+                    }
+                });
+            });
+            
+            //terms modal
+            $("#register_page_terms_link").on("click",function(event){
+                app.pages.register_page.showTermsModal();
+            });
+
+            //countries
+            app.pages.register_page.fillCountries(app.countries);
+        }
+    };
+
+
+</script>

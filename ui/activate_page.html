@@ -1,0 +1,90 @@
+<!-- Start login page -->
+<div id="activate_page" class="row app-page hidden-page">
+    <div class="col-lg-12">
+        <div class="box box-success login-box-successful login-box">
+            <div class="login-logo">
+                <a>
+                    <img src="images/logo.png" class="login-logo-img" />
+                    <b>Math</b>cp
+                </a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <h4 class="login-box-msg">Account activation</h4>
+
+                <p>Organisation Name:
+                    <b id="activate_page_app_name_display"></b>
+                </p>
+                <p>Code :
+                    <b id="activate_page_code_display"></b>
+                </p>
+
+                <div class="callout callout-success hidden" id="activate_page_success_callout">
+                    <h4>
+                        <i class="icon fa fa-check"></i> Success!
+                    </h4>
+
+                    <p>
+                        Your account has been activated.
+                        <br/> <br/>
+                        Click <button id="activate_page_login_link" class="btn btn-outline btn-xs btn-outline-warning ">HERE TO LOGIN </button>
+                    </p>
+                </div>
+            </div>
+            <div id="activate_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <!-- /.login-box -->
+    </div>
+</div>
+<!-- End login page -->
+<script>
+    app.pages.activate_page = {
+        id: "activate_page",
+        isHotPage: true,
+        getActivationNectar: function () {
+            //#activate_code
+            // var url = new URL(window.location.href);
+            // return {
+            //     _f_activate: {
+            //         app_name: url.searchParams.get('h'),
+            //         hive_id: url.searchParams.get('i'),
+            //         code: url.searchParams.get('c')
+            //     }
+            // };
+        },
+        showLoader: function () {
+            $("#activate_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoader: function () {
+            $("#activate_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        showSuccessCallout:function(){
+            $("#activate_page_success_callout").removeClass("hidden");
+        },
+        load: function () {
+            var anec = app.pages.activate_page.getActivationNectar();
+            $("#activate_page_app_name_display").html(anec._f_activate.app_name);
+            $("#activate_page_code_display").html(anec._f_activate.code);
+            //nyd
+            //validate
+
+            //login link
+            app.link("activate_page_login_link","login_page",app.goToIndex);
+
+            //show loader
+            app.pages.activate_page.showLoader();
+            //send data for activation
+            bee.post(anec, function (hny) {
+                app.pages.activate_page.hideLoader();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                } else {
+                    app.pages.activate_page.showSuccessCallout();
+                }
+            });
+        }
+    };
+</script>

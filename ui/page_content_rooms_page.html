@@ -1,0 +1,215 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_rooms_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Rooms Management</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row" id="room-page-rooms-list"></div>
+                <div id="room-panel-template" class="ui-template">
+                    <div class="col-lg-3 room-panel">
+                        <div class="box box-uit_room_color box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">uit_room_number</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" id="rooms_page_toggle_room_uit_room_id_menu" class="btn btn-box-tool app_action_item disabled_action app_action_room_c1"
+                                        data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="more">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div>
+                                    <b>Status</b>
+                                    <span class="pull-right">uit_room_status</span>
+                                </div>
+                                <div>
+                                    <b>cat: uit_room_category</b>
+                                    <span class="pull-right">uit_room_price</span>
+                                </div>
+                                <div>
+                                    <b>Capacity</b>
+                                    <span class="pull-right">uit_room_capacity</span>
+                                </div>
+                                <div>
+                                    <b>Code</b>
+                                    <span class="pull-right">uit_room_code</span>
+                                </div>
+                                <hr>
+                                <div class="room_panel_description">
+                                        uit_room_remarks
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <!-- DIRECT CHAT SUCCESS -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Rooms</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="room_page_room_form_number_input" placeholder="room number">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="room_page_room_form_code_input" placeholder="code">
+                        </div>
+                        <div class="form-group ">
+                            <label>Category</label>
+                            <select class="form-control" style="width: 100%;" id="room_page_room_form_category_select">
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label>Status</label>
+                            <select class="form-control" style="width: 100%;" id="room_page_room_form_status_select">
+                                <option value="empty">Empty-------blue</option>
+                                <option value="booked">Booked------orange</option>
+                                <option value="occupied">Occupied----green</option>
+                                <option value="cleaning">Cleaning----red</option>
+                                <option value="repair">Repair------gray</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="room_page_room_form_remarks_input" placeholder="remarks">
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" id="room_page_room_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_room_c1">Submit</button>
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="rooms_form_overlay" class="overlay overlay-hidden">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!--/.direct-chat -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.rooms = {
+        id: "rooms",
+        showRoomLoader: function () {
+            $("#rooms_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideRoomLoader: function () {
+            $("#rooms_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getRoomNector: function () {
+            var nec = {
+                room: {
+                    room_category_id: $("#room_page_room_form_category_select").val(),
+                    number: $("#room_page_room_form_number_input").val(),
+                    status: $("#room_page_room_form_status_select").val(),
+                    code: $("#room_page_room_form_code_input").val(),
+                    remarks: $("#room_page_room_form_remarks_input").val()
+                }
+            };
+            return nec;
+        },
+        getRoomsFromServer: function (callback) {
+            var nec = {
+                rooms: {
+                    room_category: {},
+                    _asc: ["number"]
+                }
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.rooms);
+                }
+            });
+        },
+        renderedRooms: [],
+        renderRoomsList: function (rooms) {
+            app.pages.master_page.pages.rooms.renderedRooms = rooms; //for future purposes e.g when editing and deleting 
+            $("#room-page-rooms-list").html("");
+            var html = "";
+            //This can be empty, booked, occupied, cleaning, repair
+            var colors = {
+                empty: "info",
+                booked: "warning",
+                occupied: "success",
+                cleaning: "danger",
+                repair: "default",
+            };
+            for (var ind = 0; ind < rooms.length; ind++) {
+                var room = rooms[ind];
+                var template = $("#room-panel-template").html();
+                template = template.replace("uit_room_number",room.number);
+                template = template.replace("uit_room_color",colors[room.status]);
+                template = template.replace("uit_room_number",room.number);
+                template = template.replace("uit_room_id",room.id);
+                template = template.replace("uit_room_status",room.status);
+                template = template.replace("uit_room_category",room.room_category.name);
+                template = template.replace("uit_room_price",room.room_category.price);
+                template = template.replace("uit_room_capacity",room.room_category.capacity);
+                template = template.replace("uit_room_code",room.code);
+                template = template.replace("uit_room_remarks",room.remarks);
+                html = html + template;
+            }
+            $("#room-page-rooms-list").html(html);
+            //authorise
+            //app.authoriseActionItems(app.user, "#room-page-rooms-list ");
+            //nyd
+            //edit button for the next version
+            // $(".security_page_edit_role_link").on("click",function(event){
+            // });
+        },
+        clearRoomsForm: function () {
+            $("#room_page_room_form_number_input").val("");
+            $("#room_page_room_form_code_input").val("");
+            $("#room_page_room_form_remarks_input").val("");
+        },
+        load: function () {
+
+            $("#room_page_room_form_submit_btn").on("click", function () {
+                var nec = app.pages.master_page.pages.rooms.getRoomNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.rooms.showRoomLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.rooms.hideRoomLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        callback([]);
+                    } else {
+                        //log
+                        bee.log("Add Room", "Created a new room of id " + hny.room);
+                        //reload 
+                        app.pages.master_page.pages.rooms.getRoomsFromServer(
+                            app.pages.master_page.pages.rooms.renderRoomsList
+                        );
+                        //clear form
+                        app.pages.master_page.pages.rooms.clearRoomsForm();
+                    }
+                });
+            });
+            //probably the categories have not yet been loaded
+            //we need to load them
+            if (app.pages.master_page.pages.config.renderedCategories.length == 0) {
+                app.pages.master_page.pages.config.getCategoriesFromServer(
+                    app.pages.master_page.pages.config.renderCategoriesList
+                );
+            }
+            this.getRoomsFromServer(this.renderRoomsList);
+
+        }
+    }
+</script>

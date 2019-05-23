@@ -5,4 +5,4 @@
 - Multitenancy (registration)  
 - Seeding (db config, and registration)  
 - Json by default  
-- 
+- inspect sql

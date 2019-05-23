@@ -1,0 +1,120 @@
+<!-- Start reset page -->
+<div id="reset_page" class="row app-page hidden-page">
+    <div class="col-lg-12">
+        <div class="box box-success login-box-successful login-box">
+            <div class="login-logo">
+                <a>
+                    <img src="images/logo.png" class="login-logo-img" />
+                    <b>Nnete</b>go
+                </a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <h4 class="login-box-msg">Reset Your Account Password</h4>
+
+                <p>Business Name:
+                    <b id="reset_page_app_name_display"></b>
+                </p>
+                <p>Code :
+                    <b id="reset_page_code_display"></b>
+                </p>
+
+                <form method="post">
+                    <div class="form-group has-feedback">
+                        <input type="password" id="reset_page_password_input" class="form-control" placeholder="Password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" id="reset_page_comfirm_password_input" class="form-control" placeholder="Retype password">
+                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="reset_page_submit_btn" type="button" class="btn btn-success btn-block btn-flat">Submit</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <br/>
+                <div class="callout callout-success hidden" id="reset_page_success_callout">
+                    <h4>
+                        <i class="icon fa fa-check"></i> Success!
+                    </h4>
+
+                    <p>
+                        Your account password has been reset successfully.
+                        <br/>
+                        <br/> Click
+                        <button id="reset_page_login_link" class="btn btn-outline btn-xs btn-outline-warning ">HERE TO LOGIN </button>
+                    </p>
+                </div>
+            </div>
+            <div id="reset_page_overlay" class="overlay overlay-hidden">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <!-- /.login-box -->
+    </div>
+</div>
+<!-- End login page -->
+<script>
+    app.pages.reset_page = {
+        id: "reset_page",
+        isHotPage: true,
+        getResetNectar: function () {
+            var url = new URL(window.location.href);
+            //#reset_code
+            // return {
+            //     _f_reset: {
+            //         hive_name: url.searchParams.get('h'),
+            //         user_id: url.searchParams.get('i'),
+            //         code: url.searchParams.get('c'),
+            //         password: $("#reset_page_password_input").val()
+            //     }
+            // };
+        },
+        clearResetForm:function(){
+            $("#reset_page_password_input").val("");
+            $("#reset_page_comfirm_password_input").val("");
+        },
+        showLoader: function () {
+            $("#reset_page_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoader: function () {
+            $("#reset_page_overlay").addClass("overlay-hidden");//hide loader
+        },
+        showSuccessCallout: function () {
+            $("#reset_page_success_callout").removeClass("hidden");
+        },
+        load: function () {
+            var anec = app.pages.reset_page.getResetNectar();
+            $("#reset_page_app_name_display").html(anec._f_reset.hive_name);
+            $("#reset_page_code_display").html(anec._f_reset.code);
+            
+            //login
+            app.link("reset_page_login_link","login_page");
+            
+            $("#reset_page_submit_btn").on("click",function(event){
+                var anec = app.pages.reset_page.getResetNectar();
+                //nyd
+                //validate
+
+                //show loader
+                app.pages.reset_page.showLoader();
+                //send data for activation
+                bee.post(anec, function (hny) {
+                    app.pages.reset_page.hideLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        app.pages.reset_page.showSuccessCallout();
+                        app.pages.reset_page.clearResetForm();
+                    }
+                });
+            });
+        }
+    };
+</script>

@@ -1,0 +1,605 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_dashboard_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Nnetego v2.0.0
+            <small>Hospitality Managment System</small>
+        </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3 id="dasboard_bookings_number_display">00</h3>
+                        <p>Bookings (30 days)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer app_menu_item disabled_module for_role_module_bookings ">
+                        Go to bookings
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3 id="dasboard_bookings_checkinperc_display">00
+                            <sup style="font-size: 20px">%</sup>
+                        </h3>
+
+                        <p>CheckedIn (30 days)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <a href="#" class="small-box-footer app_menu_item disabled_module for_role_module_frontdesk ">
+                        Go to front desk
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner ">
+                        <h3 id="dasboard_bookings_occupancyperc_display">00
+                            <sup style="font-size: 20px">%</sup>
+                        </h3>
+                        <p>Occupancy (30 days)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="#" class="small-box-footer app_menu_item disabled_module for_role_module_report">
+                        Go to reports
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3 id="dasboard_bookings_items_alert_display">00</h3>
+
+                        <p>Out Of Stock Items</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="#" class="small-box-footer app_menu_item disabled_module for_role_module_inventory">
+                        Go to inventory
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <!-- solid sales graph -->
+                <div class="box box-solid bg-green-gradient mb-0">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">Room Sales Graph (30 days)</h3>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <div class="chart" id="dashboard-sales-line-chart" style="height: 300px;"></div>
+                    </div>
+                    <div class="overlay overlay-hidden dashboard-overlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                </div>
+                
+                <!-- /.box -->
+            </div>
+            <div class="col-lg-5">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Overall Bookings Distribution</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="chart-responsive">
+                                    <canvas id="dashboard-booking-distribution-piechart" height="150"></canvas>
+                                </div>
+                                <!-- ./chart-responsive -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-4">
+                                <ul class="chart-legend clearfix" id="dashboard-booking-distribution-piechart-key"></ul>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="overlay overlay-hidden dashboard-overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!-- /.box -->
+                <div class="box box-success mb-0">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row  no-padding">
+                            &nbsp;&nbsp;&nbsp;&nbsp;Stock Movement
+                            <div class="col-md-12">
+                                <div class="chart-responsive">
+                                    <canvas id="dashboard-stock-movement-barchart" style="height:52px; width:100%"></canvas>
+                                </div>
+                                <!-- ./chart-responsive -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="overlay overlay-hidden dashboard-overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.dashboard = {
+        id: "dashboard",
+        showLoaders: function () {
+            $(".dashboard-overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideLoaders: function () {
+            $(".dashboard-overlay").addClass("overlay-hidden");//hide loader
+        },
+        getBokings: function (rooms, categories) {
+            var days = 30;
+            var roomsCount = rooms.length;
+            var todayDate = new DayPilot.Date();
+            var last30Date = todayDate.addDays(days * -1);
+            console.log("period dash", todayDate.toString(), last30Date.toString());
+            var fromTime = last30Date.getTime() / 1000;
+            var toTime = todayDate.getTime() / 1000;
+            var tw1 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lte", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw2 = bee
+                .where("checkin_time", "gte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "lte", toTime)._w;
+            var tw3 = bee
+                .where("checkin_time", "lte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "gte", toTime)._w;
+            var tw4 = bee
+                .where("checkin_time", "gte", fromTime)
+                .and("checkin_time", "lt", toTime)
+                .and("checkout_time", "gt", fromTime)
+                .and("checkout_time", "gte", toTime)._w;
+            var w = bee
+                .where(tw1[0], "OR", tw2[0])
+                .or(tw3[0], "OR", tw4[0])._w;
+            // var w = bee
+            //     .where(ow[0], "OR", tw3[0])._w;
+            var a = "id name source status phone_number email country number_of_minors number_of_adults number_of_nights checkin_time";
+            a = a + " checkout_time actual_checkin_time actual_checkout_time notes time_inserted";
+            var nec = {
+                bookings: {
+                    _a: a,
+                    booked_rooms: {
+                        room: {},
+                        booked_room_bills: {},
+                        booked_room_payments: {
+                            _a: "id guest_id booked_room_id booking_id room_id payment_type amount time_inserted"
+                        },
+                        guests: {
+                            client: {}
+                        }
+                    },
+                    _w: w
+                },
+                items: {
+                    _w: [
+                        [
+                            ["quantity", "lte", "_fx_x_notification_level"],
+                            "AND",
+                            ["is_tracked", "=", 1]
+                        ]
+                    ]
+                },
+                stockin_items:{
+                    _a:"id cost_price quantity time_inserted",
+                    _w:[
+                        [
+                            ["time_inserted","gte",fromTime],
+                            "AND",
+                            ["time_inserted","lte",toTime]
+                        ]
+                    ]
+                },
+                stockout_items:{
+                    _a:"id cost_price quantity time_inserted",
+                    _w:[
+                        [
+                            ["time_inserted","gte",fromTime],
+                            "AND",
+                            ["time_inserted","lte",toTime]
+                        ]
+                    ]
+                },
+            };
+            app.pages.master_page.pages.dashboard.showLoaders();
+            bee.get(nec, function (hny) {
+                app.pages.master_page.pages.dashboard.hideLoaders();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                } else {
+                    console.log("dashboard staff", hny.bookings);
+                    //number of bookings
+                    var booking_count = hny.bookings.length;
+                    $("#dasboard_bookings_number_display").html((booking_count < 10) ? "0" + booking_count : booking_count);
+                    //how many of those where checkedIn or CheckedOut
+                    var occupiedBookings = 0;
+                    var usedNights = 0;
+                    var roomSalesData = []; //{ y: '2011 Q1', item1: 2666 }
+                    var distributionData = []; //booked rooms distributed to categories
+                    var distributions = {};
+                    var roomBills = {};
+                    var temp = last30Date;
+                    var labelsForStockChart = [];
+                    var initStockInValues = [];
+                    var initStockOutValues = [];
+                    for (let i = 0; i < days; i++) {
+                        temp = temp.addDays(1);
+                        //var key = temp.getYear() + "-" + temp.getMonth() + "-" + temp.getDay();
+                        var key = temp.getYear() + "-" + (temp.getMonth()+1) + "-" + temp.getDay();
+                        roomBills[key] = { y: key, item1: 0 };
+                        labelsForStockChart.push(temp.getMonth() + "-" + temp.getDay());
+                        initStockInValues.push(0);
+                        initStockOutValues.push(0);
+                    }
+                    var colorDists = ['#f57089', '#00a65a', '#00c0ef', '#f7f577', '#f39c12', '#dd4b39', '#c1c', "pink", "purple", "brown"];
+                    for (var i = 0; i < categories.length; i++) {
+                        var cat = categories[i];
+                        var colorDist = "#CCC";
+                        if (i < colorDists.length) {
+                            colorDist = colorDists[i];
+                        } else {
+                            var index = Math.round(Math.random() * 10);
+                            colorDist = colorDists[index];
+                        }
+                        distributions["cat" + cat.id] = {
+                            value: 0,
+                            color: colorDist,
+                            highlight: colorDist,
+                            label: cat.name
+                        };
+                    }
+                    for (var i = 0; i < hny.bookings.length; i++) {
+                        var booking = hny.bookings[i];
+                        if (booking.status == "checkedin" || booking.status == "checkedout") {
+                            occupiedBookings = occupiedBookings + 1;
+                            //nyd
+                            //fix the error that is due to the booking going past today
+                            //and extending into the future, here this nights have to 
+                            //be subtracted off.
+                            //get the rooms booked
+                            usedNights = usedNights + (parseFloat(booking.booked_rooms.length) * parseFloat(booking.number_of_nights));
+                            //bills
+
+                            for (var j = 0; j < booking.booked_rooms.length; j++) {
+                                var bookedRoom = booking.booked_rooms[j];
+                                for (var k = 0; k < bookedRoom.booked_room_bills.length; k++) {
+                                    var brb = bookedRoom.booked_room_bills[k];
+                                    var tym = brb.date_time * 1000;
+                                    var billDate = new Date(tym);
+                                    var thisDate = DayPilot.Date.fromYearMonthDay(billDate.getFullYear(), billDate.getMonth() + 1, billDate.getDate());
+                                    var key = thisDate.getYear() + "-" + thisDate.getMonth() + "-" + thisDate.getDay();
+                                    console.log("Hope", key);
+                                    if (roomBills.hasOwnProperty(key)) {
+                                        roomBills[key].item1 = roomBills[key].item1 + (parseFloat(brb.sub_total));
+                                    } else {
+                                        //this value does not belong to our period
+                                    }
+                                }
+                            }
+                        }
+
+                        //distribution
+                        for (var j = 0; j < booking.booked_rooms.length; j++) {
+                            var br = booking.booked_rooms[j];
+                            var k = "cat" + br.room.room_category_id;
+                            if (distributions.hasOwnProperty(k) == false) {
+                                //i dont know why such a thhing would happen
+                            } else {
+                                distributions[k].value = distributions[k].value + 1;
+                            }
+                        }
+                    }
+                    for (var key in roomBills) {
+                        if (roomBills.hasOwnProperty(key)) {
+                            var dataItem = roomBills[key];
+                            roomSalesData.push(dataItem);
+                        }
+                    }
+                    for (var key in distributions) {
+                        if (distributions.hasOwnProperty(key)) {
+                            var dataItem = distributions[key];
+                            distributionData.push(dataItem);
+                        }
+                    }
+                    var checkedInPercentage = Math.round(((occupiedBookings * 1.0) / (booking_count * 1.0)) * 100);
+                    $("#dasboard_bookings_checkinperc_display").html(
+                        ((checkedInPercentage < 10) ? "0" + checkedInPercentage : checkedInPercentage) + " <sup style=\"font-size: 20px\">%</sup>"
+                    );
+                    var totalAvailableNights = roomsCount * days;
+                    console.log("comparison ", usedNights, totalAvailableNights);
+                    var occupancy = Math.round(((usedNights / (totalAvailableNights * 1.0)) * 100));
+                    $("#dasboard_bookings_occupancyperc_display").html(
+                        ((occupancy < 10) ? "0" + occupancy : occupancy) + " <sup style=\"font-size: 20px\">%</sup>"
+                    );
+                    $("#dasboard_bookings_items_alert_display").html(hny.items.length);
+                    //sales chart
+                    app.pages.master_page.pages.dashboard.drawSalesChart("dashboard-sales-line-chart", roomSalesData);
+                    //booking distribution
+                    // {
+                    //     value: 700,
+                    //     color: '#f56954',
+                    //     highlight: '#f56954',
+                    //     label: 'Chrome'
+                    // }
+                    app.pages.master_page.pages.dashboard.drawBookingDistributionChart("dashboard-booking-distribution-piechart", distributionData);
+                    app.pages.master_page.pages.dashboard.drawStockMovementChart("dashboard-booking-distribution-piechart", distributionData);
+                    
+                    //stock movement
+                    /*
+                        [
+                            {
+                                label: 'Electronics',
+                                fillColor: 'rgba(210, 214, 222, 1)',
+                                strokeColor: 'rgba(210, 214, 222, 1)',
+                                pointColor: 'rgba(210, 214, 222, 1)',
+                                pointStrokeColor: '#c1c7d1',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'rgba(220,220,220,1)',
+                                data: [65, 59, 80, 81, 56, 55, 40]
+                            },
+                            {
+                                label: 'Digital Goods',
+                                fillColor: 'rgba(60,141,188,0.9)',
+                                strokeColor: 'rgba(60,141,188,0.8)',
+                                pointColor: '#3b8bba',
+                                pointStrokeColor: 'rgba(60,141,188,1)',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'rgba(60,141,188,1)',
+                                data: [28, 48, 40, 19, 86, 27, 90]
+                            }
+                        ]
+                    */
+
+                    for (let i = 0; i < hny.stockin_items.length; i++) {
+                        var soi = hny.stockin_items[i];
+                        var dtx = new Date(soi.time_inserted * 1000);
+                        var key = dtx.getMonth() + "-" + dtx.getDay();
+                        var ind = labelsForStockChart.indexOf(key);
+                        var amount = parseFloat(soi.cost_price) * parseFloat(soi.quantity);
+                        if(ind > -1){
+                            initStockInValues[ind] = initStockInValues[ind] + amount;
+                        }else{
+                            //probably this record is not met for this period
+                        }
+                    }
+                    for (let i = 0; i < hny.stockout_items.length; i++) {
+                        var soi = hny.stockout_items[i];
+                        var dtx = new Date(soi.time_inserted * 1000);
+                        var key = dtx.getMonth() + "-" + dtx.getDay();
+                        var ind = labelsForStockChart.indexOf(key);
+                        var amount = parseFloat(soi.cost_price) * parseFloat(soi.quantity);
+                        if(ind > -1){
+                            initStockOutValues[ind] = initStockOutValues[ind] + amount;
+                        }else{
+                            //probably this record is not met for this period
+                        }
+                    }
+                    app.pages.master_page.pages.dashboard.drawStockMovementChart(
+                        "dashboard-stock-movement-barchart", 
+                        labelsForStockChart,
+                        [
+                            {
+                                label: 'Stockin Value',
+                                fillColor: 'green',
+                                strokeColor: 'green',
+                                pointColor: 'green',
+                                pointStrokeColor: 'green',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'green',
+                                data: initStockInValues
+                            },
+                            {
+                                label: 'Stockout Value',
+                                fillColor: 'red',
+                                strokeColor: 'red',
+                                pointColor: 'red',
+                                pointStrokeColor: 'red',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'red',
+                                data: initStockOutValues
+                            }
+                        ]
+                    );
+                }
+            });
+        },
+        drawSalesChart: function (id, data) {
+            //console.log("roomSalesData", data);
+            var line = new Morris.Line({
+                element: id,
+                resize: true,
+                data: data,
+                xkey: 'y',
+                ykeys: ['item1'],
+                xlabels: 'day',
+                lineColors: ['#efefef'],
+                lineWidth: 2,
+                hideHover: 'always',
+                gridTextColor: '#fff',
+                gridStrokeWidth: 0.4,
+                pointSize: 2,
+                pointStrokeColors: ['green'],
+                gridLineColor: '#efefef',
+                gridTextFamily: 'Open Sans',
+                gridTextSize: 10
+            });
+        },
+        drawBookingDistributionChart: function (id, data) {
+            console.log("distribution Data", data);
+            // -------------
+            // - PIE CHART -
+            // -------------
+            // Get context with jQuery - using jQuery's .get() method.
+            var pieChartCanvas = $('#' + id).get(0).getContext('2d');
+            var pieChart = new Chart(pieChartCanvas);
+            var PieData = data;
+            var pieOptions = {
+                // Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke: true,
+                // String - The colour of each segment stroke
+                segmentStrokeColor: '#fff',
+                // Number - The width of each segment stroke
+                segmentStrokeWidth: 1,
+                // Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 50, // This is 0 for Pie charts
+                // Number - Amount of animation steps
+                animationSteps: 100,
+                // String - Animation easing effect
+                animationEasing: 'easeOutBounce',
+                // Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate: true,
+                // Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale: false,
+                // Boolean - whether to make the chart responsive to window resizing
+                responsive: true,
+                // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio: false,
+                // String - A legend template
+                legendTemplate: '<ul class=\'<%=name.toLowerCase()%>-legend\'><% for (var i=0; i<segments.length; i++){%><li><span style=\'background-color:<%=segments[i].fillColor%>\'></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+                // String - A tooltip template
+                tooltipTemplate: '<%=value %> <%=label%> rooms'
+            };
+            // Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            pieChart.Doughnut(PieData, pieOptions);
+            // -----------------
+            // - END PIE CHART -
+            // -----------------
+
+            //the key
+            $("#dashboard-booking-distribution-piechart-key").html("");
+            var keysHtml = "";
+            for (let i = 0; i < data.length; i++) {
+                var cat = data[i];
+                keysHtml = keysHtml + "<li style=\"font-size:10px; color:" + cat.color + ";\"> <i class=\"fa fa-circle-o\" style=\"color:" + cat.color + ";\"></i>" + cat.label + "</li>";
+            }
+            $("#dashboard-booking-distribution-piechart-key").html(keysHtml);
+        },
+        drawStockMovementChart: function (id,labels,data) {
+            var areaChartData = {
+                labels: labels,
+                datasets: data
+            }
+
+            var areaChartOptions = {
+                //Boolean - If we should show the scale at all
+                showScale: false,
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: false,
+                //String - Colour of the grid lines
+                scaleGridLineColor: 'rgba(0,0,0,.05)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: false,
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: false,
+                //Boolean - Whether the line is curved between points
+                bezierCurve: true,
+                //Number - Tension of the bezier curve between points
+                bezierCurveTension: 0.3,
+                //Boolean - Whether to show a dot for each point
+                pointDot: false,
+                //Number - Radius of each point dot in pixels
+                pointDotRadius: 1,
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth: 1,
+                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                pointHitDetectionRadius: 4,
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke: false,
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth: 1,
+                //Boolean - Whether to fill the dataset with a color
+                datasetFill: true,
+                //String - A legend template
+                legendTemplate: '', //'<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+                //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio: false,
+                //Boolean - whether to make the chart responsive to window resizing
+                responsive: true
+            };
+            ///0775025539
+            //-------------
+            //- LINE CHART -
+            //--------------
+            var lineChartCanvas = $('#'+id).get(0).getContext('2d');
+            var lineChart = new Chart(lineChartCanvas);
+            var lineChartOptions = areaChartOptions;
+            lineChartOptions.datasetFill = false;
+            lineChart.Line(areaChartData, lineChartOptions);
+        },
+        load: function () {
+            app.pages.master_page.pages.dashboard.onOpen();
+        },
+        getDependencies: function (callback) {
+            var nec = {
+                rooms: {
+                    _asc: ["number"]
+                },
+                room_categories: {}
+            };
+            bee.get(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([], []);
+                } else {
+                    callback(hny.rooms, hny.room_categories);
+                }
+            });
+        },
+        onOpen: function () {
+            //get the dependencies
+            app.pages.master_page.pages.dashboard.showLoaders();
+            app.pages.master_page.pages.dashboard.getDependencies(function (rooms, categories) {
+                app.pages.master_page.pages.dashboard.hideLoaders();
+                app.pages.master_page.pages.dashboard.getBokings(rooms, categories);
+            });
+        }
+    }
+</script>

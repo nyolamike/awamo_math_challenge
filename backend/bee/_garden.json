@@ -169,11 +169,7 @@
     "_for": "_garden.json",
     "_modules":[
         {"sub_of":"","name":"dashboard","code":"dashboard","cost":300,"description":""},
-        {"sub_of":"","name":"front desk","code":"frontdesk","cost":300,"description":""},
-        {"sub_of":"","name":"bookings","code":"bookings","cost":300,"description":""},
-        {"sub_of":"","name":"guests","code":"guests","cost":300,"description":""},
-        {"sub_of":"","name":"rooms","code":"rooms","cost":300,"description":""},
-        {"sub_of":"","name":"inventory","code":"inventory","cost":300,"description":""},
+        {"sub_of":"","name":"operations","code":"operations","cost":300,"description":""},
         {"sub_of":"","name":"reports","code":"report","cost":300,"description":""},
         {"sub_of":"","name":"security","code":"security","cost":300,"description":""},
         {"sub_of":"","name":"configurations","code":"config","cost":300,"description":""}

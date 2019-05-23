@@ -1,0 +1,2096 @@
+<div class="content-wrapper content-height page_content page_content_hidden " id="page_content_inventory_page">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1 class="inline_h1">
+            <i class="fa fa-balance-scale lime"></i>
+            Inventory
+            <small>stock management</small>
+        </h1>
+
+        <div data-for="inventory_page_stockouts" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_stockout_r1 active_sub_module">
+            <a href="#">
+                <i class="fa  fa-upload"></i>
+                <span>Stokout</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+        <div data-for="inventory_page_stockins" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_stockin_r1">
+            <a href="#">
+                <i class="fa  fa-download"></i>
+                <span>Stockin</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+        <div data-for="inventory_page_stores" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_store_r1">
+            <a href="#">
+                <i class="fa  fa-institution"></i>
+                <span>Stores</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+        <div data-for="inventory_page_transfers" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_stock_transfer_r1">
+            <a href="#">
+                <i class="fa  fa-exchange"></i>
+                <span>Transfers</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+        <div data-for="inventory_page_alerts" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_item_r1">
+            <a href="#">
+                <i class="fa  fa-bell"></i>
+                <span>Alerts</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+        <div data-for="inventory_page_items" class="inventory_sub_menu app_sub_menu_item disabled_sub_module app_action_item disabled_action app_action_item_r1 ">
+            <a href="#">
+                <i class="fa  fa-cubes"></i>
+                <span>Items</span>
+                <i class="fa  fa-chevron-right pull-right chev cutout2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="inventory_page inventory_page_active " id="inventory_page_stockouts">
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box inventory-cart-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Stockout cart </h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" id="inventory_page_toggle_stockout_form" class="btn btn-box-tool app_action_item disabled_action app_action_stockout_c1"
+                                    data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="items">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="padding: 0px;">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages" style="padding: 0px;">
+                                <label class="ml-10">Selected Store:
+                                    <span>
+                                        <b id="inventory_page_stockout_selected_store_display"></b>
+                                    </span>
+                                </label>
+                                <br/>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Units</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventory_page_stockout_cart">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--/.direct-chat-messages-->
+
+                            <!-- Contacts are loaded here -->
+                            <div class="direct-chat-contacts">
+                                <form role="form">
+
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Document No.</label>
+                                            <input type="text" class="form-control" id="document_number_stockout_cart_input" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Store</label>
+                                            <select class="form-control" id="store_stockout_cart_select" style="width: 100%;"></select>
+                                        </div>
+                                        <hr/>
+                                        <h4 class="center-text">Add items to stockout</h4>
+                                        <div class="form-group">
+                                            <label>Item</label>
+                                            <select class="form-control" id="items-stockout-cart-select" style="width: 100%;"></select>
+                                        </div>
+                                        <label>Quantity</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="inventory_page_stockout_cart_quantity_input" />
+                                            <span class="input-group-addon" id="inventory_page_stockout_cart_unit_display"></span>
+                                        </div>
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stockout_unit_input">
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stockout_store_input">
+                                    </div>
+                                    <br/>
+                                    <button type="button" id="inventory_page_stockout_item_form_submit_btn" class="btn btn-warning pull-right app_action_item disabled_action app_action_stockout_c1">Add Item</button>
+                                    <button type="button" id="inventory_page_stockout_close_form_submit_btn" class="btn btn-default pull-left app_action_item disabled_action app_action_stockout_c1">close form</button>
+                                </form>
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" id="inventory_page_stockout_form_clear_btn" class="btn btn-info pull-left">Clear</button>
+                            <button type="button" id="inventory_page_stockout_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_stockout_c1">Submit</button>
+                        </div>
+                        <div id="stockout_cart_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+                <div class="col-lg-8">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box-log">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Stockout History</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" id="stockout_page_history_list">
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer" id="stockout_page_history_footer">
+                            <button class="btn btn-sm btn-warning pull-left" id="stockout_page_history_filter_btn">
+                                <i class="fa fa-filter"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger pull-left ml-20" id="stockout_page_history_clear_filters-btn">
+                                <i class="fa fa-eraser"></i> Clear filters
+                            </button>
+                            <button class="btn btn-sm btn-success pull-right" id="stockout_page_history_refresh_btn">
+                                <i class="fa fa-refresh"></i> Refresh
+                            </button>
+                            <div class="clear-fix"></div>
+                            <br/>
+                            <br/>
+                            <!-- Date and time range -->
+                            <div class="form-group">
+                                <label>Date and time range:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding-bottom: 14px;">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right range-picker" id="stockoutTime">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                            <div class="form-group ">
+                                <label>Products</label>
+                                <select class="form-control select2" multiple="multiple" data-placeholder="Select products" style="width: 100%;" id="stockout_page_history_products_select">
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="search ...">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div id="stockouts_list_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+            </div>
+        </div>
+        <div class="inventory_page" id="inventory_page_stockins">
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box inventory-cart-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Stockin cart </h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" id="inventory_page_toggle_stockin_form" class="btn btn-box-tool app_action_item disabled_action app_action_stockin_c1"
+                                    data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="items">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="padding: 0px;">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages" style="padding: 0px;">
+                                <label class="ml-10">Selected Store:
+                                    <span>
+                                        <b id="inventory_page_stockin_selected_store_display"></b>
+                                    </span>
+                                </label>
+                                <br/>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Units</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventory_page_stockin_cart">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--/.direct-chat-messages-->
+
+                            <!-- Contacts are loaded here -->
+                            <div class="direct-chat-contacts">
+                                <form role="form">
+
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Document No.</label>
+                                            <input type="text" class="form-control" id="document_number_stockin_cart_input" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Store</label>
+                                            <select class="form-control" id="store_stockin_cart_select" style="width: 100%;"></select>
+                                        </div>
+                                        <hr/>
+                                        <h4 class="center-text">Add items to stockin</h4>
+                                        <div class="form-group">
+                                            <label>Item</label>
+                                            <select class="form-control" id="items-stockin-cart-select" style="width: 100%;"></select>
+                                        </div>
+                                        <label>Quantity</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="inventory_page_stockin_cart_quantity_input" />
+                                            <span class="input-group-addon" id="inventory_page_stockin_cart_unit_display"></span>
+                                        </div>
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stockin_unit_input">
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stockin_store_input">
+                                    </div>
+                                    <br/>
+                                    <button type="button" id="inventory_page_stockin_item_form_submit_btn" class="btn btn-warning pull-right app_action_item disabled_action app_action_stockin_c1">Add Item</button>
+                                    <button type="button" id="inventory_page_stockin_close_form_submit_btn" class="btn btn-default pull-left app_action_item disabled_action app_action_stockin_c1">close form</button>
+                                </form>
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" id="inventory_page_stockin_form_clear_btn" class="btn btn-info pull-left">Clear</button>
+                            <button type="button" id="inventory_page_stockin_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_stockin_c1">Submit</button>
+                        </div>
+                        <div id="stockin_cart_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+                <div class="col-lg-8">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box-log">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Stockin History</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" id="stockin_page_history_list">
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer" id="stockin_page_history_footer">
+                            <button class="btn btn-sm btn-warning pull-left" id="stockin_page_history_filter_btn">
+                                <i class="fa fa-filter"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger pull-left ml-20" id="stockin_page_history_clear_filters-btn">
+                                <i class="fa fa-eraser"></i> Clear filters
+                            </button>
+                            <button class="btn btn-sm btn-success pull-right" id="stockin_page_history_refresh_btn">
+                                <i class="fa fa-refresh"></i> Refresh
+                            </button>
+                            <div class="clear-fix"></div>
+                            <br/>
+                            <br/>
+                            <!-- Date and time range -->
+                            <div class="form-group">
+                                <label>Date and time range:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding-bottom: 14px;">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right range-picker" id="stockinTime">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                            <div class="form-group ">
+                                <label>Products</label>
+                                <select class="form-control select2" multiple="multiple" data-placeholder="Select products" style="width: 100%;" id="stockin_page_history_products_select">
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="search ...">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div id="stockins_list_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+            </div>
+        </div>
+        <div class="inventory_page" id="inventory_page_stores">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="box box-info tall-box-store ">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Stores</h3>
+                        </div>
+                        <div class="box-body no-padding">
+                            <table class="table table-striped">
+                                <tbody id="stores-list">
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inventory_page_store_form_name_input" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inventory_page_store_form_description_input" placeholder="Description">
+                            </div>
+                            <button type="button" id="inventory_page_store_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_role_c1">Submit</button>
+                        </div>
+                        <div id="stores_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+
+                </div>
+            </div>
+        </div>
+        <div class="inventory_page" id="inventory_page_transfers">
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box inventory-cart-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Transfer cart </h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" id="inventory_page_toggle_stock_transfer_form" class="btn btn-box-tool app_action_item disabled_action app_action_stock_transfer_c1"
+                                    data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="items">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="padding: 0px;">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages" style="padding: 0px;">
+                                <label class="ml-10">From Store:
+                                    <span>
+                                        <b id="inventory_page_stock_transfer_From_selected_store_display"></b>
+                                    </span>
+                                </label><br/>
+                                <label class="ml-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    To Store:
+                                    <span>
+                                        <b id="inventory_page_stock_transfer_To_selected_store_display"></b>
+                                    </span>
+                                </label>
+                                <br/>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30px">#</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Units</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventory_page_stock_transfer_cart">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--/.direct-chat-messages-->
+
+                            <!-- Contacts are loaded here -->
+                            <div class="direct-chat-contacts">
+                                <form role="form">
+
+                                    <div class="box-body">
+                                        
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Document No.</label>
+                                                    <input type="text" class="form-control" id="document_number_stock_transfer_cart_input" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Notes</label>
+                                                    <input type="text" class="form-control" id="notes_stock_transfer_cart_input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>From Store</label>
+                                                    <select class="form-control" id="store_stock_transfer_from_cart_select" style="width: 100%;"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>To Store</label>
+                                                    <select class="form-control" id="store_stock_transfer_to_cart_select" style="width: 100%;"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Item</label>
+                                            <select class="form-control" id="items-stock-transfer-cart-select" style="width: 100%;"></select>
+                                        </div>
+                                        <label>Quantity</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="inventory_page_stock_transfer_cart_quantity_input" />
+                                            <span class="input-group-addon" id="inventory_page_stock_transfer_cart_unit_display"></span>
+                                        </div>
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stock_transfer_unit_input">
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stock_transfer_from_store_input">
+                                        <input type="hidden" value="0" class="form-control" id="inventory_page_stock_transfer_to_store_input">
+                                    </div>
+                                    <br/>
+                                    <button type="button" id="inventory_page_stock_transfer_item_form_submit_btn" class="btn btn-warning pull-right app_action_item disabled_action app_action_stockin_c1">Add Item</button>
+                                    <button type="button" id="inventory_page_stock_transfer_close_form_submit_btn" class="btn btn-default pull-left app_action_item disabled_action app_action_stockin_c1">close form</button>
+                                </form>
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="button" id="inventory_page_stock_transfer_form_clear_btn" class="btn btn-info pull-left">Clear</button>
+                            <button type="button" id="inventory_page_stock_transfer_form_submit_btn" class="btn btn-success pull-right app_action_item disabled_action app_action_stock_transfer_c1">Submit</button>
+                        </div>
+                        <div id="stock_transfer_cart_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+                <div class="col-lg-8">
+                    <!-- DIRECT CHAT SUCCESS -->
+                    <div class="box box-success direct-chat direct-chat-success tall-box-log">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Transfer History</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" id="stock_transfer_page_history_list">
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer" id="stock_transfer_page_history_footer">
+                            <button class="btn btn-sm btn-warning pull-left" id="stock_transfer_page_history_filter_btn">
+                                <i class="fa fa-filter"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger pull-left ml-20" id="stock_transfer_page_history_clear_filters-btn">
+                                <i class="fa fa-eraser"></i> Clear filters
+                            </button>
+                            <button class="btn btn-sm btn-success pull-right" id="stock_transfer_page_history_refresh_btn">
+                                <i class="fa fa-refresh"></i> Refresh
+                            </button>
+                            <div class="clear-fix"></div>
+                            <br/>
+                            <br/>
+                            <!-- Date and time range -->
+                            <div class="form-group">
+                                <label>Date and time range:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="padding-bottom: 14px;">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right range-picker" id="stock_transferTime">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                            <div class="form-group ">
+                                <label>Products</label>
+                                <select class="form-control select2" multiple="multiple" data-placeholder="Select products" style="width: 100%;" id="stock_transfer_page_history_products_select">
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="search ...">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div id="stock_transfer_list_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+            </div>
+        </div>
+        <div class="inventory_page " id="inventory_page_alerts">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <div class="box box-primary tall-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">The following items are running out</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" id="inventory_page_refresh_btn" class="btn btn-box-tool btn-warning">
+                                    <i class="fa fa-refresh" style="color:white;"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30px">#</th>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Unit</th>
+                                        <th>Alert Level</th>
+                                        <th>Quantity Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="items-list-alerts">
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div id="items_list_alert_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+        <div class="inventory_page " id="inventory_page_items">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="box box-primary tall-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Items</h3>
+                            <div class="input-group pull-right" style="width:50%">
+                                <input type="text" name="q" class="form-control" id="item-search-input" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="submit" name="search" id="item-search-btn" class="btn btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" id="products_box">
+                            <ul class="products-list product-list-in-box" id="items_list"></ul>
+                        </div>
+                        <!-- /.box-body -->
+                        <div id="items_list_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="box box-primary tall-box pt-0">
+                        <div class="box-body pt-0 h450" id="inventory_page_add_item_form_div">
+                            <div class="nav-tabs-custom items-form-tabs no-shadow">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#items_form_basic_tab" data-toggle="tab">Basic Info</a>
+                                    </li>
+                                    <li>
+                                        <a href="#items_form_more_tab" data-toggle="tab">More</a>
+                                    </li>
+                                    <li>
+                                        <a href="#items_form_finish_tab" data-toggle="tab">Finish</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content items-form-tabs-content">
+                                    <div class="tab-pane active" id="items_form_basic_tab">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_name_input" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_code_input" placeholder="Code">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_cost_price_input" placeholder="Cost Price">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_selling_price_input" placeholder="Selling Price">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_notification_level_input" placeholder="Notification Level">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_size_input" placeholder="Size">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_color_input" placeholder="Color">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_description_input" placeholder="Description">
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="items_form_more_tab">
+                                        <div class="form-group">
+                                            Item Type
+                                            <select class="form-control" id="inventory_page_item_form_type_select">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            Item Category
+                                            <select class="form-control" id="inventory_page_item_form_category_select">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            Brand / Manufacturer
+                                            <select class="form-control" id="inventory_page_item_form_brand_select">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            Units
+                                            <select class="form-control" id="inventory_page_item_form_unit_select">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            Section
+                                            <select class="form-control" id="inventory_page_item_form_section_select">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane active" id="items_form_finish_tab">
+                                        <input type='file' id="item-form-image-file-input" style="height: 0px;width: 0px;visibility: hidden;position: absolute;"
+                                        />
+                                        <div class="item-form-image-preview-div">
+                                            <img id="item-form-image-preview" class="image-select-display" src="#" alt="item avatar" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="blocked-cb">
+                                                <input id="inventory_page_item_form_is_tracked_checkbox" type="checkbox" value="" class="an-icheck-minimal"> Is tracked
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_quantity_input" placeholder="Current Quantity">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_serial_number1_input" placeholder="Serial Number">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_serial_number2_input" placeholder="Serial Number2">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_serial_number3_input" placeholder="Serial Number3">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_serial_number4_input" placeholder="Serial Number4">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inventory_page_item_form_extras_input" placeholder="Extras">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" id="inventory_page_item_form_clear_btn" class="btn btn-default ml-10 pull-left ">Clear</button>
+                            <button type="button" id="inventory_page_item_form_submit_btn" class="btn btn-success mr-10 pull-right app_action_item disabled_action app_action_item_c1">Submit</button>
+                        </div>
+                        <div id="items_form_overlay" class="overlay overlay-hidden">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+    app.pages.master_page.pages.inventory = {
+        id: "inventory",
+        showItemsLoader: function () {
+            $("#items_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideItemsLoader: function () {
+            $("#items_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        itemUploadedImage: "",
+        itemIsTrackedInput: 0,
+        getItemNector: function () {
+            var nec = {
+                item: {
+                    item_type_id: $("#inventory_page_item_form_type_select").val(),
+                    item_category_id: $("#inventory_page_item_form_category_select").val(),
+                    brand_id: $("#inventory_page_item_form_brand_select").val(),
+                    unit_id: $("#inventory_page_item_form_unit_select").val(),
+                    section_id: $("#inventory_page_item_form_section_select").val(),
+                    name: $("#inventory_page_item_form_name_input").val(),
+                    code: $("#inventory_page_item_form_code_input").val(),
+                    description: $("#inventory_page_item_form_description_input").val(),
+                    cost_price: $("#inventory_page_item_form_cost_price_input").val(),
+                    selling_price: $("#inventory_page_item_form_selling_price_input").val(),
+                    quantity: $("#inventory_page_item_form_quantity_input").val(),
+                    is_tracked: app.pages.master_page.pages.inventory.itemIsTrackedInput,
+                    notification_level: $("#inventory_page_item_form_notification_level_input").val(),
+                    serial_number1: $("#inventory_page_item_form_serial_number1_input").val(),
+                    serial_number2: $("#inventory_page_item_form_serial_number2_input").val(),
+                    serial_number3: $("#inventory_page_item_form_serial_number3_input").val(),
+                    serial_number4: $("#inventory_page_item_form_serial_number4_input").val(),
+                    size: $("#inventory_page_item_form_size_input").val(),
+                    color: $("#inventory_page_item_form_color_input").val(),
+                    extras: $("#inventory_page_item_form_extras_input").val()
+                }
+            };
+            var image = app.pages.master_page.pages.inventory.itemUploadedImage;
+            var def = bee.baseUrl + "bee/images/default_product.png";
+            if (image.length > 0 && image != def) {
+                nec.item["_file_image"] = image;
+            }
+            return nec;
+        },
+        clearItemForm: function () {
+            $("#inventory_page_item_form_name_input").val("");
+            $("#inventory_page_item_form_code_input").val("");
+            $("#inventory_page_item_form_description_input").val("");
+            $("#inventory_page_item_form_cost_price_input").val("");
+            $("#inventory_page_item_form_selling_price_input").val("");
+            $("#inventory_page_item_form_quantity_input").val("");
+            app.pages.master_page.pages.inventory.itemIsTrackedInput = 0;
+            $("#inventory_page_item_form_notification_level_input").val("");
+            $("#inventory_page_item_form_serial_number1_input").val("");
+            $("#inventory_page_item_form_serial_number2_input").val("");
+            $("#inventory_page_item_form_serial_number3_input").val("");
+            $("#inventory_page_item_form_serial_number4_input").val("");
+            $("#inventory_page_item_form_size_input").val("");
+            $("#inventory_page_item_form_color_input").val("");
+            $("#inventory_page_item_form_extras_input").val("");
+            var def = bee.baseUrl + "bee/images/default_product.png";
+            $("#item-form-image-preview").attr("src", def);
+            app.pages.master_page.pages.inventory.itemUploadedImage = "";
+            $("#inventory_page_item_form_is_tracked_checkbox").iCheck("uncheck");
+        },
+        getItemsFromServer: function (callback) {
+            var rnec = {
+                items: {
+                    _asc: ["name"],
+                    item_type: {},
+                    item_category: {},
+                    brand: {},
+                    unit: {},
+                    section: {}
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.items);
+                }
+            });
+        },
+        indexedRenderedItems: {},
+        renderItemsList: function (items) {
+            app.pages.master_page.pages.inventory.indexedRenderedItems = {};
+            $("#items_list").html("");
+            $("#items-stockout-cart-select").html("");
+            $("#items-stockin-cart-select").html("");
+            $("#items-stock-transfer-cart-select").html("");
+            var html = "";
+            var soSelect = "";
+            //console.log(items);
+            for (let i = 0; i < items.length; i++) {
+                var item = items[i];
+
+                soSelect = soSelect + "<option value='" + item.id + "' >" + item.name + "</option>";
+
+                app.pages.master_page.pages.inventory.indexedRenderedItems[item.id] = item;
+
+                var img = item.image;
+                if (typeof img == "undefined" || img == null || img.length == 0 || img == "default_product.png") {
+                    img = bee.baseUrl + "bee/images/default_product.png";
+                } else {
+                    img = bee.baseUrl + img;
+                }
+                var sm = "<small class=\"small_item_details\"> " + item.item_type.name + ", " + item.item_category.name + ", " + item.brand.name + "</small>";
+                var details = item.description + ":: " + app.com(item.size) + app.com(item.color) + app.com(item.extras, "") + " ";
+                details = details + app.com(item.serial_number1) + app.com(item.serial_number2) + app.com(item.serial_number3) + app.com(item.serial_number4, "");
+                html = html + "<li class=\"item\">";
+                html = html + "     <div class=\"product-img\">";
+                html = html + "         <img src=\"" + img + "\" alt=\"Product Image\">";
+                html = html + "     </div>";
+                html = html + "     <div class=\"product-info\">";
+                html = html + "         <a href=\"javascript:void(0)\" class=\"product-title\">" + item.name + "(" + item.code + ")" + sm;
+                html = html + "             <span class=\"label label-warning min-lab pull-right \">" + item.cost_price + " pulla</span>";
+                html = html + "             <span class=\"label label-success min-lab pull-right mr-10\">" + item.selling_price + " pulla</span>";
+                html = html + "         </a>";
+                html = html + "         <span class=\"product-description\">";
+                html = html + "             " + details;
+                if (item.is_tracked == 1) {
+                    html = html + "         <span class=\"label label-info min-lab pull-right \">" + item.quantity + " " + item.unit.symbol + " left</span>";
+                    html = html + "         <span class=\"label label-default min-lab pull-right mr-10 \"> tracked@" + item.notification_level + " " + item.unit.symbol + "</span>";
+                }
+                html = html + "         </span>";
+                html = html + "     </div>";
+                html = html + "</li>";
+            }
+            $("#items_list").html(html);
+
+
+            //stockout cart
+            //console.log(soSelect);
+            $("#items-stockout-cart-select").html(soSelect);
+            $("#items-stockout-cart-select").select2();
+            $("#items-stockout-cart-select").on("select2:select", function (e) {
+                var data = e.params.data;
+                var itemId = data.element.value;
+                var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                $("#inventory_page_stockout_cart_unit_display").html(item.unit.symbol);
+                $("#inventory_page_stockout_unit_input").val(item.unit.id);
+            });
+
+            //stockin cart
+            //console.log(soSelect);
+            $("#items-stockin-cart-select").html(soSelect);
+            $("#items-stockin-cart-select").select2();
+            $("#items-stockin-cart-select").on("select2:select", function (e) {
+                var data = e.params.data;
+                var itemId = data.element.value;
+                var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                $("#inventory_page_stockin_cart_unit_display").html(item.unit.symbol);
+                $("#inventory_page_stockin_unit_input").val(item.unit.id);
+            });
+
+            //stock transfer
+            $("#items-stock-transfer-cart-select").html(soSelect);
+            $("#items-stock-transfer-cart-select").select2();
+            $("#items-stock-transfer-cart-select").on("select2:select", function (e) {
+                var data = e.params.data;
+                var itemId = data.element.value;
+                var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                $("#inventory_page_stock_transfer_cart_unit_display").html(item.unit.symbol);
+                $("#inventory_page_stock_transfer_unit_input").val(item.unit.id);
+            });
+
+
+            if (items.length > 0) {
+                $("#inventory_page_stockout_cart_unit_display").html(items[0].unit.symbol);
+                $("#inventory_page_stockout_unit_input").val(items[0].unit.id);
+                $("#inventory_page_stockin_cart_unit_display").html(items[0].unit.symbol);
+                $("#inventory_page_stockin_unit_input").val(items[0].unit.id);
+                $("#inventory_page_stock_transfer_cart_unit_display").html(items[0].unit.symbol);
+                $("#inventory_page_stock_transfer_unit_input").val(items[0].unit.id);
+            }
+
+        },
+        showItemsListLoader: function () {
+            $("#items_list_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideItemsListLoader: function () {
+            $("#items_list_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        showItemsListAlertLoader: function () {
+            $("#items_list_alert_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideItemsListAlertLoader: function () {
+            $("#items_list_alert_overlay").addClass("overlay-hidden");//hide loader
+        },
+        renderItemsAlert: function (items) { },
+        showStoresLoader: function () {
+            $("#stores_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideStoresLoader: function () {
+            $("#stores_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getStoreNector: function () {
+            var nec = {
+                store: {
+                    name: $("#inventory_page_store_form_name_input").val(),
+                    description: $("#inventory_page_store_form_description_input").val()
+                }
+            };
+            return nec;
+        },
+        clearStoreForm: function () {
+            $("#inventory_page_store_form_name_input").val("");
+            $("#inventory_page_store_form_description_input").val("");
+        },
+        getStoresFromServer: function (callback) {
+            var rnec = {
+                stores: {
+                    _asc: ["name"]
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    callback(hny.stores);
+                }
+            });
+        },
+        loadedStores: [],
+        renderStoresList: function (stores) {
+            app.pages.master_page.pages.inventory.loadedStores = stores;
+            $("#stores-list").html("");
+            var html = "";
+            var soSelect = "";
+            for (let i = 0; i < stores.length; i++) {
+                var store = stores[i];
+                html = html + "<tr class=\"store-row\">";
+                html = html + " <td>" + store.name + "</td>";
+                html = html + " <td> <span class=\"store-desc\">" + store.description + "</span></td>";
+                html = html + "</tr>";
+                soSelect = soSelect + "<option value=\"" + store.id + "\">" + store.name + "</option>";
+            }
+            $("#stores-list").html(html);
+
+            if (stores.length > 0) {
+                $("#inventory_page_stockout_selected_store_display").html(stores[0].name);
+                $("#inventory_page_stockout_store_input").val(stores[0].id);
+                $("#inventory_page_stockin_selected_store_display").html(stores[0].name);
+                $("#inventory_page_stockin_store_input").val(stores[0].id);
+
+                $("#inventory_page_stock_transfer_From_selected_store_display").html(stores[0].name);
+                $("#inventory_page_stock_transfer_from_store_input").val(stores[0].id);
+                if (stores.length > 1) {
+                    $("#inventory_page_stock_transfer_To_selected_store_display").html(stores[1].name);
+                    $("#inventory_page_stock_transfer_to_store_input").val(stores[1].id);
+                }
+            }
+
+            //store
+            $("#store_stockout_cart_select").html(soSelect);
+            $('#store_stockout_cart_select').on('change', function (e) {
+                //console.log($(this).val());
+                var idx = $(this).val();
+                var st = null;
+                for (var i = 0; i < app.pages.master_page.pages.inventory.loadedStores.length; i++) {
+                    var store = app.pages.master_page.pages.inventory.loadedStores[i];
+                    if ((store.id + "") == idx) {
+                        st = store;
+                        break;
+                    }
+                }
+                if (st != null) {
+                    $("#inventory_page_stockout_selected_store_display").html(store.name);
+                    $("#inventory_page_stockout_store_input").val(store.id);
+                }
+            });
+            $("#store_stockin_cart_select").html(soSelect);
+            $('#store_stockin_cart_select').on('change', function (e) {
+                //console.log($(this).val());
+                var idx = $(this).val();
+                var st = null;
+                for (var i = 0; i < app.pages.master_page.pages.inventory.loadedStores.length; i++) {
+                    var store = app.pages.master_page.pages.inventory.loadedStores[i];
+                    if ((store.id + "") == idx) {
+                        st = store;
+                        break;
+                    }
+                }
+                if (st != null) {
+                    $("#inventory_page_stockin_selected_store_display").html(store.name);
+                    $("#inventory_page_stockin_store_input").val(store.id);
+                }
+            });
+            $("#store_stock_transfer_from_cart_select").html(soSelect);
+            $('#store_stock_transfer_from_cart_select').on('change', function (e) {
+                //console.log($(this).val());
+                var idx = $(this).val();
+                var st = null;
+                for (var i = 0; i < app.pages.master_page.pages.inventory.loadedStores.length; i++) {
+                    var store = app.pages.master_page.pages.inventory.loadedStores[i];
+                    if ((store.id + "") == idx) {
+                        st = store;
+                        break;
+                    }
+                }
+                if (st != null) {
+                    $("#inventory_page_stock_transfer_From_selected_store_display").html(store.name);
+                    $("#inventory_page_stock_transfer_from_store_input").val(store.id);
+                }
+            });
+            $("#store_stock_transfer_to_cart_select").html(soSelect);
+            $('#store_stock_transfer_to_cart_select').on('change', function (e) {
+                //console.log($(this).val());
+                var idx = $(this).val();
+                var st = null;
+                for (var i = 0; i < app.pages.master_page.pages.inventory.loadedStores.length; i++) {
+                    var store = app.pages.master_page.pages.inventory.loadedStores[i];
+                    if ((store.id + "") == idx) {
+                        st = store;
+                        break;
+                    }
+                }
+                if (st != null) {
+                    $("#inventory_page_stock_transfer_To_selected_store_display").html(store.name);
+                    $("#inventory_page_stock_transfer_to_store_input").val(store.id);
+                }
+            });
+            if (stores.length > 1) {
+                $("#store_stock_transfer_to_cart_select").val(stores[1].id);
+            }
+        
+        },
+        loadItemsAlert: function () {
+            var nec = {
+                items: {
+                    unit: {},
+                    _asc: ["name"],
+                    _w: [
+                        [
+                            ["quantity", "lte", "_fx_x_notification_level"],
+                            "AND",
+                            ["is_tracked", "=", 1]
+                        ]
+                    ]
+                }
+            };
+            app.pages.master_page.pages.inventory.showItemsListAlertLoader();
+            bee.get(nec, function (hny) {
+                app.pages.master_page.pages.inventory.hideItemsListAlertLoader();
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                } else {
+                    $("#items-list-alerts").html("");
+                    var html = "";
+                    for (var ind = 0; ind < hny.items.length; ind++) {
+                        var item = hny.items[ind];
+                        html = html + "<tr>";
+                        html = html + "   <td>" + (ind + 1) + "</td>";
+                        html = html + "   <td>" + item.name + "</td>";
+                        html = html + "   <td>" + item.code + "</td>";
+                        html = html + "   <td>" + item.unit.name + "</td>";
+                        html = html + "   <td>" + item.notification_level + "</td>";
+                        html = html + "   <td>" + item.quantity + "</td>";
+                        html = html + "</tr>";
+                    }
+                    $("#items-list-alerts").html(html);
+                }
+            });
+        },
+        stockoutCartItems: [],
+        addStockoutItem: function (item, quantity) {
+            app.pages.master_page.pages.inventory.stockoutCartItems.push({
+                id: item.id,
+                name: item.name,
+                quantity: quantity,
+                unit_name: item.unit.name,
+                unit_id: item.unit.id,
+                cost_price: item.cost_price
+            });
+            app.pages.master_page.pages.inventory.renderStockoutCart();
+        },
+        removeStockoutItem: function (index) {
+            app.pages.master_page.pages.inventory.stockoutCartItems.splice(index, 1);
+            app.pages.master_page.pages.inventory.renderStockoutCart();
+        },
+        renderStockoutCart: function () {
+            var set = app.pages.master_page.pages.inventory.stockoutCartItems;
+            var html = "";
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                html = html + "<tr>";
+                html = html + " <td>" + (i + 1) + "</td>";
+                html = html + " <td>" + item.name + "</td>";
+                html = html + " <td>" + item.quantity + "</td>";
+                html = html + " <td>" + item.unit_name + "</td>";
+                html = html + "</tr>";
+            }
+            $("#inventory_page_stockout_cart").html(html);
+        },
+        clearStockoutcart: function () {
+            app.pages.master_page.pages.inventory.stockoutCartItems = [];
+            app.pages.master_page.pages.inventory.renderStockoutCart();
+        },
+        getStockoutNector: function () {
+            var num = $("#document_number_stockout_cart_input").val();
+            num = num.trim();
+            var soi = [];
+            var set = app.pages.master_page.pages.inventory.stockoutCartItems;
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                soi.push({
+                    _fk_stockout_id: "stockout",
+                    item_id: item.id,
+                    unit_id: item.unit_id,
+                    cost_price: item.cost_price,
+                    quantity: item.quantity
+                });
+            }
+            var nec = {
+                stockout: {
+                    _now_date_time: 1,
+                    store_id: $("#store_stockout_cart_select").val(),
+                    notes: $("#notes_stockout_cart_select").val()
+                },
+                stockout_items: soi
+            };
+            console.log("olaba",nec);
+            if (num.length == 0) {
+                nec.stockout["_rnd_document_number"] = 1; //auto document number
+            } else {
+                nec.stockout["document_number"] = num;
+            }
+            return nec;
+        },
+        updateItemQuantities: function(){
+            var nec = {
+                _fxc_items: {
+                    quantity: {
+                        _diff:{
+                            _sum_stockin_items: "quantity",
+                            _sum_stockout_items:"quantity"
+                        }
+                    }
+                }
+            };
+            bee.update(nec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                } else {
+                    app.pages.master_page.pages.inventory.loadItemsAlert();
+                    app.pages.master_page.pages.inventory.getItemsFromServer(
+                        app.pages.master_page.pages.inventory.renderItemsList
+                    );
+                }
+            });
+        },
+        showStockoutLoader: function () {
+            $("#stockout_cart_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideStockoutLoader: function () {
+            $("#stockout_cart_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getStockoutsFromServer: function (limit, page, callback) {
+            var rnec = {
+                stockouts: {
+                    _desc: ["date_time"],
+                    store: {},
+                    _pg: limit + "." + page,
+                    stockout_items: {
+                        item: {},
+                        unit: {}         
+                    }
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    //console.log("jerrry ",hny.stockouts);
+                    callback(hny.stockouts);
+                }
+            });
+        },
+        renderStockoutList: function (items) {
+            $("#stockout_page_history_list").html("");
+            var row = 1;
+            var html = "";
+            html = html + "<table class=\"table table-striped tree\" id=\"stockout_page_history_list_table\" >";
+            html = html + "     <tr class=\"treegrid-"+row+"\" >";
+            html = html + "         <td>RECORD</td>";
+            html = html + "         <td>ITEM</td>";
+            html = html + "         <td>QUANTITY</td>";
+            html = html + "         <td>UNITS</td>";
+            html = html + "     </tr>"; 
+            row = row + 1;
+            for (let i = 0; i < items.length; i++) {
+                var item = items[i];
+                
+                var d = new Date();
+                d.setTime(item.date_time * 1000);
+                //var m = moment(d);
+                var desc =  d.toLocaleString() + " <span class=\"pull-right\">" + item.store.name + " @" + item.document_number + "</span>"; 
+                if(item.notes !== null && item.notes.length  > 0){
+                    desc = desc + "<span>"+item.notes+"</span>";
+                }
+                html = html + "     <tr class=\"treegrid-"+row+" tree-rec\">";
+                html = html + "         <td colspan=\"4\">"+ desc +"</td>";
+                html = html + "     </tr>"; 
+                var parent = row;
+                row = row + 1;
+                for (let j = 0; j < item.stockout_items.length; j++) {
+                    var soi = item.stockout_items[j];
+                    html = html + " <tr class=\"treegrid-"+row+" treegrid-parent-"+parent+"\" >";
+                    html = html + "     <td></td>";
+                    html = html + "     <td>"+soi.item.name+"</td>";
+                    html = html + "     <td>"+soi.quantity+"</td>";
+                    html = html + "     <td>"+soi.unit.name+"</td>";
+                    html = html + " </tr>";
+                    row = row + 1;
+                }
+            }
+            html = html + "</table>";
+            //console.log(html);
+            $("#stockout_page_history_list").html(html);
+            $("#stockout_page_history_list_table").treegrid({
+                expanderExpandedClass: 'glyphicon glyphicon-minus',
+                expanderCollapsedClass: 'glyphicon glyphicon-plus'
+            });
+        },
+        stockoutPage: 1,
+        stockoutLimit: 10,
+        //stockin
+        stockinCartItems: [],
+        addStockinItem: function (item, quantity) {
+            app.pages.master_page.pages.inventory.stockinCartItems.push({
+                id: item.id,
+                name: item.name,
+                quantity: quantity,
+                unit_name: item.unit.name,
+                unit_id: item.unit.id,
+                cost_price: item.cost_price
+            });
+            app.pages.master_page.pages.inventory.renderStockinCart();
+        },
+        removeStockinItem: function (index) {
+            app.pages.master_page.pages.inventory.stockinCartItems.splice(index, 1);
+            app.pages.master_page.pages.inventory.renderStockinCart();
+        },
+        renderStockinCart: function () {
+            var set = app.pages.master_page.pages.inventory.stockinCartItems;
+            var html = "";
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                html = html + "<tr>";
+                html = html + " <td>" + (i + 1) + "</td>";
+                html = html + " <td>" + item.name + "</td>";
+                html = html + " <td>" + item.quantity + "</td>";
+                html = html + " <td>" + item.unit_name + "</td>";
+                html = html + "</tr>";
+            }
+            $("#inventory_page_stockin_cart").html(html);
+        },
+        clearStockincart: function () {
+            app.pages.master_page.pages.inventory.stockinCartItems = [];
+            app.pages.master_page.pages.inventory.renderStockinCart();
+        },
+        getStockinNector: function () {
+            var num = $("#document_number_stockin_cart_input").val();
+            num = num.trim();
+            var soi = [];
+            var set = app.pages.master_page.pages.inventory.stockinCartItems;
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                soi.push({
+                    _fk_stockin_id: "stockin",
+                    item_id: item.id,
+                    unit_id: item.unit_id,
+                    cost_price: item.cost_price,
+                    quantity: item.quantity
+                });
+            }
+            var nec = {
+                stockin: {
+                    _now_date_time: 1,
+                    store_id: $("#store_stockin_cart_select").val(),
+                    notes: $("#notes_stockin_cart_select").val()
+                },
+                stockin_items: soi
+            };
+            ///console.log("olaba",nec);
+            if (num.length == 0) {
+                nec.stockin["_rnd_document_number"] = 1; //auto document number
+            } else {
+                nec.stockin["document_number"] = num;
+            }
+            return nec;
+        },
+        showStockinLoader: function () {
+            $("#stockin_cart_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideStockinLoader: function () {
+            $("#stockin_cart_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getStockinsFromServer: function (limit, page, callback) {
+            var rnec = {
+                stockins: {
+                    _desc: ["date_time"],
+                    store: {},
+                    _pg: limit + "." + page,
+                    stockin_items: {
+                        item: {},
+                        unit: {}         
+                    }
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    //console.log("jerrry ",hny.stockouts);
+                    callback(hny.stockins);
+                }
+            });
+        },
+        renderStockinList: function (items) {
+            $("#stockin_page_history_list").html("");
+            var row = 1;
+            var html = "";
+            html = html + "<table class=\"table table-striped tree\" id=\"stockin_page_history_list_table\" >";
+            html = html + "     <tr class=\"treegrid-"+row+"\" >";
+            html = html + "         <td>RECORD</td>";
+            html = html + "         <td>ITEM</td>";
+            html = html + "         <td>QUANTITY</td>";
+            html = html + "         <td>UNITS</td>";
+            html = html + "     </tr>"; 
+            row = row + 1;
+            for (let i = 0; i < items.length; i++) {
+                var item = items[i];
+                
+                var d = new Date();
+                d.setTime(item.date_time * 1000);
+                //var m = moment(d);
+                var desc =  d.toLocaleString() + " <span class=\"pull-right\">" + item.store.name + " @" + item.document_number + "</span>"; 
+                if(item.notes !== null && item.notes.length  > 0){
+                    desc = desc + "<span>"+item.notes+"</span>";
+                }
+                html = html + "     <tr class=\"treegrid-"+row+" tree-rec\">";
+                html = html + "         <td colspan=\"4\">"+ desc +"</td>";
+                html = html + "     </tr>"; 
+                var parent = row;
+                row = row + 1;
+                for (let j = 0; j < item.stockin_items.length; j++) {
+                    var soi = item.stockin_items[j];
+                    html = html + " <tr class=\"treegrid-"+row+" treegrid-parent-"+parent+"\" >";
+                    html = html + "     <td></td>";
+                    html = html + "     <td>"+soi.item.name+"</td>";
+                    html = html + "     <td>"+soi.quantity+"</td>";
+                    html = html + "     <td>"+soi.unit.name+"</td>";
+                    html = html + " </tr>";
+                    row = row + 1;
+                }
+            }
+            html = html + "</table>";
+            //console.log(html);
+            $("#stockin_page_history_list").html(html);
+            $("#stockin_page_history_list_table").treegrid({
+                expanderExpandedClass: 'glyphicon glyphicon-minus',
+                expanderCollapsedClass: 'glyphicon glyphicon-plus'
+            });
+        },
+        stockinPage: 1,
+        stockinLimit: 10,
+        //end stockin
+        //stock_transfer
+        stocktransferCartItems: [],
+        addStocktransferItem: function (item, quantity) {
+            app.pages.master_page.pages.inventory.stocktransferCartItems.push({
+                id: item.id,
+                name: item.name,
+                quantity: quantity,
+                unit_name: item.unit.name,
+                unit_id: item.unit.id,
+                cost_price: item.cost_price
+            });
+            app.pages.master_page.pages.inventory.renderStocktransferCart();
+        },
+        removeStocktransferItem: function (index) {
+            app.pages.master_page.pages.inventory.stocktransferCartItems.splice(index, 1);
+            app.pages.master_page.pages.inventory.renderStocktransferCart();
+        },
+        renderStocktransferCart: function () {
+            var set = app.pages.master_page.pages.inventory.stocktransferCartItems;
+            var html = "";
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                html = html + "<tr>";
+                html = html + " <td>" + (i + 1) + "</td>";
+                html = html + " <td>" + item.name + "</td>";
+                html = html + " <td>" + item.quantity + "</td>";
+                html = html + " <td>" + item.unit_name + "</td>";
+                html = html + "</tr>";
+            }
+            $("#inventory_page_stock_transfer_cart").html(html);
+        },
+        clearStocktransfercart: function () {
+            app.pages.master_page.pages.inventory.stocktransferCartItems = [];
+            app.pages.master_page.pages.inventory.renderStocktransferCart();
+        },
+        getStocktransferNector: function () {
+            var num = $("#document_number_stock_transfer_cart_input").val();
+            num = num.trim();
+            var soi = [];
+            var stockinItems = [];
+            var stockoutItems = [];
+            var set = app.pages.master_page.pages.inventory.stocktransferCartItems;
+            for (var i = 0; i < set.length; i++) {
+                var item = set[i];
+                soi.push({
+                    _fk_stock_transfer_id: "stock_transfer",
+                    item_id: item.id,
+                    unit_id: item.unit_id,
+                    cost_price: item.cost_price,
+                    quantity: item.quantity
+                });
+                stockinItems.push({
+                    _fk_stockin_id: "stockin",
+                    item_id: item.id,
+                    unit_id: item.unit_id,
+                    cost_price: item.cost_price,
+                    quantity: item.quantity
+                });
+                stockoutItems.push({
+                    _fk_stockout_id: "stockout",
+                    item_id: item.id,
+                    unit_id: item.unit_id,
+                    cost_price: item.cost_price,
+                    quantity: item.quantity
+                });
+            }
+   
+            var fromStoreId = $("#store_stock_transfer_from_cart_select").val();
+            var toStoreId = $("#store_stock_transfer_to_cart_select").val();
+            var nec = {
+                stock_transfer: {
+                    _now_date_time: 1,
+                    store_id: fromStoreId,
+                    other_store_id:  toStoreId,
+                    notes: $("#notes_stock_transfer_cart_input").val()
+                },
+                stock_transfer_items: soi,
+                stockin: {
+                    _now_date_time: 1,
+                    store_id: toStoreId,
+                    notes: "ST"
+                },
+                stockin_items: stockinItems,
+                stockout: {
+                    _now_date_time: 1,
+                    store_id: fromStoreId,
+                    notes: "ST"
+                },
+                stockout_items: stockoutItems
+            };
+            ///console.log("olaba",nec);
+            if (num.length == 0) {
+                var rnd = Math.floor(Math.random() * Math.floor(9999));
+                nec.stock_transfer["document_number"] = rnd; //auto document number
+                nec.stockin.notes = nec.stockin.notes + "-" + rnd;
+                nec.stockout.notes = nec.stockout.notes + "-" + rnd;
+            } else {
+                nec.stock_transfer["document_number"] = num;
+                nec.stockin.notes = nec.stockin.notes + "-" + num;
+                nec.stockout.notes = nec.stockout.notes + "-" + num;
+            }
+            return nec;
+        },
+        showStocktransferLoader: function () {
+            $("#stock_transfer_cart_form_overlay").removeClass("overlay-hidden");//show loader
+        },
+        hideStocktransferLoader: function () {
+            $("#stock_transfer_cart_form_overlay").addClass("overlay-hidden");//hide loader
+        },
+        getStocktransfersFromServer: function (limit, page, callback) {
+            var rnec = {
+                stock_transfers: {
+                    _desc: ["date_time"],
+                    store: {},
+                    other_store: {},
+                    _pg: limit + "." + page,
+                    stock_transfer_items: {
+                        item: {},
+                        unit: {}         
+                    }
+                }
+            };
+            bee.get(rnec, function (hny) {
+                if (hny._errors.length > 0) {
+                    app.showErrors(hny._errors);
+                    callback([]);
+                } else {
+                    //console.log("jerrry ",hny.stockouts);
+                    callback(hny.stock_transfers);
+                }
+            });
+        },
+        renderStocktransferList: function (items) {
+            $("#stock_transfer_page_history_list").html("");
+            var row = 1;
+            var html = "";
+            html = html + "<table class=\"table table-striped tree\" id=\"stock_transfer_page_history_list_table\" >";
+            html = html + "     <tr class=\"treegrid-"+row+"\" >";
+            html = html + "         <td>RECORD</td>";
+            html = html + "         <td>ITEM</td>";
+            html = html + "         <td>QUANTITY</td>";
+            html = html + "         <td>UNITS</td>";
+            html = html + "     </tr>"; 
+            row = row + 1;
+            for (let i = 0; i < items.length; i++) {
+                var item = items[i];
+                
+                var d = new Date();
+                d.setTime(item.date_time * 1000);
+                //var m = moment(d);
+                var desc =  d.toLocaleString() + " <span class=\"pull-right\">From " + item.store.name + ": To " + item.other_store.name + " @" + item.document_number + "</span>"; 
+                if(item.notes !== null && item.notes.length  > 0){
+                    desc = desc + "<span>"+item.notes+"</span>";
+                }
+                html = html + "     <tr class=\"treegrid-"+row+" tree-rec\">";
+                html = html + "         <td colspan=\"4\">"+ desc +"</td>";
+                html = html + "     </tr>"; 
+                var parent = row;
+                row = row + 1;
+                for (let j = 0; j < item.stock_transfer_items.length; j++) {
+                    var soi = item.stock_transfer_items[j];
+                    html = html + " <tr class=\"treegrid-"+row+" treegrid-parent-"+parent+"\" >";
+                    html = html + "     <td></td>";
+                    html = html + "     <td>"+soi.item.name+"</td>";
+                    html = html + "     <td>"+soi.quantity+"</td>";
+                    html = html + "     <td>"+soi.unit.name+"</td>";
+                    html = html + " </tr>";
+                    row = row + 1;
+                }
+            }
+            html = html + "</table>";
+            //console.log(html);
+            $("#stock_transfer_page_history_list").html(html);
+            $("#stock_transfer_page_history_list_table").treegrid({
+                expanderExpandedClass: 'glyphicon glyphicon-minus',
+                expanderCollapsedClass: 'glyphicon glyphicon-plus'
+            });
+        },
+        stocktransferPage: 1,
+        stocktransferLimit: 10,
+        //end stock_transfer
+        load: function () {
+            this.stockoutCartItems = [];
+            //submenues
+            $(".inventory_sub_menu").on("click", function (event) {
+                //make all inventory_sub_menu deactive
+                $(".inventory_sub_menu").removeClass("active_sub_module");
+                //make this one the only active submemu
+                $(this).addClass("active_sub_module");
+                //hide all other inventory pages
+                $(".inventory_page").removeClass("inventory_page_active");
+                //make this one the active page
+                var pg = $(this).attr("data-for");
+                $("#" + pg).addClass("inventory_page_active");
+            });
+            //default image
+            var def = bee.baseUrl + "bee/images/default_product.png";
+            $("#item-form-image-preview").attr("src", def);
+            $("#item-form-image-preview").on("click", function (event) {
+                $("#item-form-image-file-input").click();
+            });
+            //file preview
+            $("#item-form-image-file-input").change(function () {
+                var fileThing = this;
+                if (fileThing.files && fileThing.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#item-form-image-preview').attr('src', e.target.result);
+                        //upload file to server
+                        var formData = new FormData();
+                        // HTML file input, chosen by user
+                        formData.append("image", fileThing.files[0]);
+                        app.pages.master_page.pages.inventory.showItemsLoader();
+                        bee.upload(formData, function (hny) {
+                            app.pages.master_page.pages.inventory.hideItemsLoader();
+                            if (hny._errors.length > 0) {
+                                var avatar = bee.baseUrl + "bee/images/default_product.png";
+                                $('#item-form-image-preview').attr('src', avatar);
+                                $.confirm({
+                                    title: 'Encountered an error!',
+                                    content: 'File upload failed: ' + hny._errors[0],
+                                    type: 'red',
+                                    typeAnimated: true,
+                                    buttons: {
+                                        close: function () {
+                                        }
+                                    }
+                                });
+                            } else {
+                                app.pages.master_page.pages.inventory.itemUploadedImage = hny.image;
+                                //every thing was ok
+                                $.alert('Your file was uploaded successfully', 'File Upload Successfull');
+                            }
+                        });
+                    }
+                    reader.readAsDataURL(fileThing.files[0]);
+                }
+            });
+
+            //item submit btn
+            $("#inventory_page_item_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.inventory.getItemNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.inventory.showItemsLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.inventory.hideItemsLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add Item", "Created a new item of id " + hny.item);
+                        //clear form
+                        app.pages.master_page.pages.inventory.clearItemForm();
+                        //get new items list from server and render it
+                        app.pages.master_page.pages.inventory.getItemsFromServer(
+                            app.pages.master_page.pages.inventory.renderItemsList
+                        );
+                    }
+                });
+            });
+            //load items
+            app.pages.master_page.pages.inventory.getItemsFromServer(
+                app.pages.master_page.pages.inventory.renderItemsList
+            );
+            //the clear button
+            $("#inventory_page_item_form_clear_btn").on("click", function (event) {
+                app.pages.master_page.pages.inventory.clearItemForm();
+            });
+
+            //the item tracked checkbox
+            $("#inventory_page_item_form_is_tracked_checkbox").on("ifChecked", function (event) {
+                app.pages.master_page.pages.inventory.itemIsTrackedInput = 1;
+            });
+            $("#inventory_page_item_form_is_tracked_checkbox").on("ifUnchecked", function (event) {
+                app.pages.master_page.pages.inventory.itemIsTrackedInput = 0;
+            });
+
+
+            //check on the dropdowns
+            app.pages.master_page.pages.config.checkRequiredDataForItemsForm();
+
+            //items search 
+            $("#item-search-btn").on("click", function (event) {
+                var q = $("#item-search-input").val();
+                q = q.trim();
+                var nect = {
+                    items: {
+                        _asc: ["name"],
+                        item_type: {},
+                        item_category: {},
+                        brand: {},
+                        unit: {},
+                        section: {}
+                    }
+                };
+                if (q.length > 0) {
+                    nect.items["_w"] = [
+                        [
+                            [
+                                [
+                                    [
+                                        [
+                                            [
+                                                [
+                                                    [
+                                                        [
+                                                            ["name", "like", q],
+                                                            "OR",
+                                                            ["code", "like", q]
+                                                        ],
+                                                        "OR",
+                                                        ["description", "like", q]
+                                                    ],
+                                                    "OR",
+                                                    ["serial_number1", "like", q]
+                                                ],
+                                                "OR",
+                                                ["serial_number2", "like", q]
+                                            ],
+                                            "OR",
+                                            ["serial_number3", "like", q]
+                                        ],
+                                        "OR",
+                                        ["serial_number4", "like", q]
+                                    ],
+                                    "OR",
+                                    ["size", "like", q]
+                                ],
+                                "OR",
+                                ["color", "like", q]
+                            ],
+                            "OR",
+                            ["extras", "like", q]
+                        ]
+                    ];
+                }
+                app.pages.master_page.pages.inventory.showItemsListLoader();
+                bee.get(nect, function (hny) {
+                    app.pages.master_page.pages.inventory.hideItemsListLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                        app.pages.master_page.pages.inventory.renderItemsList([]);
+                    } else {
+                        app.pages.master_page.pages.inventory.renderItemsList(hny.items);
+                    }
+                });
+            });
+
+
+            //alerts
+            this.loadItemsAlert();
+            $("#inventory_page_refresh_btn").on("click", function (event) {
+                app.pages.master_page.pages.inventory.loadItemsAlert();
+            });
+
+            //stores
+            $("#inventory_page_store_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.inventory.getStoreNector();
+                //nyd
+                //validate
+
+                app.pages.master_page.pages.inventory.showStoresLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.inventory.hideStoresLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add Store", "Created a new store of id " + hny.store);
+                        //clear form
+                        app.pages.master_page.pages.inventory.clearStoreForm();
+                        //get data 
+                        app.pages.master_page.pages.inventory.getStoresFromServer(
+                            app.pages.master_page.pages.inventory.renderStoresList
+                        );
+                    }
+                });
+            });
+            this.getStoresFromServer(this.renderStoresList);
+
+
+            //store
+            $("#inventory_page_stockout_selected_store_display").html("");
+            $("#inventory_page_stockin_selected_store_display").html("");
+
+            //stockout
+            $("#inventory_page_stockout_unit_input").val(0);
+            $("#inventory_page_stockout_item_form_submit_btn").on("click", function (event) {
+                var sItem = $("#items-stockout-cart-select").select2('data');
+                var itemEl = (sItem.length > 0) ? sItem[0] : null;
+                if (itemEl != null) {
+                    var itemId = itemEl.element.value;
+                    var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                    var q = $("#inventory_page_stockout_cart_quantity_input").val();
+                    q = q.trim();
+                    q = q.length == 0 ? 0 : (q * 1);
+                    console.log(item);
+                    app.pages.master_page.pages.inventory.addStockoutItem(item, q);
+                    $("#inventory_page_stockout_cart_quantity_input").val("");
+                } else {
+                    $.confirm({
+                        title: '!!! Attention',
+                        content: 'Please select an item',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            close: function () {
+                            }
+                        }
+                    });
+                }
+                // var cartItem = {
+                //     it
+                // };
+            });
+            $("#inventory_page_stockout_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.inventory.getStockoutNector();
+                app.pages.master_page.pages.inventory.showStockoutLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.inventory.hideStockoutLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add Stockout", "Created a new stockout of id " + hny.stockout);
+                        //clear form
+                        $("#inventory_page_stockout_form_clear_btn").click();
+                        //nyd
+                        //refresh stockedout items 
+                        $("#stockout_page_history_refresh_btn").click();
+                        //update item quantities
+                        app.pages.master_page.pages.inventory.updateItemQuantities();
+                    }
+                });
+            });
+            $("#inventory_page_stockout_form_clear_btn").on("click", function (event) {
+                $("#inventory_page_stockout_cart_quantity_input").val("");
+                app.pages.master_page.pages.inventory.clearStockoutcart();
+                $("#inventory_page_toggle_stockout_form").click();
+                $("#document_number_stockout_cart_input").val("");
+                $("#notes_stockout_cart_select").val("");
+            });
+            //the close button
+            $("#inventory_page_stockout_close_form_submit_btn").on("click", function () {
+                $("#inventory_page_toggle_stockout_form").click();
+            });
+            //filter btn
+            $("#stockout_page_history_filter_btn").on("click", function (event) {
+                if ($(this).hasClass("opened-log-filter") == false) {
+                    $("#stockout_page_history_list").addClass("shownFilterBody");
+                    $("#stockout_page_history_footer").addClass("shownFilterFooter");
+                    $(this).addClass("opened-log-filter");
+                    console.log("opened");
+                } else {
+                    $("#stockout_page_history_list").removeClass("shownFilterBody");
+                    $("#stockout_page_history_footer").removeClass("shownFilterFooter");
+                    $("#stockout_page_history_list").addClass("hiddenFilterBody");
+                    $("#stockout_page_history_footer").addClass("hiddenFilterFooter");
+                    $(this).removeClass("opened-log-filter");
+                    console.log("closed");
+                }
+            });
+            //stockout refresh-btn
+            $("#stockout_page_history_refresh_btn").on("click", function (event) {
+                var page = app.pages.master_page.pages.inventory.stockoutPage; //page
+                var limit = app.pages.master_page.pages.inventory.stockoutLimit; //limit
+                app.pages.master_page.pages.inventory.getStockoutsFromServer(
+                    limit, page, app.pages.master_page.pages.inventory.renderStockoutList
+                );
+            });
+            //stockout table
+            var limit = this.stockoutLimit;
+            var page = this.stockoutPage;
+            this.getStockoutsFromServer(limit,page, this.renderStockoutList);
+
+
+
+            //stockin
+            $("#inventory_page_stockin_unit_input").val(0);
+            $("#inventory_page_stockin_item_form_submit_btn").on("click", function (event) {
+                var sItem = $("#items-stockin-cart-select").select2('data');
+                var itemEl = (sItem.length > 0) ? sItem[0] : null;
+                if (itemEl != null) {
+                    var itemId = itemEl.element.value;
+                    var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                    var q = $("#inventory_page_stockin_cart_quantity_input").val();
+                    q = q.trim();
+                    q = q.length == 0 ? 0 : (q * 1);
+                    console.log(item);
+                    app.pages.master_page.pages.inventory.addStockinItem(item, q);
+                    $("#inventory_page_stockin_cart_quantity_input").val("");
+                } else {
+                    $.confirm({
+                        title: '!!! Attention',
+                        content: 'Please select an item',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            close: function () {
+                            }
+                        }
+                    });
+                }
+                // var cartItem = {
+                //     it
+                // };
+            });
+            $("#inventory_page_stockin_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.inventory.getStockinNector();
+                app.pages.master_page.pages.inventory.showStockinLoader();
+                bee.post(nec, function (hny) {
+                    app.pages.master_page.pages.inventory.hideStockinLoader();
+                    if (hny._errors.length > 0) {
+                        app.showErrors(hny._errors);
+                    } else {
+                        //log
+                        bee.log("Add Stockin", "Created a new stockin of id " + hny.stockin);
+                        //clear form
+                        $("#inventory_page_stockin_form_clear_btn").click();
+                        //nyd
+                        //refresh stockedout items 
+                        $("#stockin_page_history_refresh_btn").click();
+                        //update item quantities
+                        app.pages.master_page.pages.inventory.updateItemQuantities();
+                    }
+                });
+            });
+            $("#inventory_page_stockin_form_clear_btn").on("click", function (event) {
+                $("#inventory_page_stockout_cart_quantity_input").val("");
+                app.pages.master_page.pages.inventory.clearStockincart();
+                $("#inventory_page_toggle_stockin_form").click();
+                $("#document_number_stockin_cart_input").val("");
+                $("#notes_stockin_cart_select").val("");
+            });
+            //the close button
+            $("#inventory_page_stockin_close_form_submit_btn").on("click", function () {
+                $("#inventory_page_toggle_stockin_form").click();
+            });
+            //filter btn
+            $("#stockin_page_history_filter_btn").on("click", function (event) {
+                if ($(this).hasClass("opened-log-filter") == false) {
+                    $("#stockin_page_history_list").addClass("shownFilterBody");
+                    $("#stockin_page_history_footer").addClass("shownFilterFooter");
+                    $(this).addClass("opened-log-filter");
+                    console.log("opened");
+                } else {
+                    $("#stockin_page_history_list").removeClass("shownFilterBody");
+                    $("#stockin_page_history_footer").removeClass("shownFilterFooter");
+                    $("#stockin_page_history_list").addClass("hiddenFilterBody");
+                    $("#stockin_page_history_footer").addClass("hiddenFilterFooter");
+                    $(this).removeClass("opened-log-filter");
+                    console.log("closed");
+                }
+            });
+            //stockin refresh-btn
+            $("#stockin_page_history_refresh_btn").on("click", function (event) {
+                var page = app.pages.master_page.pages.inventory.stockinPage; //page
+                var limit = app.pages.master_page.pages.inventory.stockinLimit; //limit
+                app.pages.master_page.pages.inventory.getStockinsFromServer(
+                    limit, page, app.pages.master_page.pages.inventory.renderStockinList
+                );
+            });
+            //stockin table
+            var limit = this.stockinLimit;
+            var page = this.stockinPage;
+            this.getStockinsFromServer(limit,page, this.renderStockinList);
+
+
+            //stock transfer
+            $("#inventory_page_stock_transfer_from_store_input").val(0);
+            $("#inventory_page_stock_transfer_to_store_input").val(0);
+            $("#inventory_page_stock_transfer_item_form_submit_btn").on("click", function (event) {
+                var sItem = $("#items-stock-transfer-cart-select").select2('data');
+                var itemEl = (sItem.length > 0) ? sItem[0] : null;
+                if (itemEl != null) {
+                    var itemId = itemEl.element.value;
+                    var item = app.pages.master_page.pages.inventory.indexedRenderedItems[itemId];
+                    var q = $("#inventory_page_stock_transfer_cart_quantity_input").val();
+                    q = q.trim();
+                    q = q.length == 0 ? 0 : (q * 1);
+                    //console.log(item);
+                    app.pages.master_page.pages.inventory.addStocktransferItem(item, q);
+                    $("#inventory_page_stock_transfer_cart_quantity_input").val("");
+                } else {
+                    $.confirm({
+                        title: '!!! Attention',
+                        content: 'Please select an item',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            close: function () {
+                            }
+                        }
+                    });
+                }
+                // var cartItem = {
+                //     it
+                // };
+            });
+            $("#inventory_page_stock_transfer_form_submit_btn").on("click", function (event) {
+                var nec = app.pages.master_page.pages.inventory.getStocktransferNector();
+                if(nec.stock_transfer.store_id != nec.stock_transfer.other_store_id ){
+                    app.pages.master_page.pages.inventory.showStocktransferLoader();
+                    bee.post(nec, function (hny) {
+                        app.pages.master_page.pages.inventory.hideStocktransferLoader();
+                        if (hny._errors.length > 0) {
+                            app.showErrors(hny._errors);
+                        } else {
+                            //log
+                            bee.log("Add Stock transfer", "Created a new stockout transfer of id " + hny.stock_transfer);
+                            //clear form
+                            $("#inventory_page_stock_transfer_form_clear_btn").click();
+                            //nyd
+                            //refresh stockedout items 
+                            $("#stock_transfer_page_history_refresh_btn").click();
+                            //update item quantities
+                            app.pages.master_page.pages.inventory.updateItemQuantities();
+                        }
+                    });
+                }else{
+                    $.confirm({
+                        title: 'Wrong Parameters!',
+                        content: 'Please select a different store to move items to',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            close: function () {
+                            }
+                        }
+                    });
+                }
+            });
+            $("#inventory_page_stock_transfer_form_clear_btn").on("click", function (event) {
+                $("#inventory_page_stock_transfer_cart_quantity_input").val("");
+                app.pages.master_page.pages.inventory.clearStocktransfercart();
+                $("#inventory_page_toggle_stock_transfer_form").click();
+                $("#document_number_stock_transfer_cart_input").val("");
+                $("#notes_stock_transfer_cart_input").val("");
+            });
+            //the close button
+            $("#inventory_page_stock_transfer_close_form_submit_btn").on("click", function () {
+                $("#inventory_page_toggle_stock_transfer_form").click();
+            });
+            //filter btn
+            $("#stock_transfer_page_history_filter_btn").on("click", function (event) {
+                if ($(this).hasClass("opened-log-filter") == false) {
+                    $("#stock_transfer_page_history_list").addClass("shownFilterBody");
+                    $("#stock_transfer_page_history_footer").addClass("shownFilterFooter");
+                    $(this).addClass("opened-log-filter");
+                    console.log("opened");
+                } else {
+                    $("#stock_transfer_page_history_list").removeClass("shownFilterBody");
+                    $("#stock_transfer_page_history_footer").removeClass("shownFilterFooter");
+                    $("#stock_transfer_page_history_list").addClass("hiddenFilterBody");
+                    $("#stock_transfer_page_history_footer").addClass("hiddenFilterFooter");
+                    $(this).removeClass("opened-log-filter");
+                    console.log("closed");
+                }
+            });
+            //stockout refresh-btn
+            $("#stock_transfer_page_history_refresh_btn").on("click", function (event) {
+                var page = app.pages.master_page.pages.inventory.stock_transfer_page_history_footer; //page
+                var limit = app.pages.master_page.pages.inventory.stocktransferLimit; //limit
+                app.pages.master_page.pages.inventory.getStocktransfersFromServer(
+                    limit, page, app.pages.master_page.pages.inventory.renderStocktransferList
+                );
+            });
+            //stockout table
+            var limit = this.stocktransferLimit;
+            var page = this.stocktransferPage;
+            this.getStocktransfersFromServer(limit,page, this.renderStocktransferList);
+
+
+
+        }
+    }
+</script>

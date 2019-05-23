@@ -66,9 +66,9 @@
     );
     define("BEE_IS_IN_PRODUCTION",false);
     define("BEE_BASE_URI", "/".GARDEN."/"."bee/");
-    define("BEE_SERVER_NAME", (BEE_IS_IN_PRODUCTION ? "cloudfin_mysql_srv" : "cloudfin_mysql_srv"));
+    define("BEE_SERVER_NAME", (BEE_IS_IN_PRODUCTION ? "mysql_srv" : "mysql_srv"));
     define("BEE_USER_NAME", (BEE_IS_IN_PRODUCTION ? "root" : "root"));
-    define("BEE_PASSWORD", (BEE_IS_IN_PRODUCTION ? "cloudfin-2015" : "cloudfin-2015"));
+    define("BEE_PASSWORD", (BEE_IS_IN_PRODUCTION ? "qwerty" : "qwerty"));
     define("BEE_SHOW_SQL_ON_ERRORS", true);
     define("BEE_APP_SECRET","mysupersecuresecret");
     define("BEE_JWT_AUDIENCE","mysuperapp");
