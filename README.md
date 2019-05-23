@@ -3,6 +3,13 @@ a dockarised php backend engine
 
 The front end application will be running at port 80  
 
+#change git remote to your repo  
+```
+ git remote set-url  --add origin https://github.com/nyolamike/awamo_math_challenge.git  
+ git remote set-url --delete origin https://github.com/nyolamike/docker_php_bee.git  
+ verify that we are pointing to the right repo  
+ git remote -v  
+```  
 
 #Basic _hive.json edits  
 Delete the accounting section  
